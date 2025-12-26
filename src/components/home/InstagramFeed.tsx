@@ -6,43 +6,49 @@ import { motion } from "framer-motion";
 import { Instagram, Heart, MessageCircle } from "lucide-react";
 
 // Instagram feed for @kitraro416
-// BAPE, Supreme, and streetwear focused images
+// Using actual product images from the store
 const instagramPosts = [
   {
     id: "1",
-    image: "https://images.unsplash.com/photo-1578681994506-b8f463449011?w=600",
-    likes: 1247,
-    comments: 89,
+    image: "https://cdn.shopify.com/s/files/1/0966/5236/2018/files/9FB083E7-B901-4B93-A3CE-FAC32962047C.jpg?v=1759206150",
+    likes: 847,
+    comments: 42,
+    caption: "BAPE AAPE Jacket",
   },
   {
     id: "2",
-    image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=600",
-    likes: 2341,
-    comments: 156,
+    image: "https://cdn.shopify.com/s/files/1/0966/5236/2018/files/327D5635-E750-4D54-8017-4D4A2E1A7859.jpg?v=1765828352",
+    likes: 1523,
+    comments: 98,
+    caption: "Jordan 1 Shattered Backboard",
   },
   {
     id: "3",
-    image: "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=600",
-    likes: 1893,
-    comments: 102,
+    image: "https://cdn.shopify.com/s/files/1/0966/5236/2018/files/78B1C56A-8F1E-4870-96B8-CCF83C57CF1C.jpg?v=1765829459",
+    likes: 2156,
+    comments: 167,
+    caption: "Vales Lives Forever Speed Bling",
   },
   {
     id: "4",
-    image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600",
-    likes: 3215,
-    comments: 234,
+    image: "https://cdn.shopify.com/s/files/1/0966/5236/2018/files/AD489DD0-D708-42D9-A2B2-CFD737519886.jpg?v=1759206388",
+    likes: 934,
+    comments: 51,
+    caption: "BAPE Camo Jacket",
   },
   {
     id: "5",
-    image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600",
-    likes: 987,
-    comments: 67,
+    image: "https://cdn.shopify.com/s/files/1/0966/5236/2018/files/PHOTO-2025-10-04-12-01-11_1.jpg?v=1763667524",
+    likes: 1287,
+    comments: 73,
+    caption: "New Era Yankees Fitted",
   },
   {
     id: "6",
-    image: "https://images.unsplash.com/photo-1584735175315-9d5df23860e6?w=600",
-    likes: 1567,
-    comments: 98,
+    image: "https://cdn.shopify.com/s/files/1/0966/5236/2018/files/72588632-83A5-4AC1-BE62-55B82D8C5B81.jpg?v=1760712548",
+    likes: 1845,
+    comments: 112,
+    caption: "Nike Dunk Low",
   },
 ];
 

@@ -239,10 +239,10 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
       {/* Collection Banner 1 - BAPE */}
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1578681994506-b8f463449011?w=1920"
-          alt="BAPE Collection"
+          src="https://images.stockx.com/images/Medicom-BAPE-Camo-Shark-Bearbrick-Set-100-400-Green.jpg?fit=fill&bg=FFFFFF&w=1200&h=857&fm=webp&auto=compress&dpr=1&trim=color&q=90"
+          alt="BAPE BE@RBRICK Shark Hoodie ABC Camo Collection"
           fill
-          className="object-cover"
+          className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
         <div className="absolute inset-0 flex items-center">
@@ -255,7 +255,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
                 A Bathing Ape
               </h2>
               <p className="text-gray-300 text-lg max-w-lg mb-6">
-                O camo mais icônico do streetwear. Shark hoodies, Baby Milo e muito mais.
+                BE@RBRICK x BAPE Shark Hoodie em ABC CAMO. O camo mais icônico do streetwear.
               </p>
               <Link
                 href="/brands/bape"
@@ -308,10 +308,10 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
             <AnimatedSection>
               <Link href="/brands/supreme" className="group block relative h-[250px] md:h-[300px] rounded-3xl overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800"
-                  alt="Supreme Collection"
+                  src="https://images.stockx.com/images/Supreme-Box-Logo-Hooded-Sweatshirt-FW17-Red.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90"
+                  alt="Supreme Box Logo Hoodie Red"
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
@@ -332,18 +332,18 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
             <AnimatedSection delay={0.1}>
               <Link href="/brands/valley-dreams" className="group block relative h-[250px] md:h-[300px] rounded-3xl overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=800"
-                  alt="Valley Dreams Collection"
+                  src="https://cdn.shopify.com/s/files/1/0966/5236/2018/files/78B1C56A-8F1E-4870-96B8-CCF83C57CF1C.jpg?v=1765829459"
+                  alt="Valley Dreams Vales Lives Forever Speed Bling"
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <span className="inline-block px-3 py-1 bg-purple-500 text-white text-xs font-bold rounded-full mb-3">
-                    NOVO
+                    EXCLUSIVO
                   </span>
                   <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Valley Dreams</h3>
-                  <p className="text-gray-300 text-sm mb-4">Streetwear com alma brasileira</p>
+                  <p className="text-gray-300 text-sm mb-4">Vales Lives Forever - Streetwear brasileiro</p>
                   <span className="inline-flex items-center gap-2 text-white font-medium group-hover:text-purple-400 transition-colors">
                     Ver Colecao
                     <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
@@ -389,53 +389,6 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
 
       {/* Instagram Feed */}
       <InstagramFeed />
-
-      {/* Newsletter CTA */}
-      <section className="py-16 bg-[#0a2e0a] text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#051a05]/50 to-[#0a2e0a]" />
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#d4af37]/10 rounded-full blur-3xl" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <AnimatedSection>
-            <motion.div
-              initial={{ scale: 0.9 }}
-              whileInView={{ scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#d4af37]/20 text-[#f0d77c] text-sm font-medium rounded-full mb-6">
-                <Sparkles size={16} />
-                Exclusivo para Membros
-              </span>
-              <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                Receba <span className="gradient-text">10% OFF</span>
-              </h2>
-              <p className="text-xl text-gray-400 mb-10 max-w-xl mx-auto">
-                Inscreva-se e ganhe 10% de desconto na primeira compra + acesso antecipado a lancamentos.
-              </p>
-              <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                <input
-                  type="email"
-                  placeholder="Seu melhor e-mail"
-                  className="flex-1 px-6 py-4 bg-white/10 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#d4af37] border border-white/20"
-                />
-                <button
-                  type="submit"
-                  className="px-8 py-4 btn-gradient rounded-full font-bold inline-flex items-center justify-center gap-2"
-                >
-                  Quero Desconto
-                  <ArrowRight size={20} />
-                </button>
-              </form>
-              <p className="text-sm text-gray-500 mt-4">
-                Sem spam. Cancele quando quiser.
-              </p>
-            </motion.div>
-          </AnimatedSection>
-        </div>
-      </section>
     </div>
   );
 }

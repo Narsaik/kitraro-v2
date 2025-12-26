@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Instagram, Facebook, Twitter } from "lucide-react";
 import { PaymentIcons } from "@/components/ui/PaymentIcons";
 
@@ -32,32 +34,37 @@ const footerLinks = {
 };
 
 export function Footer() {
+  const pathname = usePathname();
+  const isHomepage = pathname === "/";
+
   return (
     <footer className="bg-[#0a2e0a] text-white">
-      {/* Newsletter */}
-      <div className="border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="max-w-xl mx-auto text-center">
-            <h3 className="text-2xl font-bold mb-2">Junte-se ao Kit Raro</h3>
-            <p className="text-white/70 mb-6">
-              Receba novidades, drops exclusivos e 10% off na primeira compra.
-            </p>
-            <form className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Seu e-mail"
-                className="flex-1 px-4 py-3 bg-white/10 rounded-full text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#d4af37] border border-white/20"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-[#d4af37] hover:bg-[#b8960c] text-black font-bold rounded-full transition-colors"
-              >
-                Inscrever
-              </button>
-            </form>
+      {/* Newsletter - Hidden on homepage */}
+      {!isHomepage && (
+        <div className="border-b border-white/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="max-w-xl mx-auto text-center">
+              <h3 className="text-2xl font-bold mb-2">Junte-se ao Kit Raro</h3>
+              <p className="text-white/70 mb-6">
+                Receba novidades, drops exclusivos e 10% off na primeira compra.
+              </p>
+              <form className="flex gap-2">
+                <input
+                  type="email"
+                  placeholder="Seu e-mail"
+                  className="flex-1 px-4 py-3 bg-white/10 rounded-full text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#d4af37] border border-white/20"
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-3 bg-[#d4af37] hover:bg-[#b8960c] text-black font-bold rounded-full transition-colors"
+                >
+                  Inscrever
+                </button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -114,7 +121,7 @@ export function Footer() {
             <h4 className="font-bold mb-4 text-[#d4af37]">Siga-nos</h4>
             <div className="flex gap-4 mb-6">
               <a
-                href="https://instagram.com/kitraro"
+                href="https://instagram.com/kitraro416"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-[#d4af37] rounded-full flex items-center justify-center hover:bg-[#f0d77c] transition-colors text-black"
@@ -122,7 +129,7 @@ export function Footer() {
                 <Instagram size={20} />
               </a>
               <a
-                href="https://facebook.com/kitraro"
+                href="https://facebook.com/kitraro416"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-[#d4af37] rounded-full flex items-center justify-center hover:bg-[#f0d77c] transition-colors text-black"
@@ -130,7 +137,7 @@ export function Footer() {
                 <Facebook size={20} />
               </a>
               <a
-                href="https://twitter.com/kitraro"
+                href="https://twitter.com/kitraro416"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-[#d4af37] rounded-full flex items-center justify-center hover:bg-[#f0d77c] transition-colors text-black"
@@ -151,15 +158,12 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-4">
-              <Image
-                src="/logo.png"
-                alt="Kit Raro"
-                width={120}
-                height={40}
-                className="h-10 w-auto object-contain brightness-0 invert"
-              />
+              {/* Kitraro Logo */}
+              <div className="w-12 h-12 rounded-full bg-[#0a2e0a] border-2 border-[#d4af37] flex items-center justify-center">
+                <span className="text-[#d4af37] font-bold text-lg">KR</span>
+              </div>
               <span className="text-white/60 text-sm">
-                © {new Date().getFullYear()} Kit Raro. Todos os direitos reservados.
+                © {new Date().getFullYear()} Kitraro. Todos os direitos reservados.
               </span>
             </div>
             <div className="flex flex-col md:flex-row items-center gap-4">

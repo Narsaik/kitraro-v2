@@ -98,7 +98,7 @@ export default function RootLayout({
                     "height": 800,
                   },
                   "sameAs": [
-                    "https://instagram.com/kitraro",
+                    "https://instagram.com/kitraro416",
                   ],
                   "contactPoint": {
                     "@type": "ContactPoint",
