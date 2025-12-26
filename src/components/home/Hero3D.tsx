@@ -6,14 +6,14 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Sparkles, Play, Volume2, VolumeX } from "lucide-react";
 
-// Sean Wotherspoon colorway inspired gradient
-const SW_COLORS = {
-  yellow: "#E8D639",
-  green: "#4A7C59",
-  pink: "#E8A4C9",
-  blue: "#5B9BD5",
-  orange: "#E87F3A",
-  teal: "#2D6A6A",
+// Vales Lives Forever "Speed Bling" inspired colors
+const VALES_COLORS = {
+  gold: "#d4af37",
+  black: "#0a0a0a",
+  silver: "#C0C0C0",
+  purple: "#6B21A8",
+  blue: "#1e40af",
+  green: "#0a2e0a",
 };
 
 export function Hero3D() {
@@ -62,7 +62,7 @@ export function Hero3D() {
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[150px] opacity-30"
-          style={{ background: `radial-gradient(circle, ${SW_COLORS.yellow}, transparent)` }}
+          style={{ background: `radial-gradient(circle, ${VALES_COLORS.gold}, transparent)` }}
         />
         <motion.div
           animate={{
@@ -71,7 +71,7 @@ export function Hero3D() {
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           className="absolute top-1/2 right-1/4 w-80 h-80 rounded-full blur-[150px] opacity-30"
-          style={{ background: `radial-gradient(circle, ${SW_COLORS.green}, transparent)` }}
+          style={{ background: `radial-gradient(circle, ${VALES_COLORS.purple}, transparent)` }}
         />
         <motion.div
           animate={{
@@ -80,7 +80,7 @@ export function Hero3D() {
           }}
           transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
           className="absolute bottom-1/4 left-1/3 w-72 h-72 rounded-full blur-[150px] opacity-25"
-          style={{ background: `radial-gradient(circle, ${SW_COLORS.pink}, transparent)` }}
+          style={{ background: `radial-gradient(circle, ${VALES_COLORS.silver}, transparent)` }}
         />
         <motion.div
           animate={{
@@ -89,7 +89,7 @@ export function Hero3D() {
           }}
           transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
           className="absolute top-1/3 right-1/3 w-64 h-64 rounded-full blur-[150px] opacity-20"
-          style={{ background: `radial-gradient(circle, ${SW_COLORS.blue}, transparent)` }}
+          style={{ background: `radial-gradient(circle, ${VALES_COLORS.blue}, transparent)` }}
         />
 
         {/* Grid overlay */}
@@ -112,8 +112,8 @@ export function Hero3D() {
           className="mb-8"
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white/80 text-sm">
-            <Sparkles size={14} className="text-[#E8D639]" />
-            PECA RARA DO DIA
+            <Sparkles size={14} className="text-[#d4af37]" />
+            LANCAMENTO EXCLUSIVO
           </span>
         </motion.div>
 
@@ -133,7 +133,7 @@ export function Hero3D() {
               transition={{ duration: 3, repeat: Infinity }}
               className="w-3/4 h-3/4 rounded-full blur-[80px]"
               style={{
-                background: `conic-gradient(from 0deg, ${SW_COLORS.yellow}, ${SW_COLORS.green}, ${SW_COLORS.teal}, ${SW_COLORS.blue}, ${SW_COLORS.pink}, ${SW_COLORS.orange}, ${SW_COLORS.yellow})`
+                background: `conic-gradient(from 0deg, ${VALES_COLORS.gold}, ${VALES_COLORS.purple}, ${VALES_COLORS.blue}, ${VALES_COLORS.silver}, ${VALES_COLORS.gold})`
               }}
             />
           </div>
@@ -166,21 +166,21 @@ export function Hero3D() {
                 style={{ backfaceVisibility: "visible" }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800"
-                  alt="Air Max 97/1 Sean Wotherspoon"
+                  src="https://cdn.shopify.com/s/files/1/0966/5236/2018/files/78B1C56A-8F1E-4870-96B8-CCF83C57CF1C.jpg?v=1765829459"
+                  alt="Camiseta Vales Lives Forever Speed Bling"
                   fill
-                  className="object-contain drop-shadow-[0_35px_60px_rgba(232,212,57,0.4)]"
+                  className="object-contain drop-shadow-[0_35px_60px_rgba(212,175,55,0.4)]"
                   priority
                 />
               </div>
 
-              {/* Floating particles around shoe */}
+              {/* Floating particles around product */}
               {[...Array(12)].map((_, i) => (
                 <motion.div
                   key={i}
                   className="absolute w-2 h-2 rounded-full"
                   style={{
-                    background: Object.values(SW_COLORS)[i % 6],
+                    background: Object.values(VALES_COLORS)[i % 6],
                     left: `${20 + Math.random() * 60}%`,
                     top: `${20 + Math.random() * 60}%`,
                   }}
@@ -215,11 +215,11 @@ export function Hero3D() {
             />
             <defs>
               <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor={SW_COLORS.yellow} />
-                <stop offset="25%" stopColor={SW_COLORS.green} />
-                <stop offset="50%" stopColor={SW_COLORS.blue} />
-                <stop offset="75%" stopColor={SW_COLORS.pink} />
-                <stop offset="100%" stopColor={SW_COLORS.yellow} />
+                <stop offset="0%" stopColor={VALES_COLORS.gold} />
+                <stop offset="25%" stopColor={VALES_COLORS.purple} />
+                <stop offset="50%" stopColor={VALES_COLORS.blue} />
+                <stop offset="75%" stopColor={VALES_COLORS.silver} />
+                <stop offset="100%" stopColor={VALES_COLORS.gold} />
               </linearGradient>
             </defs>
           </svg>
@@ -233,16 +233,16 @@ export function Hero3D() {
           className="text-center mb-8"
         >
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#E8D639] via-[#4A7C59] to-[#E8A4C9]">
-              Air Max 97/1
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#6B21A8] to-[#C0C0C0]">
+              Vales Lives Forever
             </span>
-            <span className="block text-white/90">Sean Wotherspoon</span>
+            <span className="block text-white/90">"Speed Bling"</span>
           </h1>
           <p className="text-lg md:text-xl text-white/60 max-w-xl mx-auto mb-2">
-            O grail definitivo do streetwear. Corduroy premium em cores icônicas.
+            Camiseta exclusiva Valley Dreams. Streetwear brasileiro premium.
           </p>
           <div className="flex items-center justify-center gap-4 text-sm text-white/40">
-            <span>Tamanhos: 38-45</span>
+            <span>Tamanhos: P-GG</span>
             <span className="w-1 h-1 rounded-full bg-white/40" />
             <span>Edicao Limitada</span>
           </div>
@@ -256,12 +256,11 @@ export function Hero3D() {
           className="flex flex-col sm:flex-row items-center gap-4"
         >
           <div className="text-center sm:text-right mr-4">
-            <p className="text-white/40 text-sm line-through">R$ 8.999</p>
-            <p className="text-3xl font-bold text-white">R$ 6.999</p>
+            <p className="text-3xl font-bold text-white">R$ 1.699,90</p>
           </div>
           <Link
-            href="/products/air-max-97-sean-wotherspoon"
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#E8D639] to-[#4A7C59] text-black font-bold rounded-full hover:shadow-[0_0_40px_rgba(232,212,57,0.4)] transition-all duration-300"
+            href="/products/camiseta-vales-lives-forever-speed-bling"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#d4af37] to-[#6B21A8] text-white font-bold rounded-full hover:shadow-[0_0_40px_rgba(212,175,55,0.4)] transition-all duration-300"
           >
             Comprar Agora
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
