@@ -239,8 +239,8 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
       {/* Collection Banner 1 - BAPE */}
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
         <Image
-          src="https://images.stockx.com/images/Medicom-BAPE-Camo-Shark-Bearbrick-Set-100-400-Green.jpg?fit=fill&bg=FFFFFF&w=1200&h=857&fm=webp&auto=compress&dpr=1&trim=color&q=90"
-          alt="BAPE BE@RBRICK Shark Hoodie ABC Camo Collection"
+          src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1920&q=80"
+          alt="BAPE Streetwear Collection"
           fill
           className="object-cover object-center"
         />
@@ -308,8 +308,8 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
             <AnimatedSection>
               <Link href="/brands/supreme" className="group block relative h-[250px] md:h-[300px] rounded-3xl overflow-hidden">
                 <Image
-                  src="https://images.stockx.com/images/Supreme-Box-Logo-Hooded-Sweatshirt-FW17-Red.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90"
-                  alt="Supreme Box Logo Hoodie Red"
+                  src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=800&q=80"
+                  alt="Supreme Streetwear Collection"
                   fill
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />

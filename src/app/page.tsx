@@ -14,14 +14,14 @@ const defaultCategories = [
   {
     name: "Tenis",
     slug: "tenis",
-    image: "https://images.stockx.com/images/Air-Jordan-1-Retro-High-OG-Chicago-Lost-and-Found-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90",
+    image: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/af407252-b94c-4c46-9357-4e82f4d98776/AIR+JORDAN+1+RETRO+HIGH+OG.png",
     description: "Air Jordan, Nike Dunk e mais",
     count: 0,
   },
   {
     name: "Bones",
     slug: "bones",
-    image: "https://images.stockx.com/images/New-Era-New-York-Yankees-59Fifty-Fitted-Hat-Black-White.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90",
+    image: "https://cdn.shopify.com/s/files/1/0966/5236/2018/files/PHOTO-2025-10-04-12-01-11_1.jpg?v=1763667524",
     description: "New Era, Snapback, Fitted",
     count: 0,
   },
@@ -35,15 +35,15 @@ const defaultCategories = [
   {
     name: "Moletons",
     slug: "moletons",
-    image: "https://images.stockx.com/images/Supreme-Box-Logo-Hooded-Sweatshirt-FW17-Red.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90",
-    description: "Supreme, Jordan Hoodies",
+    image: "https://cdn.shopify.com/s/files/1/0966/5236/2018/files/0CA6885F-2005-44AE-93A2-DB0C8B40AF73.jpg?v=1765829170",
+    description: "Jordan, Nike Hoodies",
     count: 0,
   },
   {
     name: "Calcas",
     slug: "calcas",
-    image: "https://images.stockx.com/images/Chrome-Hearts-Cross-Patch-Flare-Denim-Jeans-Blue.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90",
-    description: "Chrome Hearts, Cargo, Joggers",
+    image: "https://cdn.shopify.com/s/files/1/0966/5236/2018/files/4897AAE7-0969-4DE8-AF8A-83DA62FC0E35.jpg?v=1760711363",
+    description: "Jordan, Nike, Cargo",
     count: 0,
   },
 ];
