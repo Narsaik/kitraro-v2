@@ -80,7 +80,7 @@ export function InstagramFeed() {
           {instagramPosts.map((post, index) => (
             <motion.a
               key={post.id}
-              href="https://instagram.com/kitraro416"
+              href="https://www.instagram.com/kitraro416/"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -121,7 +121,7 @@ export function InstagramFeed() {
           className="text-center mt-10"
         >
           <a
-            href="https://instagram.com/kitraro"
+            href="https://www.instagram.com/kitraro416/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white font-bold rounded-full hover:shadow-lg transition-shadow"

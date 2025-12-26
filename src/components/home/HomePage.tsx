@@ -239,7 +239,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
       {/* Collection Banner 1 - BAPE */}
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1920&q=80"
+          src="https://cdn.shopify.com/s/files/1/0966/5236/2018/files/AD489DD0-D708-42D9-A2B2-CFD737519886.jpg?v=1759206388"
           alt="BAPE Streetwear Collection"
           fill
           className="object-cover object-center"
@@ -308,7 +308,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
             <AnimatedSection>
               <Link href="/brands/supreme" className="group block relative h-[250px] md:h-[300px] rounded-3xl overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=800&q=80"
+                  src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80"
                   alt="Supreme Streetwear Collection"
                   fill
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"

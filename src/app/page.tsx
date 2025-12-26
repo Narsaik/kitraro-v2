@@ -14,7 +14,7 @@ const defaultCategories = [
   {
     name: "Tenis",
     slug: "tenis",
-    image: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/af407252-b94c-4c46-9357-4e82f4d98776/AIR+JORDAN+1+RETRO+HIGH+OG.png",
+    image: "https://cdn.shopify.com/s/files/1/0966/5236/2018/files/327D5635-E750-4D54-8017-4D4A2E1A7859.jpg?v=1765828352",
     description: "Air Jordan, Nike Dunk e mais",
     count: 0,
   },
