@@ -139,31 +139,6 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
         </section>
       )}
 
-      {/* Brands Bar - Compact */}
-      {brands.length > 0 && (
-        <section className="py-8 bg-gray-50 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between gap-6 overflow-x-auto hide-scrollbar">
-              {brands.map((brand) => (
-                <Link
-                  key={brand.slug}
-                  href={`/brands/${brand.slug}`}
-                  className="flex-shrink-0 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all"
-                >
-                  <Image
-                    src={brand.logo}
-                    alt={brand.name}
-                    width={60}
-                    height={60}
-                    className="object-contain"
-                  />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Categories with Image Backgrounds - Mosaic Grid */}
       {categories.length > 0 && (
         <section className="py-16 bg-black">
@@ -289,9 +264,9 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               </div>
             </AnimatedSection>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {featuredProducts.slice(0, 8).map((product, index) => (
-                <AnimatedSection key={product.id} delay={index * 0.1}>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {featuredProducts.slice(0, 12).map((product, index) => (
+                <AnimatedSection key={product.id} delay={index * 0.05}>
                   <ProductCard product={product} index={index} />
                 </AnimatedSection>
               ))}
