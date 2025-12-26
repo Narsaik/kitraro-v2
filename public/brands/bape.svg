@@ -1,0 +1,27 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- BAPE Ape Head - Authentic style -->
+  <!-- Main head shape with ears -->
+  <ellipse cx="50" cy="55" rx="40" ry="42" fill="#000"/>
+  <!-- Left ear -->
+  <ellipse cx="15" cy="30" rx="12" ry="14" fill="#000"/>
+  <!-- Right ear -->
+  <ellipse cx="85" cy="30" rx="12" ry="14" fill="#000"/>
+  <!-- Inner face/muzzle area -->
+  <ellipse cx="50" cy="60" rx="28" ry="26" fill="#C4A484"/>
+  <!-- Left eye socket -->
+  <ellipse cx="35" cy="50" rx="12" ry="14" fill="#fff"/>
+  <circle cx="35" cy="50" r="7" fill="#000"/>
+  <circle cx="37" cy="48" r="2" fill="#fff"/>
+  <!-- Right eye socket -->
+  <ellipse cx="65" cy="50" rx="12" ry="14" fill="#fff"/>
+  <circle cx="65" cy="50" r="7" fill="#000"/>
+  <circle cx="67" cy="48" r="2" fill="#fff"/>
+  <!-- Nose -->
+  <ellipse cx="50" cy="70" rx="8" ry="5" fill="#8B4513"/>
+  <circle cx="46" cy="70" r="2" fill="#000"/>
+  <circle cx="54" cy="70" r="2" fill="#000"/>
+  <!-- Mouth line -->
+  <path d="M40 80 Q50 88 60 80" stroke="#000" stroke-width="2" fill="none"/>
+  <!-- Star on forehead -->
+  <polygon points="50,18 52,24 58,24 53,28 55,34 50,30 45,34 47,28 42,24 48,24" fill="#FFD700" stroke="#000" stroke-width="1"/>
+</svg>

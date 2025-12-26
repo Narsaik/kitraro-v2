@@ -1,0 +1,132 @@
+// Server-side data fetching from Shopify
+import {
+  getAllProducts,
+  getProductByHandle,
+  getCollections,
+  getCollectionByHandle,
+  searchProducts,
+  getProductsByVendor,
+  getProductsByType,
+} from './index';
+import type { Product, Collection } from './types';
+
+// Cache for server-side rendering
+let productsCache: Product[] | null = null;
+let productsCacheTime = 0;
+const CACHE_DURATION = 60 * 1000; // 1 minute cache
+
+export async function getProducts(limit: number = 100): Promise<Product[]> {
+  const now = Date.now();
+
+  // Return cached products if still valid
+  if (productsCache && now - productsCacheTime < CACHE_DURATION) {
+    return productsCache.slice(0, limit);
+  }
+
+  try {
+    const products = await getAllProducts(limit);
+    productsCache = products;
+    productsCacheTime = now;
+    return products;
+  } catch (error) {
+    console.error('Failed to fetch products:', error);
+    // Return cached data if available, even if stale
+    if (productsCache) return productsCache.slice(0, limit);
+    return [];
+  }
+}
+
+export async function getProduct(handle: string): Promise<Product | null> {
+  try {
+    return await getProductByHandle(handle);
+  } catch (error) {
+    console.error('Failed to fetch product:', error);
+    return null;
+  }
+}
+
+export async function getFeaturedProducts(): Promise<Product[]> {
+  const products = await getProducts(50);
+  // Featured = products with compare at price (on sale)
+  return products.filter(p => p.compareAtPrice && p.compareAtPrice > p.price).slice(0, 8);
+}
+
+export async function getNewArrivals(): Promise<Product[]> {
+  const products = await getProducts(50);
+  // New arrivals = first 8 available products
+  return products.filter(p => p.available).slice(0, 8);
+}
+
+export async function getSaleProducts(): Promise<Product[]> {
+  const products = await getProducts(50);
+  return products.filter(p => p.compareAtPrice && p.compareAtPrice > p.price);
+}
+
+export async function getProductsByBrand(brand: string): Promise<Product[]> {
+  try {
+    return await getProductsByVendor(brand);
+  } catch (error) {
+    console.error('Failed to fetch products by brand:', error);
+    return [];
+  }
+}
+
+export async function getProductsByCategory(category: string): Promise<Product[]> {
+  try {
+    return await getProductsByType(category);
+  } catch (error) {
+    console.error('Failed to fetch products by category:', error);
+    return [];
+  }
+}
+
+export async function getBrands(): Promise<{ name: string; slug: string; count: number }[]> {
+  const products = await getProducts(100);
+  const brandCounts = new Map<string, number>();
+
+  products.forEach(p => {
+    if (p.brand) {
+      brandCounts.set(p.brand, (brandCounts.get(p.brand) || 0) + 1);
+    }
+  });
+
+  return Array.from(brandCounts.entries())
+    .map(([name, count]) => ({
+      name,
+      slug: name.toLowerCase().replace(/\s+/g, '-'),
+      count,
+    }))
+    .sort((a, b) => b.count - a.count);
+}
+
+export async function getCategories(): Promise<{ name: string; slug: string; count: number }[]> {
+  const products = await getProducts(100);
+  const categoryCounts = new Map<string, number>();
+
+  products.forEach(p => {
+    if (p.category) {
+      categoryCounts.set(p.category, (categoryCounts.get(p.category) || 0) + 1);
+    }
+  });
+
+  return Array.from(categoryCounts.entries())
+    .map(([name, count]) => ({
+      name,
+      slug: name.toLowerCase().replace(/\s+/g, '-'),
+      count,
+    }))
+    .sort((a, b) => b.count - a.count);
+}
+
+export async function search(query: string): Promise<Product[]> {
+  try {
+    return await searchProducts(query);
+  } catch (error) {
+    console.error('Failed to search products:', error);
+    return [];
+  }
+}
+
+// Re-export for convenience
+export { getCollections, getCollectionByHandle };
+export type { Product, Collection };

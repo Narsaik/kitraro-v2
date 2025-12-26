@@ -1,0 +1,17 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Air Jordan Jumpman - Iconic pose -->
+  <!-- Head -->
+  <circle cx="55" cy="10" r="8" fill="#000"/>
+  <!-- Body/torso -->
+  <path d="M52 18 L48 38 L55 38 L52 18" fill="#000"/>
+  <!-- Right arm with ball (extended) -->
+  <path d="M52 22 C60 15 75 8 82 5" stroke="#000" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- Basketball -->
+  <circle cx="86" cy="4" r="6" fill="#000"/>
+  <!-- Left arm back -->
+  <path d="M48 26 C40 30 28 40 22 48" stroke="#000" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- Right leg extended forward -->
+  <path d="M52 38 C58 50 70 65 80 72 L85 68" stroke="#000" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Left leg bent back -->
+  <path d="M48 38 C42 52 32 68 22 75 L16 70" stroke="#000" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

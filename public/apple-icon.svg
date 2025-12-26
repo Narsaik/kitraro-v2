@@ -1,0 +1,5 @@
+<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="180" height="180" rx="40" fill="#0a2e0a"/>
+  <circle cx="90" cy="90" r="70" fill="#0a2e0a" stroke="#d4af37" stroke-width="4"/>
+  <text x="90" y="110" font-family="Georgia, serif" font-size="60" fill="#d4af37" text-anchor="middle" font-weight="bold">KR</text>
+</svg>
