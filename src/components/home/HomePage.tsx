@@ -7,7 +7,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { ArrowRight, Truck, Shield, RefreshCw, ChevronRight, Star, Sparkles } from "lucide-react";
 import { ProductCard } from "@/components/product/ProductCard";
 import { InstagramFeed } from "@/components/home/InstagramFeed";
-import { Hero3D } from "@/components/home/Hero3D";
+import { HeroPromo } from "@/components/home/HeroPromo";
 import type { Product } from "@/lib/shopify/types";
 
 interface HomePageProps {
@@ -67,8 +67,8 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
 
   return (
     <div className="overflow-hidden">
-      {/* 3D Hero with Sean Wotherspoon Air Max */}
-      <Hero3D />
+      {/* New Era Promo Banner */}
+      <HeroPromo />
 
       {/* Marquee Banner */}
       <div className="bg-black text-white py-3 overflow-hidden">
