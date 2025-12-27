@@ -59,19 +59,31 @@ export function ProductPageClient({ product, relatedProducts }: ProductPageClien
     }
   };
 
-  // Get size display - check variant options or title
+  // Get size display - extract actual size from variant
   const getSizeDisplay = (variant: typeof selectedVariant) => {
-    if (!variant) return "";
+    if (!variant) return "Unico";
 
-    // Check selectedOptions for size
+    // Check selectedOptions for size (common Shopify pattern)
     if (variant.options) {
       const sizeOption = variant.options["Tamanho"] || variant.options["Size"] || variant.options["size"];
-      if (sizeOption) return sizeOption;
+      if (sizeOption && sizeOption !== "Default Title") return sizeOption;
     }
 
-    // Fall back to title if not "Default Title"
+    // Use variant title if it's an actual size (not "Default Title")
     if (variant.title && variant.title !== "Default Title") {
-      return variant.title;
+      // Clean up common patterns like "M / Black" to just "M"
+      const sizePart = variant.title.split("/")[0].trim();
+      return sizePart;
+    }
+
+    // Check product options for size values
+    if (product.options) {
+      const sizeOption = product.options.find(
+        opt => opt.name.toLowerCase() === "tamanho" || opt.name.toLowerCase() === "size"
+      );
+      if (sizeOption && sizeOption.values.length === 1) {
+        return sizeOption.values[0];
+      }
     }
 
     return "Unico";
@@ -230,33 +242,17 @@ export function ProductPageClient({ product, relatedProducts }: ProductPageClien
               <p className="text-gray-600 leading-relaxed">{product.description}</p>
             )}
 
-            {/* Variants/Sizes */}
+            {/* Size Display - Each item is unique with its own size */}
             <div>
-              <h3 className="font-medium mb-3">
-                Tamanho: <span className="text-gray-500">{getSizeDisplay(selectedVariant)}</span>
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {product.variants.map((variant) => {
-                  const displaySize = variant.title !== "Default Title" ? variant.title : "Unico";
-                  return (
-                    <button
-                      key={variant.id}
-                      onClick={() => variant.available && setSelectedVariant(variant)}
-                      disabled={!variant.available}
-                      className={cn(
-                        "px-5 py-3 rounded-xl border-2 font-medium transition-all",
-                        selectedVariant?.id === variant.id
-                          ? "border-black bg-black text-white"
-                          : variant.available
-                          ? "border-gray-200 hover:border-black bg-white"
-                          : "border-gray-100 text-gray-300 cursor-not-allowed line-through bg-gray-50"
-                      )}
-                    >
-                      {displaySize}
-                    </button>
-                  );
-                })}
+              <div className="flex items-center gap-3">
+                <h3 className="font-medium">Tamanho:</h3>
+                <span className="px-4 py-2 bg-black text-white rounded-xl font-bold text-lg">
+                  {getSizeDisplay(selectedVariant)}
+                </span>
               </div>
+              <p className="text-sm text-gray-500 mt-2">
+                Peca unica - Este item vem neste tamanho especifico
+              </p>
             </div>
 
             {/* Main CTA */}

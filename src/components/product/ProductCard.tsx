@@ -16,6 +16,36 @@ interface ProductCardProps {
   index?: number;
 }
 
+// Extract actual size from product variant
+function getProductSize(product: Product): string {
+  const variant = product.variants.find(v => v.available) || product.variants[0];
+
+  if (!variant) return "Unico";
+
+  // Check variant options
+  if (variant.options) {
+    const sizeOption = variant.options["Tamanho"] || variant.options["Size"] || variant.options["size"];
+    if (sizeOption && sizeOption !== "Default Title") return sizeOption;
+  }
+
+  // Use variant title if it's an actual size
+  if (variant.title && variant.title !== "Default Title") {
+    return variant.title.split("/")[0].trim();
+  }
+
+  // Check product options
+  if (product.options) {
+    const sizeOption = product.options.find(
+      opt => opt.name.toLowerCase() === "tamanho" || opt.name.toLowerCase() === "size"
+    );
+    if (sizeOption && sizeOption.values.length > 0) {
+      return sizeOption.values[0];
+    }
+  }
+
+  return "Unico";
+}
+
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
@@ -226,31 +256,13 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             ou 12x de {formatPrice(product.price / 12)}
           </p>
 
-          {/* Available sizes */}
-          <motion.div
-            initial={false}
-            animate={{ opacity: isHovered ? 1 : 0.7, height: isHovered ? "auto" : "24px" }}
-            className="flex gap-1.5 flex-wrap overflow-hidden"
-          >
-            {product.variants.slice(0, 6).map((variant) => (
-              <span
-                key={variant.id}
-                className={cn(
-                  "text-xs px-2 py-1 rounded-md border transition-all",
-                  variant.available
-                    ? "border-gray-300 text-gray-700 hover:border-black"
-                    : "border-gray-100 text-gray-300 line-through"
-                )}
-              >
-                {variant.title}
-              </span>
-            ))}
-            {product.variants.length > 6 && (
-              <span className="text-xs text-gray-400 px-2 py-1">
-                +{product.variants.length - 6}
-              </span>
-            )}
-          </motion.div>
+          {/* Size badge - unique item with single size */}
+          <div className="flex items-center gap-2">
+            <span className="text-xs px-2.5 py-1 rounded-md bg-gray-100 text-gray-700 font-medium">
+              Tam: {getProductSize(product)}
+            </span>
+            <span className="text-xs text-gray-400">Peca Unica</span>
+          </div>
         </div>
       </Link>
     </motion.div>
