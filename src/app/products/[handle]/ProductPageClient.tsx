@@ -59,31 +59,49 @@ export function ProductPageClient({ product, relatedProducts }: ProductPageClien
     }
   };
 
-  // Get size display - extract actual size from variant
+  // Get size display - extract from product title or variant
   const getSizeDisplay = (variant: typeof selectedVariant) => {
-    if (!variant) return "Unico";
+    const title = product.title;
 
-    // Check selectedOptions for size (common Shopify pattern)
-    if (variant.options) {
+    // Check for hat sizes (e.g., "7 1/4", "7 3/8")
+    const hatSizeMatch = title.match(/\b(6\s*[0-9]\/[0-9]|7\s*[0-9]?\/[0-9]|7\s*[0-9]\/[0-9]|[67]\s+[0-9]\/[0-9])\b/i);
+    if (hatSizeMatch) {
+      return hatSizeMatch[1].replace(/\s+/g, ' ');
+    }
+
+    // Check for clothing sizes at end of title or after hyphen/space
+    const clothingSizeMatch = title.match(/[\s\-\–](XXS|XS|XXXL|XXL|XL|[SML])\s*$/i);
+    if (clothingSizeMatch) {
+      return clothingSizeMatch[1].toUpperCase();
+    }
+
+    // Check for sizes with numbers (2XL, 3XL, etc.)
+    const numberedSizeMatch = title.match(/[\s\-\–]([2-5]?XL|[2-5]?XS)\s*$/i);
+    if (numberedSizeMatch) {
+      return numberedSizeMatch[1].toUpperCase();
+    }
+
+    // Check for shoe sizes (36-48)
+    const shoeSizeMatch = title.match(/[\s\-\–](3[6-9]|4[0-8])\s*$/);
+    if (shoeSizeMatch) {
+      return shoeSizeMatch[1];
+    }
+
+    // Check for "Tamanho X" or "Tam X" pattern
+    const tamanhoMatch = title.match(/(?:tamanho|tam\.?)\s*[:.]?\s*([A-Z0-9\/\s]+)/i);
+    if (tamanhoMatch) {
+      return tamanhoMatch[1].trim().toUpperCase();
+    }
+
+    // Check variant title if not default
+    if (variant?.title && variant.title !== "Default Title") {
+      return variant.title.split("/")[0].trim();
+    }
+
+    // Check variant options
+    if (variant?.options) {
       const sizeOption = variant.options["Tamanho"] || variant.options["Size"] || variant.options["size"];
       if (sizeOption && sizeOption !== "Default Title") return sizeOption;
-    }
-
-    // Use variant title if it's an actual size (not "Default Title")
-    if (variant.title && variant.title !== "Default Title") {
-      // Clean up common patterns like "M / Black" to just "M"
-      const sizePart = variant.title.split("/")[0].trim();
-      return sizePart;
-    }
-
-    // Check product options for size values
-    if (product.options) {
-      const sizeOption = product.options.find(
-        opt => opt.name.toLowerCase() === "tamanho" || opt.name.toLowerCase() === "size"
-      );
-      if (sizeOption && sizeOption.values.length === 1) {
-        return sizeOption.values[0];
-      }
     }
 
     return "Unico";

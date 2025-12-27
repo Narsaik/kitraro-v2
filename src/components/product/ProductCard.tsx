@@ -16,31 +16,56 @@ interface ProductCardProps {
   index?: number;
 }
 
-// Extract actual size from product variant
+// Extract actual size from product title or variant
 function getProductSize(product: Product): string {
-  const variant = product.variants.find(v => v.available) || product.variants[0];
+  // Size patterns to look for in title
+  // Clothing sizes: XS, S, M, L, XL, XXL, XXXL (with optional numbers)
+  // Hat sizes: 7 1/8, 7 1/4, 7 3/8, 7 1/2, 7 5/8, 7 3/4, 7 7/8, etc.
+  // Shoe sizes: 38, 39, 40, 41, 42, 43, 44, 45, etc.
+  // Generic: tamanho followed by size
 
-  if (!variant) return "Unico";
+  const title = product.title;
 
-  // Check variant options
-  if (variant.options) {
-    const sizeOption = variant.options["Tamanho"] || variant.options["Size"] || variant.options["size"];
-    if (sizeOption && sizeOption !== "Default Title") return sizeOption;
+  // Check for hat sizes (e.g., "7 1/4", "7 3/8")
+  const hatSizeMatch = title.match(/\b(6\s*[0-9]\/[0-9]|7\s*[0-9]?\/[0-9]|7\s*[0-9]\/[0-9]|[67]\s+[0-9]\/[0-9])\b/i);
+  if (hatSizeMatch) {
+    return hatSizeMatch[1].replace(/\s+/g, ' ');
   }
 
-  // Use variant title if it's an actual size
-  if (variant.title && variant.title !== "Default Title") {
+  // Check for clothing sizes at end of title or after hyphen/space
+  const clothingSizeMatch = title.match(/[\s\-\–](XXS|XS|XXXL|XXL|XL|[SML])\s*$/i);
+  if (clothingSizeMatch) {
+    return clothingSizeMatch[1].toUpperCase();
+  }
+
+  // Check for sizes with numbers (2XL, 3XL, etc.)
+  const numberedSizeMatch = title.match(/[\s\-\–]([2-5]?XL|[2-5]?XS)\s*$/i);
+  if (numberedSizeMatch) {
+    return numberedSizeMatch[1].toUpperCase();
+  }
+
+  // Check for shoe sizes (36-48)
+  const shoeSizeMatch = title.match(/[\s\-\–](3[6-9]|4[0-8])\s*$/);
+  if (shoeSizeMatch) {
+    return shoeSizeMatch[1];
+  }
+
+  // Check for "Tamanho X" or "Tam X" pattern
+  const tamanhoMatch = title.match(/(?:tamanho|tam\.?)\s*[:.]?\s*([A-Z0-9\/\s]+)/i);
+  if (tamanhoMatch) {
+    return tamanhoMatch[1].trim().toUpperCase();
+  }
+
+  // Check variant title if not default
+  const variant = product.variants.find(v => v.available) || product.variants[0];
+  if (variant?.title && variant.title !== "Default Title") {
     return variant.title.split("/")[0].trim();
   }
 
-  // Check product options
-  if (product.options) {
-    const sizeOption = product.options.find(
-      opt => opt.name.toLowerCase() === "tamanho" || opt.name.toLowerCase() === "size"
-    );
-    if (sizeOption && sizeOption.values.length > 0) {
-      return sizeOption.values[0];
-    }
+  // Check variant options
+  if (variant?.options) {
+    const sizeOption = variant.options["Tamanho"] || variant.options["Size"] || variant.options["size"];
+    if (sizeOption && sizeOption !== "Default Title") return sizeOption;
   }
 
   return "Unico";
