@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Instagram, Facebook, Twitter } from "lucide-react";
 import { PaymentIcons } from "@/components/ui/PaymentIcons";
@@ -159,9 +160,15 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-4">
               {/* Kitraro Logo */}
-              <div className="w-12 h-12 rounded-full bg-[#0a2e0a] border-2 border-[#d4af37] flex items-center justify-center">
-                <span className="text-[#d4af37] font-bold text-lg">KR</span>
-              </div>
+              <Link href="/" className="flex-shrink-0">
+                <Image
+                  src="/logo.png"
+                  alt="Kitraro"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto object-contain brightness-0 invert"
+                />
+              </Link>
               <span className="text-white/60 text-sm">
                 © {new Date().getFullYear()} Kitraro. Todos os direitos reservados.
               </span>
