@@ -25,8 +25,8 @@ const contactMethods = [
   {
     icon: Instagram,
     title: "Instagram",
-    value: "@kitraro",
-    href: "https://instagram.com/kitraro",
+    value: "@kitraro416",
+    href: "https://instagram.com/kitraro416",
     description: "Siga-nos",
     color: "bg-pink-500",
   },
