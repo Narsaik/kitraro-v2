@@ -164,9 +164,9 @@ export function Footer() {
                 <Image
                   src="/logo.png"
                   alt="Kitraro"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto object-contain brightness-0 invert"
+                  width={80}
+                  height={80}
+                  className="h-12 w-12 object-contain rounded-full"
                 />
               </Link>
               <span className="text-white/60 text-sm">
