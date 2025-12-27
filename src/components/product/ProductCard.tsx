@@ -26,10 +26,13 @@ function getProductSize(product: Product): string {
 
   const title = product.title;
 
-  // Check for hat sizes (e.g., "7 1/4", "7 3/8")
-  const hatSizeMatch = title.match(/\b(6\s*[0-9]\/[0-9]|7\s*[0-9]?\/[0-9]|7\s*[0-9]\/[0-9]|[67]\s+[0-9]\/[0-9])\b/i);
+  // Check for hat sizes (e.g., "7 1/4", "7 3/8", "7 7/8", "8")
+  // Matches: 6 7/8, 7 1/4, 7 1/2, 7 3/4, 7 7/8, 8, etc.
+  const hatSizeMatch = title.match(/\b([67]\s*[0-9]?\/[0-9]|[67]\s+[0-9]\/[0-9])\s*$/i) ||
+                       title.match(/\s(8)\s*$/) ||
+                       title.match(/\b([67]\s*[0-9]\/[0-9])\b/i);
   if (hatSizeMatch) {
-    return hatSizeMatch[1].replace(/\s+/g, ' ');
+    return hatSizeMatch[1].replace(/\s+/g, ' ').trim();
   }
 
   // Check for clothing sizes at end of title or after hyphen/space
