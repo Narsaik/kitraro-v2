@@ -275,58 +275,33 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
         </section>
       )}
 
-      {/* Split Collection Banners */}
+      {/* Valley Dreams Banner - Full Width */}
       <section className="py-4 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Supreme Banner */}
-            <AnimatedSection>
-              <Link href="/brands/supreme" className="group block relative h-[250px] md:h-[300px] rounded-3xl overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80"
-                  alt="Supreme Streetwear Collection"
-                  fill
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <span className="inline-block px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full mb-3">
-                    SUPREME
-                  </span>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Supreme</h3>
-                  <p className="text-gray-300 text-sm mb-4">Box logos, collabs e pecas raras</p>
-                  <span className="inline-flex items-center gap-2 text-white font-medium group-hover:text-red-500 transition-colors">
-                    Ver Colecao
-                    <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
-                  </span>
-                </div>
-              </Link>
-            </AnimatedSection>
-
-            {/* Valley Dreams Banner */}
-            <AnimatedSection delay={0.1}>
-              <Link href="/brands/valley-dreams" className="group block relative h-[250px] md:h-[300px] rounded-3xl overflow-hidden">
-                <Image
-                  src="https://cdn.shopify.com/s/files/1/0966/5236/2018/files/78B1C56A-8F1E-4870-96B8-CCF83C57CF1C.jpg?v=1765829459"
-                  alt="Valley Dreams Vales Lives Forever Speed Bling"
-                  fill
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <span className="inline-block px-3 py-1 bg-purple-500 text-white text-xs font-bold rounded-full mb-3">
+          <AnimatedSection>
+            <Link href="/products/camiseta-vales-lives-forever-speed-bling" className="group block relative h-[300px] md:h-[400px] rounded-3xl overflow-hidden">
+              <Image
+                src="https://cdn.shopify.com/s/files/1/0966/5236/2018/files/78B1C56A-8F1E-4870-96B8-CCF83C57CF1C.jpg?v=1765829459"
+                alt="Valley Dreams Vales Lives Forever Speed Bling"
+                fill
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+              <div className="absolute inset-0 flex items-center">
+                <div className="p-8 md:p-12 max-w-xl">
+                  <span className="inline-block px-4 py-2 bg-purple-500 text-white text-sm font-bold rounded-full mb-4">
                     EXCLUSIVO
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Valley Dreams</h3>
-                  <p className="text-gray-300 text-sm mb-4">Vales Lives Forever - Streetwear brasileiro</p>
-                  <span className="inline-flex items-center gap-2 text-white font-medium group-hover:text-purple-400 transition-colors">
-                    Ver Colecao
-                    <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                  <h3 className="text-3xl md:text-5xl font-bold text-white mb-3">Valley Dreams</h3>
+                  <p className="text-gray-300 text-lg mb-6">Vales Lives Forever "Speed Bling" - Streetwear brasileiro premium</p>
+                  <span className="inline-flex items-center gap-3 px-6 py-3 bg-purple-500 text-white font-bold rounded-full group-hover:bg-purple-400 transition-colors">
+                    Ver Produto
+                    <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
                   </span>
                 </div>
-              </Link>
-            </AnimatedSection>
-          </div>
+              </div>
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
 
