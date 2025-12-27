@@ -35,7 +35,7 @@ const features = [
   },
 ];
 
-// Removed old hero slides - using Hero3D component now
+// Using HeroPromo for New Era promotion banner
 
 const marqueeItems = [
   "FRETE GRATIS ACIMA DE R$500",
