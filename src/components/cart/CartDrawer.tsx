@@ -71,7 +71,7 @@ export function CartDrawer() {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed right-0 top-0 h-full w-full max-w-md bg-white z-50 shadow-xl flex flex-col"
           >
-            {/* Header */}
+            {/* Header - Larger touch targets */}
             <div className="flex items-center justify-between p-4 border-b">
               <h2 className="text-lg font-bold flex items-center gap-2">
                 <ShoppingBag size={20} />
@@ -79,9 +79,9 @@ export function CartDrawer() {
               </h2>
               <button
                 onClick={closeCart}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="p-3 -mr-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors touch-manipulation active:scale-90"
               >
-                <X size={20} />
+                <X size={22} />
               </button>
             </div>
 
@@ -165,13 +165,13 @@ export function CartDrawer() {
                       <div className="flex flex-col items-end justify-between">
                         <button
                           onClick={() => removeItem(item.id)}
-                          className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                          className="p-2 -mr-1 -mt-1 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors touch-manipulation active:scale-90"
                         >
-                          <X size={16} />
+                          <X size={18} />
                         </button>
 
                         <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded-full border">
-                          Peça única
+                          Peca unica
                         </span>
                       </div>
                     </motion.div>
@@ -214,11 +214,11 @@ export function CartDrawer() {
                     Frete e descontos calculados no checkout
                   </p>
 
-                  {/* Main CTA */}
+                  {/* Main CTA - Larger touch target */}
                   <button
                     onClick={handleCheckout}
                     disabled={isCheckingOut}
-                    className="w-full py-4 bg-black text-white rounded-full font-bold text-lg hover:bg-gray-800 transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full py-5 bg-black text-white rounded-full font-bold text-lg hover:bg-gray-800 transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 touch-manipulation"
                   >
                     {isCheckingOut ? (
                       <>

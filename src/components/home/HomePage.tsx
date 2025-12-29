@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { ArrowRight, Truck, Shield, RefreshCw, ChevronRight, Star, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronRight, Sparkles, Star, Shield, Truck, RotateCcw, Lock } from "lucide-react";
 import { ProductCard } from "@/components/product/ProductCard";
 import { InstagramFeed } from "@/components/home/InstagramFeed";
 import { HeroPromo } from "@/components/home/HeroPromo";
@@ -13,29 +13,10 @@ import type { Product } from "@/lib/shopify/types";
 interface HomePageProps {
   featuredProducts: Product[];
   newArrivals: Product[];
+  heroProducts: Product[];
   brands: { name: string; slug: string; logo: string }[];
   categories: { name: string; slug: string; image: string; description: string; count: number }[];
 }
-
-const features = [
-  {
-    icon: Truck,
-    title: "Frete Gratis",
-    description: "Em compras acima de R$ 500",
-  },
-  {
-    icon: Shield,
-    title: "100% Autentico",
-    description: "Garantia de originalidade",
-  },
-  {
-    icon: RefreshCw,
-    title: "Troca Facil",
-    description: "30 dias para trocar",
-  },
-];
-
-// Using HeroPromo for New Era promotion banner
 
 const marqueeItems = [
   "FRETE GRATIS ACIMA DE R$500",
@@ -63,48 +44,35 @@ function AnimatedSection({ children, className = "", delay = 0 }: { children: Re
   );
 }
 
-export function HomePage({ featuredProducts, newArrivals, brands, categories }: HomePageProps) {
+export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, categories }: HomePageProps) {
 
   return (
     <div className="overflow-hidden">
       {/* New Era Promo Banner */}
-      <HeroPromo />
+      <HeroPromo products={heroProducts} />
 
       {/* Marquee Banner */}
-      <div className="bg-black text-white py-3 overflow-hidden">
+      <div className="bg-brand-green text-white py-3 overflow-hidden border-y border-gold/20">
         <div className="animate-marquee whitespace-nowrap flex">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span key={i} className="mx-8 text-sm font-medium flex items-center gap-2">
-              <Sparkles size={14} className="text-[#d4af37]" />
+              <Sparkles size={14} className="text-gold" />
               {item}
             </span>
           ))}
         </div>
       </div>
 
-      {/* Features - Compact bar */}
-      <section className="py-4 border-b bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center gap-8 md:gap-16 flex-wrap">
-            {features.map((feature) => (
-              <div key={feature.title} className="flex items-center gap-2 text-sm">
-                <feature.icon size={18} className="text-[#d4af37]" />
-                <span className="font-medium">{feature.title}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* New Arrivals - FIRST! */}
       {newArrivals.length > 0 && (
-        <section className="py-12 bg-white">
+        <section className="py-10 md:py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
-              <div className="flex justify-between items-end mb-8">
+              <div className="flex justify-between items-end mb-6 md:mb-8">
                 <div>
-                  <span className="text-[#d4af37] font-medium text-sm tracking-wider uppercase">Fresh Drops</span>
-                  <h2 className="text-3xl md:text-4xl font-bold mt-2">Novidades</h2>
+                  <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Fresh Drops</span>
+                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2">Novidades</h2>
                 </div>
                 <Link
                   href="/products"
@@ -116,7 +84,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               </div>
             </AnimatedSection>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
               {newArrivals.slice(0, 8).map((product, index) => (
                 <AnimatedSection key={product.id} delay={index * 0.1}>
                   <ProductCard product={product} index={index} />
@@ -125,10 +93,10 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
             </div>
 
             <AnimatedSection>
-              <div className="mt-10 text-center md:hidden">
+              <div className="mt-8 md:mt-10 text-center md:hidden">
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-medium rounded-full"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-black dark:bg-white text-white dark:text-black font-medium rounded-full touch-manipulation active:scale-95"
                 >
                   Ver Todos os Produtos
                   <ArrowRight size={18} />
@@ -141,18 +109,18 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
 
       {/* Categories with Image Backgrounds - Mosaic Grid */}
       {categories.length > 0 && (
-        <section className="py-16 bg-black">
+        <section className="py-10 md:py-16 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
-              <div className="text-center mb-12">
-                <span className="text-[#d4af37] font-medium text-sm tracking-wider uppercase">Explore</span>
-                <h2 className="text-4xl md:text-5xl font-bold mt-2 text-white">Categorias</h2>
-                <p className="text-gray-400 mt-4">Encontre o que voce procura</p>
+              <div className="text-center mb-8 md:mb-12">
+                <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Explore</span>
+                <h2 className="text-3xl md:text-5xl font-bold mt-1 md:mt-2 text-white">Categorias</h2>
+                <p className="text-gray-400 mt-2 md:mt-4 text-sm md:text-base">Encontre o que voce procura</p>
               </div>
             </AnimatedSection>
 
-            {/* Mosaic Grid Layout */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
+            {/* Mosaic Grid Layout - Better mobile sizing */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[160px] md:auto-rows-[250px]">
               {categories.slice(0, 5).map((category, index) => (
                 <AnimatedSection
                   key={category.slug}
@@ -170,10 +138,10 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/20 transition-colors duration-300" />
+                    <div className="absolute inset-0 bg-gold/0 group-hover:bg-gold/20 transition-colors duration-300" />
                     <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                       {index === 0 && (
-                        <span className="inline-block px-3 py-1 bg-[#d4af37] text-black text-xs font-bold rounded-full mb-3">
+                        <span className="inline-block px-3 py-1 bg-gold text-black text-xs font-bold rounded-full mb-3">
                           {category.count} produtos
                         </span>
                       )}
@@ -184,7 +152,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
                         {category.description}
                       </p>
                       {index === 0 && (
-                        <div className="flex items-center gap-2 mt-4 text-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex items-center gap-2 mt-4 text-gold opacity-0 group-hover:opacity-100 transition-opacity">
                           <span className="text-sm font-medium">Ver Colecao</span>
                           <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
                         </div>
@@ -197,13 +165,13 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
 
             {/* View All Button */}
             <AnimatedSection delay={0.6}>
-              <div className="text-center mt-10">
+              <div className="text-center mt-8 md:mt-10">
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#d4af37] text-black font-bold rounded-full hover:bg-[#f0d77c] transition-colors"
+                  className="inline-flex items-center gap-2 px-6 md:px-8 py-3.5 md:py-4 bg-gold text-black font-bold rounded-full hover:bg-gold-light transition-colors touch-manipulation active:scale-95"
                 >
                   Ver Todas as Categorias
-                  <ArrowRight size={20} />
+                  <ArrowRight size={18} />
                 </Link>
               </div>
             </AnimatedSection>
@@ -211,8 +179,64 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
         </section>
       )}
 
-      {/* Collection Banner 1 - BAPE */}
-      <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
+      {/* Brands Section with Green Blur Effect */}
+      {brands.length > 0 && (
+        <section className="py-12 md:py-20 bg-black relative overflow-hidden">
+          {/* Green blur background effects */}
+          <div className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full blur-[150px] opacity-30 bg-brand-green" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[120px] opacity-25 bg-brand-green-light" />
+          <div className="absolute top-1/4 right-1/3 w-64 h-64 rounded-full blur-[100px] opacity-20 bg-gold/30" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <AnimatedSection>
+              <div className="text-center mb-8 md:mb-16">
+                <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Curadoria Premium</span>
+                <h2 className="text-3xl md:text-6xl font-heading font-bold mt-2 md:mt-4 text-white">Nossas Marcas</h2>
+                <p className="text-gray-400 mt-2 md:mt-4 max-w-2xl mx-auto text-sm md:text-base">As marcas mais desejadas do streetwear mundial</p>
+              </div>
+            </AnimatedSection>
+
+            {/* Horizontal scroll on mobile, grid on desktop */}
+            <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-8 overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 hide-scrollbar">
+              {brands.map((brand, index) => (
+                <AnimatedSection key={brand.slug} delay={index * 0.1} className="flex-shrink-0">
+                  <Link
+                    href={`/brands/${brand.slug}`}
+                    className="group flex flex-col items-center touch-manipulation active:scale-95 transition-transform"
+                  >
+                    <div className="relative w-20 h-20 md:w-32 md:h-32 rounded-xl md:rounded-2xl bg-white backdrop-blur-sm border border-gray-200 flex items-center justify-center p-3 md:p-4 transition-all duration-500 group-hover:bg-gray-50 group-hover:border-gold group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(212,175,55,0.3)]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={brand.logo}
+                        alt={brand.name}
+                        className="w-12 h-12 md:w-20 md:h-20 object-contain relative z-10 opacity-80 group-hover:opacity-100 transition-all duration-300"
+                      />
+                    </div>
+                    <span className="mt-2 md:mt-4 text-white/80 text-xs md:text-sm font-medium group-hover:text-gold transition-colors text-center">
+                      {brand.name}
+                    </span>
+                  </Link>
+                </AnimatedSection>
+              ))}
+            </div>
+
+            <AnimatedSection delay={0.8}>
+              <div className="text-center mt-8 md:mt-16">
+                <Link
+                  href="/brands"
+                  className="inline-flex items-center gap-2 px-6 md:px-8 py-3.5 md:py-4 border-2 border-white/20 text-white font-bold rounded-full hover:border-gold hover:text-gold transition-colors touch-manipulation active:scale-95"
+                >
+                  Ver Todas as Marcas
+                  <ArrowRight size={18} />
+                </Link>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+      )}
+
+      {/* Collection Banner 1 - BAPE - Better mobile sizing */}
+      <section className="relative h-[40vh] md:h-[50vh] min-h-[320px] md:min-h-[400px] overflow-hidden">
         <Image
           src="https://cdn.shopify.com/s/files/1/0966/5236/2018/files/AD489DD0-D708-42D9-A2B2-CFD737519886.jpg?v=1759206388"
           alt="BAPE Streetwear Collection"
@@ -223,36 +247,36 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <AnimatedSection>
-              <span className="inline-block px-4 py-2 bg-[#1ed760] text-black text-sm font-bold rounded-full mb-4">
+              <span className="inline-block px-3 md:px-4 py-1.5 md:py-2 bg-gold text-black text-xs md:text-sm font-bold rounded-full mb-3 md:mb-4">
                 BAPE EXCLUSIVO
               </span>
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-6xl font-bold text-white mb-3 md:mb-4">
                 A Bathing Ape
               </h2>
-              <p className="text-gray-300 text-lg max-w-lg mb-6">
-                BE@RBRICK x BAPE Shark Hoodie em ABC CAMO. O camo mais icônico do streetwear.
+              <p className="text-gray-300 text-sm md:text-lg max-w-lg mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                BAPE Shark Hoodie em ABC CAMO. O camo mais iconico do streetwear.
               </p>
               <Link
                 href="/brands/bape"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#1ed760] text-black font-bold rounded-full hover:bg-[#1db954] transition-colors"
+                className="inline-flex items-center gap-2 px-6 md:px-8 py-3.5 md:py-4 bg-gold text-black font-bold rounded-full hover:bg-gold-light transition-colors touch-manipulation active:scale-95"
               >
                 Explorar BAPE
-                <ArrowRight size={20} />
+                <ArrowRight size={18} />
               </Link>
             </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Featured Products */}
+      {/* Featured Products - with subtle green tint */}
       {featuredProducts.length > 0 && (
-        <section className="py-12 bg-gray-50">
+        <section className="py-10 md:py-12 bg-brand-green/5 dark:bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
-              <div className="flex justify-between items-end mb-8">
+              <div className="flex justify-between items-end mb-6 md:mb-8">
                 <div>
-                  <span className="text-[#d4af37] font-medium text-sm tracking-wider uppercase">Rare Finds</span>
-                  <h2 className="text-3xl md:text-4xl font-bold mt-2">Mais Exclusivos</h2>
+                  <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Rare Finds</span>
+                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2">Mais Exclusivos</h2>
                 </div>
                 <Link
                   href="/products"
@@ -264,9 +288,9 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               </div>
             </AnimatedSection>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {featuredProducts.slice(0, 12).map((product, index) => (
-                <AnimatedSection key={product.id} delay={index * 0.05}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+              {featuredProducts.slice(0, 4).map((product, index) => (
+                <AnimatedSection key={product.id} delay={index * 0.1}>
                   <ProductCard product={product} index={index} />
                 </AnimatedSection>
               ))}
@@ -275,11 +299,11 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
         </section>
       )}
 
-      {/* Valley Dreams Banner - Full Width */}
-      <section className="py-4 bg-black">
+      {/* Valley Dreams Banner - Full Width - Better mobile sizing */}
+      <section className="py-3 md:py-4 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <Link href="/products/camiseta-vales-lives-forever-speed-bling" className="group block relative h-[300px] md:h-[400px] rounded-3xl overflow-hidden">
+            <Link href="/products/camiseta-vales-lives-forever-speed-bling" className="group block relative h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden touch-manipulation active:scale-[0.99]">
               <Image
                 src="https://cdn.shopify.com/s/files/1/0966/5236/2018/files/78B1C56A-8F1E-4870-96B8-CCF83C57CF1C.jpg?v=1765829459"
                 alt="Valley Dreams Vales Lives Forever Speed Bling"
@@ -288,52 +312,20 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
               <div className="absolute inset-0 flex items-center">
-                <div className="p-8 md:p-12 max-w-xl">
-                  <span className="inline-block px-4 py-2 bg-purple-500 text-white text-sm font-bold rounded-full mb-4">
+                <div className="p-5 md:p-12 max-w-xl">
+                  <span className="inline-block px-3 md:px-4 py-1.5 md:py-2 bg-gold text-black text-xs md:text-sm font-bold rounded-full mb-3 md:mb-4">
                     EXCLUSIVO
                   </span>
-                  <h3 className="text-3xl md:text-5xl font-bold text-white mb-3">Valley Dreams</h3>
-                  <p className="text-gray-300 text-lg mb-6">Vales Lives Forever "Speed Bling" - Streetwear brasileiro premium</p>
-                  <span className="inline-flex items-center gap-3 px-6 py-3 bg-purple-500 text-white font-bold rounded-full group-hover:bg-purple-400 transition-colors">
+                  <h3 className="text-2xl md:text-5xl font-bold text-white mb-2 md:mb-3">Valley Dreams</h3>
+                  <p className="text-gray-300 text-sm md:text-lg mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">Vales Lives Forever "Speed Bling" - Streetwear brasileiro</p>
+                  <span className="inline-flex items-center gap-2 md:gap-3 px-5 md:px-6 py-2.5 md:py-3 bg-gold text-black font-bold rounded-full group-hover:bg-gold-light transition-colors text-sm md:text-base">
                     Ver Produto
-                    <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+                    <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
                   </span>
                 </div>
               </div>
             </Link>
           </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
-            <div className="text-center mb-8">
-              <span className="text-[#d4af37] font-medium text-sm tracking-wider uppercase">Depoimentos</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2">O Que Dizem</h2>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { name: "Lucas M.", text: "Produto original, entrega super rapida. Melhor loja de streetwear do Brasil!", rating: 5 },
-              { name: "Ana C.", text: "Atendimento excepcional e produtos de altissima qualidade. Recomendo!", rating: 5 },
-              { name: "Pedro S.", text: "Ja comprei varias vezes, nunca me decepcionou. Confio 100%!", rating: 5 },
-            ].map((testimonial, index) => (
-              <AnimatedSection key={index} delay={index * 0.1}>
-                <div className="p-8 bg-gray-50 rounded-3xl hover:shadow-xl transition-shadow">
-                  <div className="flex gap-1 mb-4">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-gray-600 mb-6 text-lg">"{testimonial.text}"</p>
-                  <p className="font-bold">{testimonial.name}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
         </div>
       </section>
 

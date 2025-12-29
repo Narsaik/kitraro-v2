@@ -10,6 +10,7 @@ import { useCart } from "@/hooks/useCart";
 import { useWishlist } from "@/hooks/useWishlist";
 import { cn } from "@/lib/utils";
 import { brands } from "@/data/products";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navigation = [
   { name: "Novidades", href: "/collections/new-arrivals" },
@@ -62,32 +63,32 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white text-black shadow-sm">
-      {/* Top banner - Luxury Dark Green */}
-      <div className="bg-[#0a2e0a] text-white text-center py-2 text-sm font-medium">
-        <span className="text-[#f0d77c]">FRETE GRÁTIS</span> em compras acima de R$ 500 | Parcele em até 12x
+    <header className="sticky top-0 z-50 bg-background text-foreground shadow-sm dark:shadow-gray-900/20 transition-colors">
+      {/* Top banner - Luxury Dark Green - Condensed on mobile */}
+      <div className="bg-brand-green text-white text-center py-1.5 md:py-2 text-xs md:text-sm font-medium">
+        <span className="text-gold-light">FRETE GRÁTIS</span> <span className="hidden sm:inline">em compras</span> acima de R$ 500 <span className="hidden sm:inline">| Parcele em até 12x</span>
       </div>
 
-      <nav className="border-b border-gray-100">
+      <nav className="border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24">
+          <div className="flex items-center justify-between h-16 lg:h-24">
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 -ml-2 text-black"
+              className="lg:hidden p-2 -ml-2 text-foreground"
               aria-label="Menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
 
-            {/* Logo - Bigger */}
+            {/* Logo - Smaller on mobile */}
             <Link href="/" className="flex-shrink-0">
               <Image
                 src="/logo.png"
                 alt="Kit Raro"
                 width={220}
                 height={70}
-                className="h-16 md:h-18 w-auto object-contain"
+                className="h-10 md:h-14 lg:h-16 w-auto object-contain"
                 priority
               />
             </Link>
@@ -104,8 +105,8 @@ export function Header() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "text-sm font-medium text-black hover:text-[#0a2e0a] transition-colors",
-                      item.highlight && "text-[#d4af37] font-bold hover:text-[#b8960c]"
+                      "text-sm font-medium text-foreground hover:text-brand-green dark:hover:text-gold transition-colors",
+                      item.highlight && "text-gold font-bold hover:text-gold-dark"
                     )}
                   >
                     {item.name}
@@ -121,14 +122,14 @@ export function Header() {
                           exit={{ opacity: 0, y: 10 }}
                           className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[400px]"
                         >
-                          <div className="bg-white text-black rounded-lg shadow-xl p-6 grid grid-cols-2 gap-4 border border-gray-100">
+                          <div className="bg-background text-foreground rounded-lg shadow-xl p-6 grid grid-cols-2 gap-4 border border-gray-100 dark:border-gray-800">
                             {brands.map((brand) => (
                               <Link
                                 key={brand.slug}
                                 href={`/brands/${brand.slug}`}
-                                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                               >
-                                <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center p-1">
+                                <div className="w-10 h-10 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center justify-center p-1">
                                   <Image
                                     src={brand.logo}
                                     alt={brand.name}
@@ -137,7 +138,7 @@ export function Header() {
                                     className="object-contain"
                                   />
                                 </div>
-                                <span className="font-medium text-black">{brand.name}</span>
+                                <span className="font-medium text-foreground">{brand.name}</span>
                               </Link>
                             ))}
                           </div>
@@ -149,19 +150,21 @@ export function Header() {
               ))}
             </div>
 
-            {/* Right icons */}
-            <div className="flex items-center space-x-4">
+            {/* Right icons - Hidden on mobile (moved to bottom nav) */}
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              {/* Search - hidden on mobile, in bottom nav */}
               <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors text-black"
+                className="hidden lg:block p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors text-foreground"
                 aria-label="Buscar"
               >
                 <Search size={20} />
               </button>
 
+              {/* Wishlist - hidden on mobile, in bottom nav */}
               <Link
                 href="/wishlist"
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors relative text-black"
+                className="hidden lg:block p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors relative text-foreground"
                 aria-label="Favoritos"
               >
                 <Heart size={20} />
@@ -176,17 +179,22 @@ export function Header() {
                 )}
               </Link>
 
+              {/* Theme toggle - always visible */}
+              <ThemeToggle />
+
+              {/* Account - hidden on mobile */}
               <Link
                 href="/account"
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors hidden sm:block text-black"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors hidden lg:block text-foreground"
                 aria-label="Conta"
               >
                 <User size={20} />
               </Link>
 
+              {/* Cart - hidden on mobile, in bottom nav */}
               <button
                 onClick={toggleCart}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors relative text-black"
+                className="hidden lg:block p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors relative text-foreground"
                 aria-label="Carrinho"
               >
                 <ShoppingBag size={20} />
@@ -194,7 +202,7 @@ export function Header() {
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="absolute -top-1 -right-1 w-5 h-5 bg-[#d4af37] text-white text-xs font-bold rounded-full flex items-center justify-center"
+                    className="absolute -top-1 -right-1 w-5 h-5 bg-gold text-white text-xs font-bold rounded-full flex items-center justify-center"
                   >
                     {itemCount}
                   </motion.span>
@@ -211,7 +219,7 @@ export function Header() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="border-t border-gray-100 overflow-hidden bg-gray-50"
+              className="border-t border-gray-100 dark:border-gray-800 overflow-hidden bg-gray-50 dark:bg-gray-900"
             >
               <form onSubmit={handleSearch} className="max-w-7xl mx-auto px-4 py-4">
                 <div className="relative">
@@ -221,7 +229,7 @@ export function Header() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Buscar produtos..."
-                    className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-full text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
+                    className="w-full pl-12 pr-4 py-3 bg-background border border-gray-200 dark:border-gray-700 rounded-full text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold"
                     autoFocus
                   />
                 </div>
@@ -250,10 +258,10 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="lg:hidden fixed top-0 left-0 bottom-0 w-[85%] max-w-[320px] bg-white z-50 shadow-2xl overflow-y-auto"
+              className="lg:hidden fixed top-0 left-0 bottom-0 w-[85%] max-w-[320px] bg-background z-50 shadow-2xl overflow-y-auto"
             >
               {/* Menu header */}
-              <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-[#0a2e0a]">
+              <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-brand-green">
                 <Image
                   src="/logo.png"
                   alt="Kit Raro"
@@ -271,7 +279,7 @@ export function Header() {
               </div>
 
               {/* Search in mobile menu */}
-              <div className="p-4 border-b border-gray-100">
+              <div className="p-4 border-b border-gray-100 dark:border-gray-800">
                 <form onSubmit={(e) => { handleSearch(e); setIsMenuOpen(false); }}>
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
@@ -280,7 +288,7 @@ export function Header() {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Buscar produtos..."
-                      className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-sm"
+                      className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold text-sm"
                     />
                   </div>
                 </form>
@@ -300,7 +308,7 @@ export function Header() {
                       <div>
                         <button
                           onClick={() => setIsMobileBrandsOpen(!isMobileBrandsOpen)}
-                          className="w-full flex items-center justify-between py-3 px-4 rounded-xl hover:bg-gray-50 transition-colors text-black font-medium"
+                          className="w-full flex items-center justify-between py-3 px-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-foreground font-medium"
                         >
                           <span>{item.name}</span>
                           <motion.div
@@ -324,10 +332,10 @@ export function Header() {
                                   <Link
                                     key={brand.slug}
                                     href={`/brands/${brand.slug}`}
-                                    className="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+                                    className="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                                     onClick={() => setIsMenuOpen(false)}
                                   >
-                                    <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center p-1">
+                                    <div className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center p-1">
                                       <Image
                                         src={brand.logo}
                                         alt={brand.name}
@@ -336,8 +344,8 @@ export function Header() {
                                         className="object-contain"
                                       />
                                     </div>
-                                    <span className="text-sm text-gray-700">{brand.name}</span>
-                                    <ChevronRight size={16} className="ml-auto text-gray-300" />
+                                    <span className="text-sm text-gray-700 dark:text-gray-300">{brand.name}</span>
+                                    <ChevronRight size={16} className="ml-auto text-gray-300 dark:text-gray-600" />
                                   </Link>
                                 ))}
                               </div>
@@ -349,13 +357,13 @@ export function Header() {
                       <Link
                         href={item.href}
                         className={cn(
-                          "flex items-center justify-between py-3 px-4 rounded-xl hover:bg-gray-50 transition-colors text-black font-medium",
-                          item.highlight && "text-[#d4af37] bg-[#d4af37]/10"
+                          "flex items-center justify-between py-3 px-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-foreground font-medium",
+                          item.highlight && "text-gold bg-gold/10"
                         )}
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <span>{item.name}</span>
-                        <ChevronRight size={20} className="text-gray-300" />
+                        <ChevronRight size={20} className="text-gray-300 dark:text-gray-600" />
                       </Link>
                     )}
                   </motion.div>
@@ -363,10 +371,10 @@ export function Header() {
               </nav>
 
               {/* Bottom actions */}
-              <div className="p-4 mt-auto border-t border-gray-100">
+              <div className="p-4 mt-auto border-t border-gray-100 dark:border-gray-800">
                 <Link
                   href="/account"
-                  className="flex items-center gap-3 py-3 px-4 rounded-xl hover:bg-gray-50 transition-colors text-black"
+                  className="flex items-center gap-3 py-3 px-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-foreground"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <User size={20} />
@@ -375,11 +383,11 @@ export function Header() {
               </div>
 
               {/* Footer info */}
-              <div className="p-4 bg-gray-50 text-center">
+              <div className="p-4 bg-gray-50 dark:bg-gray-900 text-center">
                 <p className="text-xs text-gray-500">
                   Frete gratis acima de R$ 500
                 </p>
-                <p className="text-xs text-[#d4af37] font-medium mt-1">
+                <p className="text-xs text-gold font-medium mt-1">
                   100% Produtos Autenticos
                 </p>
               </div>

@@ -124,7 +124,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       className="group product-card"
     >
       <Link href={`/products/${product.handle}`}>
-        <div className="relative aspect-square bg-gray-100 rounded-2xl overflow-hidden mb-4">
+        <div className="relative aspect-square bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden mb-4 ring-2 ring-transparent group-hover:ring-brand-green/30 dark:group-hover:ring-gold/30 transition-all">
           {/* Primary Image */}
           <motion.div
             animate={{ opacity: imageIndex === 0 ? 1 : 0 }}
@@ -168,7 +168,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               <motion.span
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="px-3 py-1.5 bg-[#d4af37] text-black text-xs font-bold rounded-full shadow-lg"
+                className="px-3 py-1.5 bg-gold text-black text-xs font-bold rounded-full shadow-lg"
               >
                 -{discount}%
               </motion.span>
@@ -180,42 +180,46 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             )}
           </div>
 
-          {/* Wishlist button */}
+          {/* Wishlist button - Always visible on mobile */}
           <motion.button
             initial={false}
-            animate={{ opacity: isHovered || isLiked ? 1 : 0, scale: isHovered || isLiked ? 1 : 0.8 }}
+            animate={{
+              opacity: isHovered || isLiked ? 1 : 0.9,
+              scale: isHovered || isLiked ? 1 : 0.95
+            }}
             whileTap={{ scale: 0.85 }}
             onClick={handleLike}
             className={cn(
-              "absolute top-3 right-3 p-2.5 rounded-full shadow-lg transition-colors z-10",
-              isLiked ? "bg-[#d4af37] text-black" : "bg-white text-gray-700 hover:text-[#d4af37]"
+              "absolute top-3 right-3 p-3 rounded-full shadow-lg transition-colors z-10 touch-manipulation",
+              isLiked ? "bg-gold text-black" : "bg-white/95 text-gray-700 hover:text-gold",
+              "opacity-100 md:opacity-0 md:group-hover:opacity-100" // Always visible on mobile
             )}
           >
             <motion.div
               animate={isLiked ? { scale: [1, 1.3, 1] } : {}}
               transition={{ duration: 0.3 }}
             >
-              <Heart size={18} className={isLiked ? "fill-current" : ""} />
+              <Heart size={20} className={isLiked ? "fill-current" : ""} />
             </motion.div>
           </motion.button>
 
-          {/* Quick actions */}
-          <motion.div
-            initial={false}
-            animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-            transition={{ duration: 0.3 }}
-            className="absolute bottom-4 left-4 right-4 flex gap-2 z-10"
+          {/* Quick actions - Always visible on mobile, hover on desktop */}
+          <div
+            className={cn(
+              "absolute bottom-3 left-3 right-3 flex gap-2 z-10 transition-all duration-300",
+              "opacity-100 translate-y-0", // Always visible on mobile
+              "md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0"
+            )}
           >
-            <motion.button
+            <button
               onClick={handleQuickAdd}
               disabled={!product.available || isAdding}
-              whileTap={{ scale: 0.95 }}
               className={cn(
-                "flex-1 py-3 text-sm font-bold rounded-full flex items-center justify-center gap-2 transition-all btn-premium",
+                "flex-1 py-3.5 text-sm font-bold rounded-full flex items-center justify-center gap-2 transition-all btn-premium touch-manipulation active:scale-95",
                 isAdding
                   ? "bg-green-500 text-white"
                   : product.available
-                    ? "bg-white text-black hover:bg-black hover:text-white"
+                    ? "bg-white text-black hover:bg-black hover:text-white shadow-lg"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
               )}
             >
@@ -228,7 +232,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                     exit={{ scale: 0 }}
                     className="flex items-center gap-2"
                   >
-                    <Check size={16} />
+                    <Check size={18} />
                     <span>Adicionado!</span>
                   </motion.div>
                 ) : (
@@ -239,28 +243,26 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                     exit={{ scale: 0 }}
                     className="flex items-center gap-2"
                   >
-                    <ShoppingBag size={16} />
-                    <span>{product.available ? "Adicionar" : "Esgotado"}</span>
+                    <ShoppingBag size={18} />
+                    <span className="hidden xs:inline">{product.available ? "Adicionar" : "Esgotado"}</span>
+                    <span className="xs:hidden">{product.available ? "+" : "X"}</span>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.button>
-            <motion.button
-              onClick={(e) => e.preventDefault()}
-              whileTap={{ scale: 0.9 }}
-              className="p-3 bg-white/90 backdrop-blur rounded-full hover:bg-white transition-colors"
+            </button>
+            <Link
+              href={`/products/${product.handle}`}
+              onClick={(e) => e.stopPropagation()}
+              className="p-3.5 bg-white/95 backdrop-blur rounded-full hover:bg-white transition-colors shadow-lg touch-manipulation active:scale-95"
             >
-              <Eye size={16} />
-            </motion.button>
-          </motion.div>
+              <Eye size={18} />
+            </Link>
+          </div>
         </div>
 
         {/* Product Info */}
         <div className="space-y-2">
-          <p className="text-xs text-gray-500 uppercase tracking-wider font-medium">
-            {product.brand}
-          </p>
-          <h3 className="font-bold text-sm line-clamp-2 group-hover:text-[#0a2e0a] transition-colors">
+          <h3 className="font-bold text-sm line-clamp-2 group-hover:text-brand-green dark:group-hover:text-gold transition-colors">
             {product.title}
           </h3>
 
@@ -268,7 +270,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           <div className="flex items-center gap-2">
             <span className={cn(
               "font-bold text-lg",
-              product.compareAtPrice && "text-[#0a2e0a]"
+              product.compareAtPrice && "text-brand-green"
             )}>
               {formatPrice(product.price)}
             </span>
@@ -280,16 +282,16 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
 
           {/* Installments */}
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-500 dark:text-gray-400">
             ou 12x de {formatPrice(product.price / 12)}
           </p>
 
           {/* Size badge - unique item with single size */}
           <div className="flex items-center gap-2">
-            <span className="text-xs px-2.5 py-1 rounded-md bg-gray-100 text-gray-700 font-medium">
+            <span className="text-xs px-2.5 py-1 rounded-md bg-brand-green/10 dark:bg-gold/10 text-brand-green dark:text-gold border border-brand-green/20 dark:border-gold/20 font-medium">
               Tam: {getProductSize(product)}
             </span>
-            <span className="text-xs text-gray-400">Peca Unica</span>
+            <span className="text-xs text-gold font-medium">Peca Unica</span>
           </div>
         </div>
       </Link>

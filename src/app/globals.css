@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
+  --background-secondary: #f9fafb;
+  --foreground-secondary: #6b7280;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
   --primary: #000000;
   --primary-hover: #1a1a1a;
   /* Gold and Green Brand Palette - Luxury Dark Green */
@@ -17,13 +21,47 @@
   --accent-gradient: linear-gradient(135deg, #d4af37 0%, #1a5d1a 100%);
   --success: #1a5d1a;
   --warning: #d4af37;
+  --header-bg: #ffffff;
+  --header-text: #000000;
+  --input-bg: #ffffff;
+  --input-border: #e5e7eb;
+}
+
+/* Dark mode */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --background-secondary: #171717;
+  --foreground-secondary: #a1a1aa;
+  --card-bg: #1a1a1a;
+  --card-border: #2a2a2a;
+  --primary: #ffffff;
+  --primary-hover: #e5e5e5;
+  --header-bg: #0a0a0a;
+  --header-text: #ffffff;
+  --input-bg: #1a1a1a;
+  --input-border: #2a2a2a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background-secondary: var(--background-secondary);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-brand-green: var(--green);
+  --color-brand-green-light: var(--green-light);
+  --color-brand-green-dark: var(--green-dark);
+  --color-header-bg: var(--header-bg);
+  --color-header-text: var(--header-text);
+  --color-input-bg: var(--input-bg);
+  --color-input-border: var(--input-border);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
 }
 
 /* Base styles */
@@ -34,8 +72,39 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+}
+
+/* ===== LUXURY TYPOGRAPHY ===== */
+
+/* Heading font - Playfair Display (luxury serif) */
+.font-heading {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+}
+
+/* Body font - Inter */
+.font-body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Premium headings with tight tracking */
+.heading-luxury {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* All h1-h3 elements use Playfair by default for luxury feel */
+h1, h2, h3 {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+}
+
+/* Brand name styling */
+.brand-name {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  letter-spacing: 0.05em;
+  font-weight: 700;
 }
 
 /* Custom selection - Gold */
@@ -607,4 +676,129 @@ img {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* ===== MOBILE-SPECIFIC STYLES ===== */
+
+/* Safe area for notched phones (iPhone X+) */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Touch manipulation for better mobile performance */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent text selection on interactive elements */
+button, a, [role="button"] {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Momentum scrolling on iOS */
+.scroll-smooth {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent zoom on input focus (iOS) */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  input[type="number"],
+  input[type="search"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile tap highlight */
+@media (hover: none) {
+  a:active,
+  button:active,
+  [role="button"]:active {
+    opacity: 0.7;
+  }
+}
+
+/* Extra small screen utilities */
+@media (max-width: 374px) {
+  .xs\:hidden {
+    display: none;
+  }
+}
+
+@media (min-width: 375px) {
+  .xs\:inline {
+    display: inline;
+  }
+
+  .xs\:block {
+    display: block;
+  }
+}
+
+/* Improved focus for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  *:focus {
+    outline: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+}
+
+/* Bottom navigation spacing */
+@media (max-width: 1023px) {
+  .has-bottom-nav {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Prevent body scroll when mobile menu/cart is open */
+body.menu-open,
+body.cart-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* Mobile-optimized text sizes */
+@media (max-width: 640px) {
+  .mobile-text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .mobile-text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+/* Pull to refresh indicator area */
+.pull-to-refresh-zone {
+  overscroll-behavior-y: contain;
 }

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { BackToTop } from "@/components/ui/BackToTop";
@@ -10,10 +11,19 @@ import { ToastContainer } from "@/components/ui/Toast";
 import { PromoPopup } from "@/components/ui/PromoPopup";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { CookieConsent } from "@/components/ui/CookieConsent";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+// import { ComingSoon } from "@/components/ui/ComingSoon";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -144,26 +154,29 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} font-sans antialiased bg-white text-gray-900`}>
-        {/* Scroll to top on navigation */}
-        <ScrollToTop />
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-background text-foreground transition-colors duration-300`}>
+        <ThemeProvider>
+          {/* Scroll to top on navigation */}
+          <ScrollToTop />
 
-        {/* Skip to content link for accessibility */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-black focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-        >
-          Pular para o conteúdo principal
-        </a>
-        <Header />
-        <main id="main-content" className="min-h-screen" tabIndex={-1}>{children}</main>
-        <Footer />
-        <CartDrawer />
-        <BackToTop />
-        <ToastContainer />
-        <PromoPopup />
-        <CookieConsent />
-        <GoogleAnalytics />
+          {/* Skip to content link for accessibility */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-black focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
+          >
+            Pular para o conteudo principal
+          </a>
+          <Header />
+          <main id="main-content" className="min-h-screen pb-20 lg:pb-0" tabIndex={-1}>{children}</main>
+          <Footer />
+          <MobileBottomNav />
+          <CartDrawer />
+          <BackToTop />
+          <ToastContainer />
+          <PromoPopup />
+          <CookieConsent />
+          <GoogleAnalytics />
+        </ThemeProvider>
       </body>
     </html>
   );
