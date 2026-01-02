@@ -3,11 +3,19 @@
 import { useState, useMemo, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Filter, ChevronDown, X, Grid3X3, LayoutList } from "lucide-react";
 import { products, brands, categories } from "@/data/products";
 import { ProductCard } from "@/components/product/ProductCard";
 import { cn } from "@/lib/utils";
+
+// Map collection slugs to product categories
+const categoryMapping: Record<string, string[]> = {
+  "roupas": ["Jaquetas", "Moletons", "Calcas", "Camisetas"], // Vestuario
+  "acessorios": ["Bones"], // Acessorios
+  "tenis": ["Tenis"], // Sneakers
+};
 
 const sortOptions = [
   { label: "Mais Recentes", value: "newest" },
@@ -104,11 +112,13 @@ export default function CollectionPage() {
     if (handle === "sale" || handle === "promocao") {
       result = result.filter((p) => p.compareAtPrice);
     } else if (handle !== "new-arrivals" && handle !== "best-sellers") {
-      const category = categories.find((c) => c.slug === handle);
+      // Check if we have a category mapping for this handle
+      const mappedCategories = categoryMapping[handle];
       const brand = brands.find((b) => b.slug === handle);
 
-      if (category) {
-        result = result.filter((p) => p.category.toLowerCase() === category.name.toLowerCase());
+      if (mappedCategories) {
+        // Filter products that belong to any of the mapped categories
+        result = result.filter((p) => mappedCategories.includes(p.category));
       } else if (brand) {
         result = result.filter((p) => p.brand === brand.name);
       }
@@ -180,11 +190,11 @@ export default function CollectionPage() {
     if (handle === "sale" || handle === "promocao") {
       collectionProducts = collectionProducts.filter((p) => p.compareAtPrice);
     } else if (handle !== "new-arrivals" && handle !== "best-sellers") {
-      const category = categories.find((c) => c.slug === handle);
+      const mappedCategories = categoryMapping[handle];
       const brand = brands.find((b) => b.slug === handle);
 
-      if (category) {
-        collectionProducts = collectionProducts.filter((p) => p.category.toLowerCase() === category.name.toLowerCase());
+      if (mappedCategories) {
+        collectionProducts = collectionProducts.filter((p) => mappedCategories.includes(p.category));
       } else if (brand) {
         collectionProducts = collectionProducts.filter((p) => p.brand === brand.name);
       }
@@ -202,14 +212,47 @@ export default function CollectionPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="bg-black text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold">{collectionTitle}</h1>
-          <p className="text-gray-400 mt-2">
-            {filteredProducts.length} produto{filteredProducts.length !== 1 ? "s" : ""}
-          </p>
-        </div>
-      </div>
+      {(() => {
+        const currentCategory = categories.find((c) => c.slug === handle);
+        if (currentCategory) {
+          return (
+            <div className="bg-white py-12 md:py-16">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                  {/* Category Image */}
+                  <div className="relative w-48 h-48 md:w-64 md:h-64 flex-shrink-0">
+                    <Image
+                      src={currentCategory.image}
+                      alt={currentCategory.name}
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                  {/* Category Info */}
+                  <div className="text-center md:text-left">
+                    <h1 className="text-4xl md:text-5xl font-heading font-bold text-gray-900">{collectionTitle}</h1>
+                    <p className="text-gray-500 mt-2 text-lg">{currentCategory.description}</p>
+                    <p className="text-brand-green font-medium mt-4">
+                      {filteredProducts.length} produto{filteredProducts.length !== 1 ? "s" : ""}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+        return (
+          <div className="bg-black text-white py-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h1 className="text-4xl font-bold">{collectionTitle}</h1>
+              <p className="text-gray-400 mt-2">
+                {filteredProducts.length} produto{filteredProducts.length !== 1 ? "s" : ""}
+              </p>
+            </div>
+          </div>
+        );
+      })()}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Toolbar */}
@@ -474,7 +517,7 @@ export default function CollectionPage() {
                           : "text-gray-500"
                       )}
                     >
-                      {category.name} ({category.count})
+                      {category.name}
                     </Link>
                   ))}
                 </div>
@@ -692,7 +735,7 @@ export default function CollectionPage() {
                             : "text-gray-500 hover:text-black"
                         )}
                       >
-                        {category.name} ({category.count})
+                        {category.name}
                       </Link>
                     ))}
                   </div>

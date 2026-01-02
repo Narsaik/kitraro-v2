@@ -8,18 +8,16 @@ import { PaymentIcons } from "@/components/ui/PaymentIcons";
 
 const footerLinks = {
   shop: [
-    { name: "Novidades", href: "/collections/new-arrivals" },
-    { name: "Tênis", href: "/collections/tenis" },
-    { name: "Bonés", href: "/collections/bones" },
-    { name: "Roupas", href: "/collections/roupas" },
-    { name: "Promoção", href: "/collections/promocao" },
+    { name: "Vestuario", href: "/collections/roupas" },
+    { name: "Acessorios", href: "/collections/acessorios" },
+    { name: "Sneakers", href: "/collections/tenis" },
   ],
   brands: [
-    { name: "Nike", href: "/brands/nike" },
+    { name: "Versace", href: "/brands/versace" },
+    { name: "Hugo Boss", href: "/brands/hugo-boss" },
     { name: "BAPE", href: "/brands/bape" },
-    { name: "New Era", href: "/brands/new-era" },
-    { name: "The North Face", href: "/brands/the-north-face" },
-    { name: "Air Jordan", href: "/brands/air-jordan" },
+    { name: "Lacoste", href: "/brands/lacoste" },
+    { name: "Nike", href: "/brands/nike" },
   ],
   help: [
     { name: "Contato", href: "/contact" },
@@ -39,7 +37,7 @@ export function Footer() {
   const isHomepage = pathname === "/";
 
   return (
-    <footer className="bg-[#0a2e0a] text-white">
+    <footer className="bg-gray-900 text-white">
       {/* Newsletter - Hidden on homepage */}
       {!isHomepage && (
         <div className="border-b border-white/10">
@@ -53,11 +51,11 @@ export function Footer() {
                 <input
                   type="email"
                   placeholder="Seu e-mail"
-                  className="flex-1 px-4 py-3 bg-white/10 rounded-full text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#d4af37] border border-white/20"
+                  className="flex-1 px-4 py-3 bg-white/10 rounded-full text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-gold border border-white/20"
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-[#d4af37] hover:bg-[#b8960c] text-black font-bold rounded-full transition-colors"
+                  className="px-6 py-3 bg-gold hover:bg-gold-dark text-black font-bold rounded-full transition-colors"
                 >
                   Inscrever
                 </button>
@@ -71,7 +69,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
-            <h4 className="font-bold mb-4 text-[#d4af37]">Loja</h4>
+            <h4 className="font-bold mb-4 text-gold">Loja</h4>
             <ul className="space-y-2">
               {footerLinks.shop.map((link) => (
                 <li key={link.name}>
@@ -87,7 +85,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold mb-4 text-[#d4af37]">Marcas</h4>
+            <h4 className="font-bold mb-4 text-gold">Marcas</h4>
             <ul className="space-y-2">
               {footerLinks.brands.map((link) => (
                 <li key={link.name}>
@@ -103,7 +101,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold mb-4 text-[#d4af37]">Ajuda</h4>
+            <h4 className="font-bold mb-4 text-gold">Ajuda</h4>
             <ul className="space-y-2">
               {footerLinks.help.map((link) => (
                 <li key={link.name}>
@@ -119,13 +117,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold mb-4 text-[#d4af37]">Siga-nos</h4>
+            <h4 className="font-bold mb-4 text-gold">Siga-nos</h4>
             <div className="flex gap-4 mb-6">
               <a
                 href="https://instagram.com/kitraro416"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#d4af37] rounded-full flex items-center justify-center hover:bg-[#f0d77c] transition-colors text-black"
+                className="w-10 h-10 bg-gold rounded-full flex items-center justify-center hover:bg-gold-light transition-colors text-black"
               >
                 <Instagram size={20} />
               </a>
@@ -133,7 +131,7 @@ export function Footer() {
                 href="https://facebook.com/kitraro416"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#d4af37] rounded-full flex items-center justify-center hover:bg-[#f0d77c] transition-colors text-black"
+                className="w-10 h-10 bg-gold rounded-full flex items-center justify-center hover:bg-gold-light transition-colors text-black"
               >
                 <Facebook size={20} />
               </a>
@@ -141,32 +139,32 @@ export function Footer() {
                 href="https://twitter.com/kitraro416"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#d4af37] rounded-full flex items-center justify-center hover:bg-[#f0d77c] transition-colors text-black"
+                className="w-10 h-10 bg-gold rounded-full flex items-center justify-center hover:bg-gold-light transition-colors text-black"
               >
                 <Twitter size={20} />
               </a>
             </div>
             <div className="text-white/70 text-sm">
               <p>Atendimento:</p>
-              <p className="text-[#d4af37]">contato@kitraro.com</p>
+              <p className="text-gold">contato@kitraro.com</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Bottom */}
-      <div className="border-t border-white/10 bg-[#051a05]">
+      <div className="border-t border-white/10 bg-gray-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-4">
-              {/* Kitraro Logo - Updated */}
+            <div className="flex items-center gap-6">
+              {/* Kitraro Logo */}
               <Link href="/" className="flex-shrink-0">
                 <Image
                   src="/logo.png"
                   alt="Kitraro"
-                  width={80}
-                  height={80}
-                  className="h-12 w-12 object-contain rounded-full"
+                  width={64}
+                  height={64}
+                  className="h-14 w-14 object-contain rounded-full border-2 border-gold hover:border-gold-light transition-colors"
                 />
               </Link>
               <span className="text-white/60 text-sm">

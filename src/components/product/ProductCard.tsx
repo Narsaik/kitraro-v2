@@ -110,7 +110,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       className="group product-card"
     >
       <Link href={`/products/${product.handle}`}>
-        <div className="relative aspect-square bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden mb-4 ring-2 ring-transparent group-hover:ring-brand-green/30 dark:group-hover:ring-gold/30 transition-all">
+        <div className="relative aspect-square bg-gray-100 rounded-2xl overflow-hidden mb-4 ring-2 ring-transparent group-hover:ring-brand-green/30 transition-all">
           {/* Primary Image */}
           <motion.div
             animate={{ opacity: imageIndex === 0 ? 1 : 0 }}
@@ -173,7 +173,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
 
         {/* Product Info */}
         <div className="space-y-2">
-          <h3 className="font-bold text-sm line-clamp-2 group-hover:text-brand-green dark:group-hover:text-gold transition-colors">
+          <h3 className="font-bold text-sm line-clamp-2 group-hover:text-brand-green transition-colors">
             {product.title}
           </h3>
 
@@ -193,13 +193,13 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
 
           {/* Installments */}
-          <p className="text-xs text-gray-500 dark:text-gray-400">
+          <p className="text-xs text-gray-500">
             ou 12x de {formatPrice(product.price / 12)}
           </p>
 
           {/* Size badge - unique item with single size */}
           <div className="flex items-center gap-2">
-            <span className="text-xs px-2.5 py-1 rounded-md bg-brand-green/10 dark:bg-gold/10 text-brand-green dark:text-gold border border-brand-green/20 dark:border-gold/20 font-medium">
+            <span className="text-xs px-2.5 py-1 rounded-md bg-brand-green/10 text-brand-green border border-brand-green/20 font-medium">
               Tam: {getProductSize(product)}
             </span>
             <span className="text-xs text-gold font-medium">Peca Unica</span>

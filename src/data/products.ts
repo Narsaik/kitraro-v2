@@ -610,65 +610,44 @@ export const products: Product[] = [
 ];
 
 export const brands = [
+  // Luxury brands first
+  { name: "Versace", slug: "versace", logo: "/brands/versace.png" },
+  { name: "Hugo Boss", slug: "hugo-boss", logo: "/brands/hugo-boss.png" },
+  { name: "BAPE", slug: "bape", logo: "/brands/bape.png" },
+  { name: "Lacoste", slug: "lacoste", logo: "/brands/lacoste.png" },
+  // Premium streetwear & athletic
   { name: "Nike", slug: "nike", logo: "/brands/nike.png" },
   { name: "Air Jordan", slug: "air-jordan", logo: "/brands/jordan.png" },
-  { name: "BAPE", slug: "bape", logo: "/brands/bape.png" },
-  { name: "New Era", slug: "new-era", logo: "/brands/new-era.png" },
   { name: "The North Face", slug: "the-north-face", logo: "/brands/tnf.png" },
-  { name: "Kappa", slug: "kappa", logo: "/brands/kappa.png" },
-  { name: "Vale", slug: "vale", logo: "/brands/vale.png" },
   { name: "Adidas", slug: "adidas", logo: "/brands/adidas.png" },
-  { name: "Champions", slug: "champions", logo: "/brands/champions.png" },
-  { name: "Lacoste", slug: "lacoste", logo: "/brands/lacoste.png" },
   { name: "Asics", slug: "asics", logo: "/brands/asics.png" },
+  { name: "New Era", slug: "new-era", logo: "/brands/new-era.png" },
+  // Other brands
+  { name: "Kappa", slug: "kappa", logo: "/brands/kappa.png" },
+  { name: "Champions", slug: "champions", logo: "/brands/champions.png" },
   { name: "Revenge", slug: "revenge", logo: "/brands/revenge.png" },
-  { name: "Versace", slug: "versace", logo: "/brands/versace.png" },
+  { name: "Vale", slug: "vale", logo: "/brands/vale.png" },
   { name: "Chase Authentics", slug: "chase-authentics", logo: "/brands/chase-authentics.svg" },
-  { name: "Hugo Boss", slug: "hugo-boss", logo: "/brands/hugo-boss.png" },
 ];
 
 export const categories = [
   {
-    name: "Tenis",
+    name: "Vestuario",
+    slug: "roupas",
+    image: "/categories/clothing.png",
+    description: "Jaquetas, Moletons & Mais"
+  },
+  {
+    name: "Acessorios",
+    slug: "acessorios",
+    image: "/categories/accessories.png",
+    description: "Bones, Bolsas & Mais"
+  },
+  {
+    name: "Sneakers",
     slug: "tenis",
-    count: 3,
-    image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800",
-    description: "Sneakers Exclusivos"
-  },
-  {
-    name: "Bones",
-    slug: "bones",
-    count: 17,
-    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800",
-    description: "New Era & Mais"
-  },
-  {
-    name: "Jaquetas",
-    slug: "jaquetas",
-    count: 4,
-    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800",
-    description: "Cortavento & Puffer"
-  },
-  {
-    name: "Moletons",
-    slug: "moletons",
-    count: 2,
-    image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800",
-    description: "Hoodies Premium"
-  },
-  {
-    name: "Calcas",
-    slug: "calcas",
-    count: 2,
-    image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800",
-    description: "Cargos & Joggers"
-  },
-  {
-    name: "Camisetas",
-    slug: "camisetas",
-    count: 2,
-    image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800",
-    description: "Tees Streetwear"
+    image: "/categories/sneakers.png",
+    description: "Tenis Exclusivos"
   },
 ];
 

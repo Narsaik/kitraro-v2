@@ -7,6 +7,13 @@ import { products, brands, categories } from "@/data/products";
 import { ProductCard } from "@/components/product/ProductCard";
 import { cn } from "@/lib/utils";
 
+// Map main categories to product sub-categories
+const categoryMapping: Record<string, string[]> = {
+  "Vestuario": ["Jaquetas", "Moletons", "Calcas", "Camisetas"],
+  "Acessorios": ["Bones"],
+  "Sneakers": ["Tenis"],
+};
+
 const sortOptions = [
   { label: "Mais Recentes", value: "newest" },
   { label: "Menor Preco", value: "price-asc" },
@@ -72,9 +79,12 @@ export default function ProductsPage() {
       result = result.filter((p) => selectedBrands.includes(p.brand));
     }
 
-    // Filter by categories
+    // Filter by categories (using mapping)
     if (selectedCategories.length > 0) {
-      result = result.filter((p) => selectedCategories.includes(p.category));
+      const mappedProductCategories = selectedCategories.flatMap(
+        (cat) => categoryMapping[cat] || [cat]
+      );
+      result = result.filter((p) => mappedProductCategories.includes(p.category));
     }
 
     // Filter by sizes
@@ -335,7 +345,7 @@ export default function ProductsPage() {
                         className="w-5 h-5 rounded border-gray-300 text-black focus:ring-black accent-black"
                       />
                       <span className="group-hover:text-black transition-colors">
-                        {category.name} ({category.count})
+                        {category.name}
                       </span>
                     </label>
                   ))}

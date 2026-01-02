@@ -15,7 +15,7 @@ interface HomePageProps {
   newArrivals: Product[];
   heroProducts: Product[];
   brands: { name: string; slug: string; logo: string }[];
-  categories: { name: string; slug: string; image: string; description: string; count: number }[];
+  categories: { name: string; slug: string; image: string; description: string }[];
 }
 
 // Animated section component
@@ -45,18 +45,13 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
 
       {/* Brands Section - Moved to top */}
       {brands.length > 0 && (
-        <section className="py-12 md:py-20 bg-black relative overflow-hidden">
-          {/* Green blur background effects */}
-          <div className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full blur-[150px] opacity-30 bg-brand-green" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[120px] opacity-25 bg-brand-green-light" />
-          <div className="absolute top-1/4 right-1/3 w-64 h-64 rounded-full blur-[100px] opacity-20 bg-gold/30" />
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <section className="py-12 md:py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <div className="text-center mb-8 md:mb-16">
                 <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Curadoria Premium</span>
-                <h2 className="text-3xl md:text-6xl font-heading font-bold mt-2 md:mt-4 text-white">Nossas Marcas</h2>
-                <p className="text-gray-400 mt-2 md:mt-4 max-w-2xl mx-auto text-sm md:text-base">As marcas mais desejadas do streetwear mundial</p>
+                <h2 className="text-3xl md:text-6xl font-heading font-bold mt-2 md:mt-4 text-gray-900">Nossas Marcas</h2>
+                <p className="text-gray-500 mt-2 md:mt-4 max-w-2xl mx-auto text-sm md:text-base">As marcas mais desejadas do streetwear mundial</p>
               </div>
             </AnimatedSection>
 
@@ -68,15 +63,15 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
                     href={`/brands/${brand.slug}`}
                     className="group flex flex-col items-center touch-manipulation active:scale-95 transition-transform"
                   >
-                    <div className="relative w-20 h-20 md:w-32 md:h-32 rounded-xl md:rounded-2xl bg-white backdrop-blur-sm border border-gray-200 flex items-center justify-center p-3 md:p-4 transition-all duration-500 group-hover:bg-gray-50 group-hover:border-gold group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(212,175,55,0.3)]">
+                    <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:border-gold group-hover:scale-110 group-hover:shadow-lg">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={brand.logo}
                         alt={brand.name}
-                        className="w-12 h-12 md:w-20 md:h-20 object-contain relative z-10 opacity-80 group-hover:opacity-100 transition-all duration-300"
+                        className="w-16 h-16 md:w-20 md:h-20 object-contain relative z-10 opacity-90 group-hover:opacity-100 transition-all duration-300"
                       />
                     </div>
-                    <span className="mt-2 md:mt-4 text-white/80 text-xs md:text-sm font-medium group-hover:text-gold transition-colors text-center">
+                    <span className="mt-2 md:mt-4 text-gray-700 text-xs md:text-sm font-medium group-hover:text-gold transition-colors text-center">
                       {brand.name}
                     </span>
                   </Link>
@@ -88,7 +83,7 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
               <div className="text-center mt-8 md:mt-16">
                 <Link
                   href="/brands"
-                  className="inline-flex items-center gap-2 px-6 md:px-8 py-3.5 md:py-4 border-2 border-white/20 text-white font-bold rounded-full hover:border-gold hover:text-gold transition-colors touch-manipulation active:scale-95"
+                  className="inline-flex items-center gap-2 px-6 md:px-8 py-3.5 md:py-4 border-2 border-gray-300 text-gray-900 font-bold rounded-full hover:border-gold hover:text-gold transition-colors touch-manipulation active:scale-95"
                 >
                   Ver Todas as Marcas
                   <ArrowRight size={18} />
@@ -101,7 +96,7 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
 
       {/* New Arrivals */}
       {newArrivals.length > 0 && (
-        <section className="py-10 md:py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-background">
+        <section className="py-10 md:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <div className="flex justify-between items-end mb-6 md:mb-8">
@@ -131,7 +126,7 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
               <div className="mt-8 md:mt-10 text-center md:hidden">
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-black dark:bg-white text-white dark:text-black font-medium rounded-full touch-manipulation active:scale-95"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-gray-900 text-white font-medium rounded-full touch-manipulation active:scale-95"
                 >
                   Ver Todos os Produtos
                   <ArrowRight size={18} />
@@ -142,74 +137,38 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
         </section>
       )}
 
-      {/* Categories with Image Backgrounds - Mosaic Grid */}
+      {/* Categories - Clean White Background */}
       {categories.length > 0 && (
-        <section className="py-10 md:py-16 bg-black">
+        <section className="py-12 md:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
-              <div className="text-center mb-8 md:mb-12">
+              <div className="text-center mb-10 md:mb-16">
                 <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Explore</span>
-                <h2 className="text-3xl md:text-5xl font-bold mt-1 md:mt-2 text-white">Categorias</h2>
-                <p className="text-gray-400 mt-2 md:mt-4 text-sm md:text-base">Encontre o que voce procura</p>
+                <h2 className="text-3xl md:text-5xl font-heading font-bold mt-2 md:mt-3 text-gray-900">Categorias</h2>
               </div>
             </AnimatedSection>
 
-            {/* Mosaic Grid Layout - Better mobile sizing */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[160px] md:auto-rows-[250px]">
-              {categories.slice(0, 5).map((category, index) => (
-                <AnimatedSection
-                  key={category.slug}
-                  delay={index * 0.1}
-                  className={index === 0 ? "col-span-2 row-span-2" : ""}
-                >
+            {/* 3 Column Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {categories.map((category, index) => (
+                <AnimatedSection key={category.slug} delay={index * 0.15}>
                   <Link
                     href={`/collections/${category.slug}`}
-                    className="group block h-full relative rounded-3xl overflow-hidden"
+                    className="group block text-center"
                   >
-                    <Image
-                      src={category.image}
-                      alt={category.name}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    <div className="absolute inset-0 bg-gold/0 group-hover:bg-gold/20 transition-colors duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                      {index === 0 && (
-                        <span className="inline-block px-3 py-1 bg-gold text-black text-xs font-bold rounded-full mb-3">
-                          {category.count} produtos
-                        </span>
-                      )}
-                      <h3 className={`font-bold text-white group-hover:translate-x-2 transition-transform ${index === 0 ? 'text-3xl md:text-4xl' : 'text-xl md:text-2xl'}`}>
-                        {category.name}
-                      </h3>
-                      <p className="text-gray-300 mt-2 group-hover:text-white transition-colors text-sm">
-                        {category.description}
-                      </p>
-                      {index === 0 && (
-                        <div className="flex items-center gap-2 mt-4 text-gold opacity-0 group-hover:opacity-100 transition-opacity">
-                          <span className="text-sm font-medium">Ver Colecao</span>
-                          <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
-                        </div>
-                      )}
+                    {/* Image Container */}
+                    <div className="relative aspect-square bg-gray-50 rounded-2xl overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:shadow-gray-200">
+                      <Image
+                        src={category.image}
+                        alt={category.name}
+                        fill
+                        className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
                   </Link>
                 </AnimatedSection>
               ))}
             </div>
-
-            {/* View All Button */}
-            <AnimatedSection delay={0.6}>
-              <div className="text-center mt-8 md:mt-10">
-                <Link
-                  href="/products"
-                  className="inline-flex items-center gap-2 px-6 md:px-8 py-3.5 md:py-4 bg-gold text-black font-bold rounded-full hover:bg-gold-light transition-colors touch-manipulation active:scale-95"
-                >
-                  Ver Todas as Categorias
-                  <ArrowRight size={18} />
-                </Link>
-              </div>
-            </AnimatedSection>
           </div>
         </section>
       )}
@@ -247,9 +206,9 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
         </div>
       </section>
 
-      {/* Featured Products - with subtle green tint */}
+      {/* Featured Products */}
       {featuredProducts.length > 0 && (
-        <section className="py-10 md:py-12 bg-brand-green/5 dark:bg-gray-900">
+        <section className="py-10 md:py-12 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <div className="flex justify-between items-end mb-6 md:mb-8">
@@ -279,7 +238,7 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
       )}
 
       {/* Valley Dreams Banner - Full Width - Better mobile sizing */}
-      <section className="py-3 md:py-4 bg-black">
+      <section className="py-3 md:py-4 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <Link href="/products/camiseta-vales-lives-forever-speed-bling" className="group block relative h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden touch-manipulation active:scale-[0.99]">
