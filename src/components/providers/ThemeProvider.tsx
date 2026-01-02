@@ -16,16 +16,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("light");
   const [mounted, setMounted] = useState(false);
 
-  // Load theme from localStorage on mount
+  // Load theme from localStorage on mount - Default to light
   useEffect(() => {
     setMounted(true);
     const savedTheme = localStorage.getItem("kitraro-theme") as Theme | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
+    // Only use saved theme, ignore system preference - keep white background default
     if (savedTheme) {
       setThemeState(savedTheme);
-    } else if (prefersDark) {
-      setThemeState("dark");
     }
   }, []);
 
@@ -50,15 +47,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setThemeState(newTheme);
   };
 
-  // Prevent flash of wrong theme
-  if (!mounted) {
-    return (
-      <div style={{ visibility: "hidden" }}>
-        {children}
-      </div>
-    );
-  }
-
+  // Always render Provider to avoid hydration mismatch
+  // Use suppressHydrationWarning on elements that may differ between server/client
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
       {children}

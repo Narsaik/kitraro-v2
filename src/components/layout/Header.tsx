@@ -16,8 +16,16 @@ const navigation = [
   { name: "Novidades", href: "/collections/new-arrivals" },
   { name: "Tênis", href: "/collections/tenis" },
   { name: "Bonés", href: "/collections/bones" },
-  { name: "Jaquetas", href: "/collections/jaquetas" },
-  { name: "Moletons", href: "/collections/moletons" },
+  {
+    name: "Roupas",
+    href: "/products",
+    submenu: [
+      { name: "Jaquetas", href: "/collections/jaquetas" },
+      { name: "Moletons", href: "/collections/moletons" },
+      { name: "Camisetas", href: "/collections/camisetas" },
+      { name: "Calças", href: "/collections/calcas" },
+    ]
+  },
   { name: "Marcas", href: "/brands", megaMenu: true },
   { name: "Promoção", href: "/collections/promocao", highlight: true },
 ];
@@ -64,9 +72,9 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-background text-foreground shadow-sm dark:shadow-gray-900/20 transition-colors">
-      {/* Top banner - Luxury Dark Green - Condensed on mobile */}
-      <div className="bg-brand-green text-white text-center py-1.5 md:py-2 text-xs md:text-sm font-medium">
-        <span className="text-gold-light">FRETE GRÁTIS</span> <span className="hidden sm:inline">em compras</span> acima de R$ 500 <span className="hidden sm:inline">| Parcele em até 12x</span>
+      {/* Top banner - Luxury Dark Green */}
+      <div className="bg-brand-green text-white text-center py-1.5 md:py-2 text-xs md:text-sm font-medium tracking-wider">
+        <span className="text-gold-light">STREETWEAR DE LUXO</span> NO BRASIL
       </div>
 
       <nav className="border-b border-gray-100 dark:border-gray-800">

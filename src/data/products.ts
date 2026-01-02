@@ -617,6 +617,14 @@ export const brands = [
   { name: "The North Face", slug: "the-north-face", logo: "/brands/tnf.png" },
   { name: "Kappa", slug: "kappa", logo: "/brands/kappa.png" },
   { name: "Vale", slug: "vale", logo: "/brands/vale.png" },
+  { name: "Adidas", slug: "adidas", logo: "/brands/adidas.png" },
+  { name: "Champions", slug: "champions", logo: "/brands/champions.png" },
+  { name: "Lacoste", slug: "lacoste", logo: "/brands/lacoste.png" },
+  { name: "Asics", slug: "asics", logo: "/brands/asics.png" },
+  { name: "Revenge", slug: "revenge", logo: "/brands/revenge.png" },
+  { name: "Versace", slug: "versace", logo: "/brands/versace.png" },
+  { name: "Chase Authentics", slug: "chase-authentics", logo: "/brands/chase-authentics.svg" },
+  { name: "Hugo Boss", slug: "hugo-boss", logo: "/brands/hugo-boss.png" },
 ];
 
 export const categories = [

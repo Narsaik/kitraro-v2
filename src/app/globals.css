@@ -61,7 +61,7 @@
   --color-input-bg: var(--input-bg);
   --color-input-border: var(--input-border);
   --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
+  --font-serif: var(--font-cinzel);
 }
 
 /* Base styles */
@@ -78,9 +78,9 @@ body {
 
 /* ===== LUXURY TYPOGRAPHY ===== */
 
-/* Heading font - Playfair Display (luxury serif) */
+/* Heading font - Cinzel (elegant serif, similar to Copperplate) */
 .font-heading {
-  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-family: var(--font-cinzel), Georgia, "Times New Roman", serif;
 }
 
 /* Body font - Inter */
@@ -90,21 +90,23 @@ body {
 
 /* Premium headings with tight tracking */
 .heading-luxury {
-  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-cinzel), Georgia, "Times New Roman", serif;
+  letter-spacing: 0.05em;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
-/* All h1-h3 elements use Playfair by default for luxury feel */
+/* All h1-h3 elements use Cinzel by default for luxury feel */
 h1, h2, h3 {
-  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-family: var(--font-cinzel), Georgia, "Times New Roman", serif;
 }
 
 /* Brand name styling */
 .brand-name {
-  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
-  letter-spacing: 0.05em;
+  font-family: var(--font-cinzel), Georgia, "Times New Roman", serif;
+  letter-spacing: 0.1em;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 /* Custom selection - Gold */

@@ -3,12 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingBag, Heart, Eye, Check } from "lucide-react";
+import { ShoppingBag, Check } from "lucide-react";
 import { useState } from "react";
 import type { Product } from "@/lib/shopify/types";
 import { formatPrice, calculateDiscount, cn } from "@/lib/utils";
 import { useCart } from "@/hooks/useCart";
-import { useWishlist } from "@/hooks/useWishlist";
 import { useToastStore } from "@/components/ui/Toast";
 
 interface ProductCardProps {
@@ -80,9 +79,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const [isAdding, setIsAdding] = useState(false);
   const discount = calculateDiscount(product.price, product.compareAtPrice);
   const { addItem } = useCart();
-  const { toggleItem, isInWishlist } = useWishlist();
   const { addToast } = useToastStore();
-  const isLiked = isInWishlist(product.id);
 
   const handleQuickAdd = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -94,17 +91,6 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       addToast("success", `${product.title} adicionado ao carrinho!`);
       await new Promise(resolve => setTimeout(resolve, 1000));
       setIsAdding(false);
-    }
-  };
-
-  const handleLike = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    toggleItem(product);
-    if (!isLiked) {
-      addToast("info", "Adicionado aos favoritos!");
-    } else {
-      addToast("info", "Removido dos favoritos");
     }
   };
 
@@ -162,7 +148,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
           />
 
-          {/* Badges */}
+          {/* Badges - Only discount badge */}
           <div className="absolute top-3 left-3 flex flex-col gap-2 z-10">
             {discount && (
               <motion.span
@@ -173,91 +159,16 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 -{discount}%
               </motion.span>
             )}
-            {!product.available && (
-              <span className="px-3 py-1.5 bg-gray-900 text-white text-xs font-bold rounded-full">
-                Esgotado
+          </div>
+
+          {/* SOLD OUT overlay - Prominent display */}
+          {!product.available && (
+            <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
+              <span className="px-6 py-3 bg-red-600 text-white text-sm font-bold uppercase tracking-wider rounded-lg shadow-lg">
+                ESGOTADO
               </span>
-            )}
-          </div>
-
-          {/* Wishlist button - Always visible on mobile */}
-          <motion.button
-            initial={false}
-            animate={{
-              opacity: isHovered || isLiked ? 1 : 0.9,
-              scale: isHovered || isLiked ? 1 : 0.95
-            }}
-            whileTap={{ scale: 0.85 }}
-            onClick={handleLike}
-            className={cn(
-              "absolute top-3 right-3 p-3 rounded-full shadow-lg transition-colors z-10 touch-manipulation",
-              isLiked ? "bg-gold text-black" : "bg-white/95 text-gray-700 hover:text-gold",
-              "opacity-100 md:opacity-0 md:group-hover:opacity-100" // Always visible on mobile
-            )}
-          >
-            <motion.div
-              animate={isLiked ? { scale: [1, 1.3, 1] } : {}}
-              transition={{ duration: 0.3 }}
-            >
-              <Heart size={20} className={isLiked ? "fill-current" : ""} />
-            </motion.div>
-          </motion.button>
-
-          {/* Quick actions - Always visible on mobile, hover on desktop */}
-          <div
-            className={cn(
-              "absolute bottom-3 left-3 right-3 flex gap-2 z-10 transition-all duration-300",
-              "opacity-100 translate-y-0", // Always visible on mobile
-              "md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0"
-            )}
-          >
-            <button
-              onClick={handleQuickAdd}
-              disabled={!product.available || isAdding}
-              className={cn(
-                "flex-1 py-3.5 text-sm font-bold rounded-full flex items-center justify-center gap-2 transition-all btn-premium touch-manipulation active:scale-95",
-                isAdding
-                  ? "bg-green-500 text-white"
-                  : product.available
-                    ? "bg-white text-black hover:bg-black hover:text-white shadow-lg"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
-              )}
-            >
-              <AnimatePresence mode="wait">
-                {isAdding ? (
-                  <motion.div
-                    key="check"
-                    initial={{ scale: 0, rotate: -180 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    exit={{ scale: 0 }}
-                    className="flex items-center gap-2"
-                  >
-                    <Check size={18} />
-                    <span>Adicionado!</span>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="add"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    exit={{ scale: 0 }}
-                    className="flex items-center gap-2"
-                  >
-                    <ShoppingBag size={18} />
-                    <span className="hidden xs:inline">{product.available ? "Adicionar" : "Esgotado"}</span>
-                    <span className="xs:hidden">{product.available ? "+" : "X"}</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </button>
-            <Link
-              href={`/products/${product.handle}`}
-              onClick={(e) => e.stopPropagation()}
-              className="p-3.5 bg-white/95 backdrop-blur rounded-full hover:bg-white transition-colors shadow-lg touch-manipulation active:scale-95"
-            >
-              <Eye size={18} />
-            </Link>
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Product Info */}
@@ -293,6 +204,46 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             </span>
             <span className="text-xs text-gold font-medium">Peca Unica</span>
           </div>
+
+          {/* Small Add to Cart button */}
+          <button
+            onClick={handleQuickAdd}
+            disabled={!product.available || isAdding}
+            className={cn(
+              "w-full py-2 text-xs font-medium rounded-lg flex items-center justify-center gap-1.5 transition-all touch-manipulation active:scale-[0.98] mt-2",
+              isAdding
+                ? "bg-green-500 text-white"
+                : product.available
+                  ? "bg-brand-green text-white hover:bg-brand-green-light"
+                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+            )}
+          >
+            <AnimatePresence mode="wait">
+              {isAdding ? (
+                <motion.div
+                  key="check"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  className="flex items-center gap-1.5"
+                >
+                  <Check size={14} />
+                  <span>Adicionado!</span>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="add"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  className="flex items-center gap-1.5"
+                >
+                  <ShoppingBag size={14} />
+                  <span>{product.available ? "Adicionar ao Carrinho" : "Esgotado"}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </button>
         </div>
       </Link>
     </motion.div>

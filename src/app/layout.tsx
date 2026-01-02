@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Cinzel } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -19,9 +19,9 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const playfair = Playfair_Display({
+const cinzel = Cinzel({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-cinzel",
   weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
@@ -88,7 +88,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -154,7 +154,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-background text-foreground transition-colors duration-300`}>
+      <body className={`${inter.variable} ${cinzel.variable} font-sans antialiased bg-background text-foreground transition-colors duration-300`} suppressHydrationWarning>
         <ThemeProvider>
           {/* Scroll to top on navigation */}
           <ScrollToTop />

@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { ArrowRight, ChevronRight, Sparkles, Star, Shield, Truck, RotateCcw, Lock } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { ProductCard } from "@/components/product/ProductCard";
 import { InstagramFeed } from "@/components/home/InstagramFeed";
 import { HeroPromo } from "@/components/home/HeroPromo";
@@ -17,14 +17,6 @@ interface HomePageProps {
   brands: { name: string; slug: string; logo: string }[];
   categories: { name: string; slug: string; image: string; description: string; count: number }[];
 }
-
-const marqueeItems = [
-  "FRETE GRATIS ACIMA DE R$500",
-  "100% AUTENTICO",
-  "ATE 12X SEM JUROS",
-  "5% OFF NO PIX",
-  "TROCA GRATIS EM 30 DIAS",
-];
 
 // Animated section component
 function AnimatedSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -51,20 +43,63 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
       {/* New Era Promo Banner */}
       <HeroPromo products={heroProducts} />
 
-      {/* Marquee Banner */}
-      <div className="bg-brand-green text-white py-3 overflow-hidden border-y border-gold/20">
-        <div className="animate-marquee whitespace-nowrap flex">
-          {[...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span key={i} className="mx-8 text-sm font-medium flex items-center gap-2">
-              <Sparkles size={14} className="text-gold" />
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
+      {/* Brands Section - Moved to top */}
+      {brands.length > 0 && (
+        <section className="py-12 md:py-20 bg-black relative overflow-hidden">
+          {/* Green blur background effects */}
+          <div className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full blur-[150px] opacity-30 bg-brand-green" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[120px] opacity-25 bg-brand-green-light" />
+          <div className="absolute top-1/4 right-1/3 w-64 h-64 rounded-full blur-[100px] opacity-20 bg-gold/30" />
 
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <AnimatedSection>
+              <div className="text-center mb-8 md:mb-16">
+                <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Curadoria Premium</span>
+                <h2 className="text-3xl md:text-6xl font-heading font-bold mt-2 md:mt-4 text-white">Nossas Marcas</h2>
+                <p className="text-gray-400 mt-2 md:mt-4 max-w-2xl mx-auto text-sm md:text-base">As marcas mais desejadas do streetwear mundial</p>
+              </div>
+            </AnimatedSection>
 
-      {/* New Arrivals - FIRST! */}
+            {/* Horizontal scroll on mobile, grid on desktop */}
+            <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-8 overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 hide-scrollbar">
+              {brands.map((brand, index) => (
+                <AnimatedSection key={brand.slug} delay={index * 0.1} className="flex-shrink-0">
+                  <Link
+                    href={`/brands/${brand.slug}`}
+                    className="group flex flex-col items-center touch-manipulation active:scale-95 transition-transform"
+                  >
+                    <div className="relative w-20 h-20 md:w-32 md:h-32 rounded-xl md:rounded-2xl bg-white backdrop-blur-sm border border-gray-200 flex items-center justify-center p-3 md:p-4 transition-all duration-500 group-hover:bg-gray-50 group-hover:border-gold group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(212,175,55,0.3)]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={brand.logo}
+                        alt={brand.name}
+                        className="w-12 h-12 md:w-20 md:h-20 object-contain relative z-10 opacity-80 group-hover:opacity-100 transition-all duration-300"
+                      />
+                    </div>
+                    <span className="mt-2 md:mt-4 text-white/80 text-xs md:text-sm font-medium group-hover:text-gold transition-colors text-center">
+                      {brand.name}
+                    </span>
+                  </Link>
+                </AnimatedSection>
+              ))}
+            </div>
+
+            <AnimatedSection delay={0.8}>
+              <div className="text-center mt-8 md:mt-16">
+                <Link
+                  href="/brands"
+                  className="inline-flex items-center gap-2 px-6 md:px-8 py-3.5 md:py-4 border-2 border-white/20 text-white font-bold rounded-full hover:border-gold hover:text-gold transition-colors touch-manipulation active:scale-95"
+                >
+                  Ver Todas as Marcas
+                  <ArrowRight size={18} />
+                </Link>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+      )}
+
+      {/* New Arrivals */}
       {newArrivals.length > 0 && (
         <section className="py-10 md:py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -171,62 +206,6 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
                   className="inline-flex items-center gap-2 px-6 md:px-8 py-3.5 md:py-4 bg-gold text-black font-bold rounded-full hover:bg-gold-light transition-colors touch-manipulation active:scale-95"
                 >
                   Ver Todas as Categorias
-                  <ArrowRight size={18} />
-                </Link>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-      )}
-
-      {/* Brands Section with Green Blur Effect */}
-      {brands.length > 0 && (
-        <section className="py-12 md:py-20 bg-black relative overflow-hidden">
-          {/* Green blur background effects */}
-          <div className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full blur-[150px] opacity-30 bg-brand-green" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[120px] opacity-25 bg-brand-green-light" />
-          <div className="absolute top-1/4 right-1/3 w-64 h-64 rounded-full blur-[100px] opacity-20 bg-gold/30" />
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <AnimatedSection>
-              <div className="text-center mb-8 md:mb-16">
-                <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Curadoria Premium</span>
-                <h2 className="text-3xl md:text-6xl font-heading font-bold mt-2 md:mt-4 text-white">Nossas Marcas</h2>
-                <p className="text-gray-400 mt-2 md:mt-4 max-w-2xl mx-auto text-sm md:text-base">As marcas mais desejadas do streetwear mundial</p>
-              </div>
-            </AnimatedSection>
-
-            {/* Horizontal scroll on mobile, grid on desktop */}
-            <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-8 overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 hide-scrollbar">
-              {brands.map((brand, index) => (
-                <AnimatedSection key={brand.slug} delay={index * 0.1} className="flex-shrink-0">
-                  <Link
-                    href={`/brands/${brand.slug}`}
-                    className="group flex flex-col items-center touch-manipulation active:scale-95 transition-transform"
-                  >
-                    <div className="relative w-20 h-20 md:w-32 md:h-32 rounded-xl md:rounded-2xl bg-white backdrop-blur-sm border border-gray-200 flex items-center justify-center p-3 md:p-4 transition-all duration-500 group-hover:bg-gray-50 group-hover:border-gold group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(212,175,55,0.3)]">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={brand.logo}
-                        alt={brand.name}
-                        className="w-12 h-12 md:w-20 md:h-20 object-contain relative z-10 opacity-80 group-hover:opacity-100 transition-all duration-300"
-                      />
-                    </div>
-                    <span className="mt-2 md:mt-4 text-white/80 text-xs md:text-sm font-medium group-hover:text-gold transition-colors text-center">
-                      {brand.name}
-                    </span>
-                  </Link>
-                </AnimatedSection>
-              ))}
-            </div>
-
-            <AnimatedSection delay={0.8}>
-              <div className="text-center mt-8 md:mt-16">
-                <Link
-                  href="/brands"
-                  className="inline-flex items-center gap-2 px-6 md:px-8 py-3.5 md:py-4 border-2 border-white/20 text-white font-bold rounded-full hover:border-gold hover:text-gold transition-colors touch-manipulation active:scale-95"
-                >
-                  Ver Todas as Marcas
                   <ArrowRight size={18} />
                 </Link>
               </div>

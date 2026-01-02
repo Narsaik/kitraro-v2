@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Sparkles, Tag, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Product } from "@/lib/shopify/types";
 
 interface HeroPromoProps {
@@ -110,107 +110,58 @@ export function HeroPromo({ products }: HeroPromoProps) {
       <div className="relative z-10 min-h-[70vh] md:min-h-[80vh] flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* Left - Text Content */}
+            {/* Left - Simplified Text Content */}
             <div>
-              {/* Promo Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="mb-6"
-              >
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-gold text-black text-sm font-bold rounded-full">
-                  <Tag size={16} />
-                  PROMOCAO ESPECIAL
-                </span>
-              </motion.div>
-
-              {/* Main Headline */}
+              {/* Main Headline - Simplified */}
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-3 md:mb-4"
+                transition={{ delay: 0.2 }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-4 md:mb-6"
               >
                 <span className="block">New Era</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-light pb-1 md:pb-2 leading-tight">
-                  59FIFTY Fitted
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-light">
+                  59FIFTY
                 </span>
               </motion.h1>
 
-              {/* Price Highlight */}
+              {/* Price - Simplified */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="mb-6 md:mb-8"
+              >
+                <div className="flex items-baseline gap-3">
+                  {currentProduct.compareAtPrice && (
+                    <span className="text-white/50 text-lg line-through">
+                      R$ {currentProduct.compareAtPrice.toFixed(0)}
+                    </span>
+                  )}
+                  <span className="text-4xl md:text-5xl font-black text-gold">
+                    R$ {currentProduct.price.toFixed(0)}
+                  </span>
+                  {discount > 0 && (
+                    <span className="px-3 py-1 bg-gold text-black text-sm font-bold rounded-full">
+                      -{discount}%
+                    </span>
+                  )}
+                </div>
+              </motion.div>
+
+              {/* CTA Button - Clean */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="mb-4 md:mb-6"
-              >
-                <div className="inline-flex items-baseline gap-2 md:gap-3 bg-white/10 backdrop-blur-sm px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl border border-white/20">
-                  {currentProduct.compareAtPrice && (
-                    <span className="text-white/60 text-sm md:text-lg line-through">
-                      R$ {currentProduct.compareAtPrice.toFixed(2).replace('.', ',')}
-                    </span>
-                  )}
-                  <span className="text-3xl sm:text-4xl md:text-6xl font-black text-gold">
-                    R$ {Math.floor(currentProduct.price)}
-                  </span>
-                  <span className="text-white/80 text-sm md:text-lg">
-                    ,{((currentProduct.price % 1) * 100).toFixed(0).padStart(2, '0')}
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* Description - Hidden on very small screens */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="hidden sm:block text-base md:text-xl text-white/70 mb-6 md:mb-8 max-w-lg"
-              >
-                Bones oficiais MLB, NBA e NFL. Modelos fitted premium
-                {discount > 0 && (
-                  <> com ate <span className="text-gold font-bold">{discount}% OFF</span></>
-                )}.
-                Estoque limitado!
-              </motion.p>
-
-              {/* Features - Simplified on mobile */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="flex flex-wrap gap-2 md:gap-4 mb-6 md:mb-8"
-              >
-                {["100% Original", "MLB | NBA | NFL", "Tamanhos 7 - 8"].map((feature, i) => (
-                  <span
-                    key={i}
-                    className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-white/5 border border-white/10 rounded-full text-white/80 text-xs md:text-sm"
-                  >
-                    <Sparkles size={12} className="text-gold hidden sm:block" />
-                    {feature}
-                  </span>
-                ))}
-              </motion.div>
-
-              {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-                className="space-y-2 md:space-y-3"
               >
                 <Link
                   href="/collections/bones"
-                  className="group inline-flex items-center gap-2 md:gap-3 px-6 md:px-10 py-4 md:py-5 bg-gold text-black font-bold text-base md:text-lg rounded-full hover:bg-gold-light hover:shadow-[0_0_40px_rgba(212,175,55,0.4)] transition-all duration-300 touch-manipulation active:scale-95"
+                  className="group inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-gold text-black font-bold text-base md:text-lg rounded-full hover:bg-gold-light transition-all duration-300 touch-manipulation active:scale-95"
                 >
-                  Comprar Agora {discount > 0 && `- ${discount}% OFF`}
+                  Ver Colecao
                   <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
                 </Link>
-                <p className="text-white/60 text-xs md:text-sm flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0"></span>
-                  <span className="hidden sm:inline">Frete gratis acima de R$500 • Troca gratis em 30 dias</span>
-                  <span className="sm:hidden">Frete gratis +R$500</span>
-                </p>
               </motion.div>
             </div>
 
@@ -302,17 +253,6 @@ export function HeroPromo({ products }: HeroPromoProps) {
       {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent" />
 
-      {/* Kitraro Logo */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 right-8 hidden md:block"
-      >
-        <div className="w-20 h-20 rounded-full bg-brand-green border-3 border-gold flex items-center justify-center shadow-xl">
-          <span className="text-gold font-heading text-2xl font-bold">KR</span>
-        </div>
-      </motion.div>
     </section>
   );
 }
