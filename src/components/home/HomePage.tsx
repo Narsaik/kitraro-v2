@@ -39,8 +39,8 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
 
   return (
     <div className="overflow-hidden">
-      {/* Categories Section - First on homepage */}
-      {categories.length > 0 && (
+      {/* Categories Section - Hidden per client request */}
+      {/* {categories.length > 0 && (
         <section className="py-12 md:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
@@ -50,7 +50,6 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               </div>
             </AnimatedSection>
 
-            {/* 3 Column Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {categories.map((category, index) => (
                 <AnimatedSection key={category.slug} delay={index * 0.15}>
@@ -58,7 +57,6 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
                     href={`/collections/${category.slug}`}
                     className="group block text-center"
                   >
-                    {/* Image Container */}
                     <div className="relative aspect-square overflow-hidden transition-all duration-300">
                       <Image
                         src={category.image}
@@ -73,7 +71,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
             </div>
           </div>
         </section>
-      )}
+      )} */}
 
       {/* Brands Section */}
       {brands.length > 0 && (
