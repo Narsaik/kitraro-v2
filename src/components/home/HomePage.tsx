@@ -87,16 +87,16 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               </div>
             </AnimatedSection>
 
-            {/* Horizontal scroll on mobile, grid on desktop - Show 2 rows max (12 on desktop, 6 on tablet) */}
-            <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-8 overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 hide-scrollbar">
+            {/* 4 columns on mobile, 3 on tablet, 6 on desktop */}
+            <div className="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-8">
               {brands.slice(0, 12).map((brand, index) => (
-                <AnimatedSection key={brand.slug} delay={index * 0.1} className="flex-shrink-0">
+                <AnimatedSection key={brand.slug} delay={index * 0.1}>
                   <Link
                     href={`/brands/${brand.slug}`}
                     className="group flex flex-col items-center touch-manipulation active:scale-95 transition-transform"
                   >
-                    <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:border-gold group-hover:scale-110 group-hover:shadow-lg">
-                      <div className="relative w-12 h-12 md:w-14 md:h-14">
+                    <div className="relative w-full aspect-square md:w-28 md:h-28 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:border-gold group-hover:scale-110 group-hover:shadow-lg">
+                      <div className="relative w-8 h-8 md:w-14 md:h-14">
                         <Image
                           src={brand.logo}
                           alt={brand.name}
