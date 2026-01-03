@@ -12,7 +12,7 @@ import type { Product } from "@/lib/shopify/types";
 interface HomePageProps {
   featuredProducts: Product[];
   newArrivals: Product[];
-  heroProducts?: Product[]; // Optional, no longer used
+  heroProducts?: Product[];
   brands: { name: string; slug: string; logo: string }[];
   categories: { name: string; slug: string; image: string; description: string }[];
 }
@@ -39,7 +39,41 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
 
   return (
     <div className="overflow-hidden">
-      {/* New Arrivals - FIRST */}
+      {/* 1. Categories Section - FIRST */}
+      {categories.length > 0 && (
+        <section className="py-6 md:py-10 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatedSection>
+              <div className="text-center mb-4 md:mb-8">
+                <span className="text-gold font-medium text-xs tracking-wider uppercase">Explore</span>
+                <h2 className="text-2xl md:text-3xl font-heading font-bold mt-1 md:mt-2 text-gray-900">Categorias</h2>
+              </div>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-3 gap-3 md:gap-6">
+              {categories.map((category, index) => (
+                <AnimatedSection key={category.slug} delay={index * 0.1}>
+                  <Link
+                    href={`/collections/${category.slug}`}
+                    className="group block text-center"
+                  >
+                    <div className="relative aspect-square overflow-hidden transition-all duration-300 max-w-[200px] mx-auto">
+                      <Image
+                        src={category.image}
+                        alt={category.name}
+                        fill
+                        className="object-contain transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  </Link>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 2. Novidades (New Arrivals) */}
       {newArrivals.length > 0 && (
         <section className="py-10 md:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -82,35 +116,60 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
         </section>
       )}
 
-      {/* Categories Section - Compact */}
-      {categories.length > 0 && (
-        <section className="py-6 md:py-10 bg-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 3. Valley Dreams Banner */}
+      <section className="py-3 md:py-4 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <Link href="/products/camiseta-vales-lives-forever-speed-bling" className="group block relative h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden touch-manipulation active:scale-[0.99]">
+              <Image
+                src="https://cdn.shopify.com/s/files/1/0966/5236/2018/files/78B1C56A-8F1E-4870-96B8-CCF83C57CF1C.jpg?v=1765829459"
+                alt="Valley Dreams Vales Lives Forever Speed Bling"
+                fill
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+              <div className="absolute inset-0 flex items-center">
+                <div className="p-5 md:p-12 max-w-xl">
+                  <span className="inline-block px-3 md:px-4 py-1.5 md:py-2 bg-gold text-black text-xs md:text-sm font-bold rounded-full mb-3 md:mb-4">
+                    EXCLUSIVO
+                  </span>
+                  <h3 className="text-2xl md:text-5xl font-bold text-white mb-2 md:mb-3">Valley Dreams</h3>
+                  <p className="text-gray-300 text-sm md:text-lg mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">Vales Lives Forever "Speed Bling" - Streetwear brasileiro</p>
+                  <span className="inline-flex items-center gap-2 md:gap-3 px-5 md:px-6 py-2.5 md:py-3 bg-gold text-black font-bold rounded-full group-hover:bg-gold-light transition-colors text-sm md:text-base">
+                    Ver Produto
+                    <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* 4. Mais Exclusivos (Featured Products) */}
+      {featuredProducts.length > 0 && (
+        <section className="py-10 md:py-12 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
-              <div className="text-center mb-4 md:mb-8">
-                <span className="text-gold font-medium text-xs tracking-wider uppercase">Explore</span>
-                <h2 className="text-2xl md:text-3xl font-heading font-bold mt-1 md:mt-2 text-gray-900">Categorias</h2>
+              <div className="flex justify-between items-end mb-6 md:mb-8">
+                <div>
+                  <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Rare Finds</span>
+                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2 text-gray-900">Mais Exclusivos</h2>
+                </div>
+                <Link
+                  href="/products"
+                  className="hidden md:flex items-center gap-2 text-sm font-medium group text-gray-900 hover:text-gold"
+                >
+                  Ver Tudo
+                  <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </AnimatedSection>
 
-            {/* 3 Column Grid - Smaller */}
-            <div className="grid grid-cols-3 gap-3 md:gap-6">
-              {categories.map((category, index) => (
-                <AnimatedSection key={category.slug} delay={index * 0.1}>
-                  <Link
-                    href={`/collections/${category.slug}`}
-                    className="group block text-center"
-                  >
-                    {/* Image Container - Smaller */}
-                    <div className="relative aspect-square overflow-hidden transition-all duration-300 max-w-[200px] mx-auto">
-                      <Image
-                        src={category.image}
-                        alt={category.name}
-                        fill
-                        className="object-contain transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                  </Link>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+              {featuredProducts.slice(0, 4).map((product, index) => (
+                <AnimatedSection key={product.id} delay={index * 0.1}>
+                  <ProductCard product={product} index={index} />
                 </AnimatedSection>
               ))}
             </div>
@@ -118,7 +177,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
         </section>
       )}
 
-      {/* Brands Section */}
+      {/* 5. Marcas (Brands Section) */}
       {brands.length > 0 && (
         <section className="py-12 md:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,11 +185,10 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               <div className="text-center mb-8 md:mb-16">
                 <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Curadoria Premium</span>
                 <h2 className="text-3xl md:text-6xl font-heading font-bold mt-2 md:mt-4 text-gray-900">Nossas Marcas</h2>
-                <p className="text-gray-500 mt-2 md:mt-4 max-w-2xl mx-auto text-sm md:text-base">Trabalhamos apenas com produtos originais, Streetwear de luxo importado diretamente do Canadá para o Brasil. 🇧🇷</p>
+                <p className="text-gray-500 mt-2 md:mt-4 max-w-2xl mx-auto text-sm md:text-base">Trabalhamos apenas com produtos originais, Streetwear de luxo importado diretamente do Canada para o Brasil.</p>
               </div>
             </AnimatedSection>
 
-            {/* 4 columns on mobile, 3 on tablet, 6 on desktop */}
             <div className="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-8">
               {brands.slice(0, 12).map((brand, index) => (
                 <AnimatedSection key={brand.slug} delay={index * 0.1}>
@@ -168,67 +226,6 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
                 </Link>
               </div>
             </AnimatedSection>
-          </div>
-        </section>
-      )}
-
-      {/* Valley Dreams Banner - Full Width */}
-      <section className="py-3 md:py-4 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
-            <Link href="/products/camiseta-vales-lives-forever-speed-bling" className="group block relative h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden touch-manipulation active:scale-[0.99]">
-              <Image
-                src="https://cdn.shopify.com/s/files/1/0966/5236/2018/files/78B1C56A-8F1E-4870-96B8-CCF83C57CF1C.jpg?v=1765829459"
-                alt="Valley Dreams Vales Lives Forever Speed Bling"
-                fill
-                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-              <div className="absolute inset-0 flex items-center">
-                <div className="p-5 md:p-12 max-w-xl">
-                  <span className="inline-block px-3 md:px-4 py-1.5 md:py-2 bg-gold text-black text-xs md:text-sm font-bold rounded-full mb-3 md:mb-4">
-                    EXCLUSIVO
-                  </span>
-                  <h3 className="text-2xl md:text-5xl font-bold text-white mb-2 md:mb-3">Valley Dreams</h3>
-                  <p className="text-gray-300 text-sm md:text-lg mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">Vales Lives Forever "Speed Bling" - Streetwear brasileiro</p>
-                  <span className="inline-flex items-center gap-2 md:gap-3 px-5 md:px-6 py-2.5 md:py-3 bg-gold text-black font-bold rounded-full group-hover:bg-gold-light transition-colors text-sm md:text-base">
-                    Ver Produto
-                    <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Featured Products */}
-      {featuredProducts.length > 0 && (
-        <section className="py-10 md:py-12 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <AnimatedSection>
-              <div className="flex justify-between items-end mb-6 md:mb-8">
-                <div>
-                  <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Rare Finds</span>
-                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2 text-gray-900">Mais Exclusivos</h2>
-                </div>
-                <Link
-                  href="/products"
-                  className="hidden md:flex items-center gap-2 text-sm font-medium group text-gray-900 hover:text-gold"
-                >
-                  Ver Tudo
-                  <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </AnimatedSection>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
-              {featuredProducts.slice(0, 4).map((product, index) => (
-                <AnimatedSection key={product.id} delay={index * 0.1}>
-                  <ProductCard product={product} index={index} />
-                </AnimatedSection>
-              ))}
-            </div>
           </div>
         </section>
       )}
@@ -271,4 +268,3 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
     </div>
   );
 }
-// Build trigger Sat, Jan  3, 2026  4:00:21 PM
