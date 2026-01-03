@@ -104,7 +104,7 @@ export function Header() {
                     className="flex flex-col items-center gap-1 group"
                   >
                     {item.image ? (
-                      <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-50 group-hover:ring-2 group-hover:ring-brand-green transition-all">
+                      <div className="w-16 h-16 rounded-xl overflow-hidden group-hover:ring-2 group-hover:ring-brand-green transition-all">
                         <Image
                           src={item.image}
                           alt={item.name}
