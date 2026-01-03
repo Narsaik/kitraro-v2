@@ -83,7 +83,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               <div className="text-center mb-8 md:mb-16">
                 <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Curadoria Premium</span>
                 <h2 className="text-3xl md:text-6xl font-heading font-bold mt-2 md:mt-4 text-gray-900">Nossas Marcas</h2>
-                <p className="text-gray-500 mt-2 md:mt-4 max-w-2xl mx-auto text-sm md:text-base">As marcas mais desejadas do streetwear mundial</p>
+                <p className="text-gray-500 mt-2 md:mt-4 max-w-2xl mx-auto text-sm md:text-base">Trabalhamos apenas com produtos originais, Streetwear de luxo importado diretamente do Canadá para o Brasil. 🇧🇷</p>
               </div>
             </AnimatedSection>
 

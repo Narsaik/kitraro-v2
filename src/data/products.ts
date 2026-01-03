@@ -1224,8 +1224,8 @@ export const products: Product[] = [
   {
     "id": "9969442292002",
     "handle": "camiseta-vales-lives-forever-speed-bling",
-    "title": "Camiseta Vales Lives Forever “Speed Bling”",
-    "description": "Camiseta Vales Lives Forever \"Speed Bling\" - Colaboração exclusiva Valley Dreams. Homenagem ao legado do streetwear brasileiro. Design único com detalhes em bling que brilham. Peça de colecionador, tiragem ultra limitada. • Marca: Valley Dreams x Vales • Modelo: Speed Bling Edition • Tamanho: XG • Material: Algodão 100% Premium • Condição: Nova com tags • Edição limitadíssima - Peça rara",
+    "title": "Camiseta Valley Dreams Speed Bling G",
+    "description": "Direto de Los Angeles, a Valley Dreams une Streetwear de luxo e exclusividade em cada peça.",
     "brand": "Vale",
     "price": 1699.9,
     "compareAtPrice": 2499.9,
@@ -1241,10 +1241,10 @@ export const products: Product[] = [
     "variants": [
       {
         "id": "9969442292002-50696500707618",
-        "title": "Unico",
+        "title": "G",
         "price": 1699.9,
         "available": true,
-        "size": "Unico"
+        "size": "G"
       }
     ],
     "tags": [
@@ -1352,8 +1352,8 @@ export const products: Product[] = [
   {
     "id": "9969438064930",
     "handle": "cortavento-the-north-face",
-    "title": "Cortavento The North Face - L",
-    "description": "Cortavento The North Face em excelente condição. A icônica marca outdoor americana conhecida mundialmente pela qualidade e durabilidade. Design funcional que combina proteção contra vento e estilo urbano. • Marca: The North Face • Tamanho: L • Material: Nylon resistente • Condição: Excelente • Estilo outdoor premium",
+    "title": "Cortavento The North Face - G",
+    "description": "Cortavento The North Face em excelente condição. A icônica marca outdoor americana conhecida mundialmente pela qualidade e durabilidade. Design funcional que combina proteção contra vento e estilo urbano. • Marca: The North Face • Tamanho: G • Material: Nylon resistente • Condição: Excelente • Estilo outdoor premium",
     "brand": "The North Face",
     "price": 329.9,
     "compareAtPrice": 599.9,
@@ -1366,10 +1366,10 @@ export const products: Product[] = [
     "variants": [
       {
         "id": "9969438064930-50696486388002",
-        "title": "L",
+        "title": "G",
         "price": 329.9,
         "available": true,
-        "size": "L"
+        "size": "G"
       }
     ],
     "tags": [
