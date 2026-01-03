@@ -37,12 +37,13 @@ export default function BrandsPage() {
                 href={`/brands/${brand.slug}`}
                 className="group block bg-gray-50 rounded-2xl p-8 hover:bg-gray-100 transition-colors"
               >
-                <div className="aspect-square relative flex items-center justify-center mb-4 p-6">
+                <div className="aspect-square relative flex items-center justify-center mb-4">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className="w-full h-full max-w-[80px] max-h-[80px] object-contain group-hover:scale-110 transition-transform"
+                    style={{ width: '72px', height: '72px', objectFit: 'contain' }}
+                    className="group-hover:scale-110 transition-transform"
                   />
                 </div>
                 <div className="text-center">
