@@ -59,7 +59,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
                     className="group block text-center"
                   >
                     {/* Image Container */}
-                    <div className="relative aspect-square rounded-2xl overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:shadow-gray-200">
+                    <div className="relative aspect-square overflow-hidden transition-all duration-300">
                       <Image
                         src={category.image}
                         alt={category.name}
