@@ -13,9 +13,9 @@ import { brands } from "@/data/products";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navigation = [
-  { name: "Vestuario", href: "/collections/roupas" },
-  { name: "Acessorios", href: "/collections/acessorios" },
-  { name: "Sneakers", href: "/collections/tenis" },
+  { name: "Vestuario", href: "/collections/roupas", image: "/categories/clothing.png" },
+  { name: "Acessorios", href: "/collections/acessorios", image: "/categories/accessories.png" },
+  { name: "Sneakers", href: "/collections/tenis", image: "/categories/sneakers.png" },
   { name: "Marcas", href: "/brands", megaMenu: true },
 ];
 
@@ -91,7 +91,7 @@ export function Header() {
             </Link>
 
             {/* Desktop navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center space-x-6">
               {navigation.map((item) => (
                 <div
                   key={item.name}
@@ -101,9 +101,23 @@ export function Header() {
                 >
                   <Link
                     href={item.href}
-                    className="text-sm font-medium text-gray-900 hover:text-brand-green transition-colors"
+                    className="flex flex-col items-center gap-1 group"
                   >
-                    {item.name}
+                    {item.image ? (
+                      <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-50 group-hover:ring-2 group-hover:ring-brand-green transition-all">
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          width={48}
+                          height={48}
+                          className="w-full h-full object-contain p-1"
+                        />
+                      </div>
+                    ) : (
+                      <span className="text-sm font-medium text-gray-900 group-hover:text-brand-green transition-colors">
+                        {item.name}
+                      </span>
+                    )}
                   </Link>
 
                   {/* Mega menu for brands */}
