@@ -21,20 +21,17 @@ const categoryMapping: Record<string, string[]> = {
 const isSneaker = (product: any): boolean => {
   const title = product.title?.toLowerCase() || '';
   const category = product.category?.toLowerCase() || '';
-  const brand = product.brand?.toLowerCase() || '';
 
-  // Check category first
+  // FIRST: If product is already categorized as clothing, it's NOT a sneaker
+  const clothingCategories = ['calcas', 'moletons', 'camisetas', 'jaquetas', 'bones'];
+  if (clothingCategories.includes(category)) return false;
+
+  // Check if category is explicitly sneakers
   if (category === 'tenis' || category === 'sneakers' || category === 'shoes') return true;
 
-  // Check for sneaker keywords in title
-  const sneakerKeywords = ['jordan', 'air jordan', 'dunk', 'air force', 'yeezy', 'nike sb', 'air max', 'tenis', 'sneaker'];
-  if (sneakerKeywords.some(kw => title.includes(kw))) return true;
-
-  // Check brand + common sneaker patterns
-  if ((brand === 'air jordan' || brand === 'nike' || brand === 'adidas') &&
-      (title.includes('retro') || title.includes('low') || title.includes('high') || title.includes('mid'))) {
-    return true;
-  }
+  // Check for clothing keywords in title - these are NOT sneakers
+  const clothingKeywords = ['calça', 'calca', 'moletom', 'camiseta', 'jaqueta', 'boné', 'bone', 'hoodie', 'pants', 'jacket'];
+  if (clothingKeywords.some(kw => title.includes(kw))) return false;
 
   return false;
 };
