@@ -308,7 +308,7 @@ export default function ProductsPage() {
             <div className="w-[280px] space-y-8">
               {/* Brands */}
               <div>
-                <h3 className="font-bold text-lg mb-4">Marcas</h3>
+                <h3 className="font-bold text-lg mb-4 text-gray-900">Marcas</h3>
                 <div className="space-y-3">
                   {brands.map((brand) => (
                     <label
@@ -321,7 +321,7 @@ export default function ProductsPage() {
                         onChange={() => toggleBrand(brand.name)}
                         className="w-5 h-5 rounded border-gray-300 text-black focus:ring-black accent-black"
                       />
-                      <span className="group-hover:text-black transition-colors">
+                      <span className="text-gray-700 group-hover:text-black transition-colors">
                         {brand.name}
                       </span>
                     </label>
@@ -331,7 +331,7 @@ export default function ProductsPage() {
 
               {/* Categories */}
               <div>
-                <h3 className="font-bold text-lg mb-4">Categorias</h3>
+                <h3 className="font-bold text-lg mb-4 text-gray-900">Categorias</h3>
                 <div className="space-y-3">
                   {categories.map((category) => (
                     <label
@@ -344,7 +344,7 @@ export default function ProductsPage() {
                         onChange={() => toggleCategory(category.name)}
                         className="w-5 h-5 rounded border-gray-300 text-black focus:ring-black accent-black"
                       />
-                      <span className="group-hover:text-black transition-colors">
+                      <span className="text-gray-700 group-hover:text-black transition-colors">
                         {category.name}
                       </span>
                     </label>
@@ -354,7 +354,7 @@ export default function ProductsPage() {
 
               {/* Sizes */}
               <div>
-                <h3 className="font-bold text-lg mb-4">Tamanhos</h3>
+                <h3 className="font-bold text-lg mb-4 text-gray-900">Tamanhos</h3>
 
                 {/* Sneaker Sizes */}
                 {sizeGroups.sneakers.length > 0 && (
@@ -371,7 +371,7 @@ export default function ProductsPage() {
                             selectedSizes.includes(size)
                               ? "bg-black text-white border-black"
                               : availableSizes.includes(size)
-                              ? "border-gray-200 hover:border-black"
+                              ? "border-gray-200 hover:border-black text-gray-700"
                               : "border-gray-100 text-gray-300 cursor-not-allowed"
                           )}
                         >
@@ -397,7 +397,7 @@ export default function ProductsPage() {
                             selectedSizes.includes(size)
                               ? "bg-black text-white border-black"
                               : availableSizes.includes(size)
-                              ? "border-gray-200 hover:border-black"
+                              ? "border-gray-200 hover:border-black text-gray-700"
                               : "border-gray-100 text-gray-300 cursor-not-allowed"
                           )}
                         >
@@ -423,7 +423,7 @@ export default function ProductsPage() {
                             selectedSizes.includes(size)
                               ? "bg-black text-white border-black"
                               : availableSizes.includes(size)
-                              ? "border-gray-200 hover:border-black"
+                              ? "border-gray-200 hover:border-black text-gray-700"
                               : "border-gray-100 text-gray-300 cursor-not-allowed"
                           )}
                         >
@@ -437,7 +437,7 @@ export default function ProductsPage() {
 
               {/* Price Range */}
               <div>
-                <h3 className="font-bold text-lg mb-4">Preco</h3>
+                <h3 className="font-bold text-lg mb-4 text-gray-900">Preco</h3>
                 <div className="space-y-4">
                   <input
                     type="range"

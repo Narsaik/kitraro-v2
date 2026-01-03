@@ -67,7 +67,7 @@ export function InstagramFeed() {
             <Instagram size={28} className="text-[#d4af37]" />
             <span className="text-lg font-medium text-gray-600">@kitraro416</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
             Siga-nos no Instagram
           </h2>
           <p className="text-gray-600 max-w-lg mx-auto">

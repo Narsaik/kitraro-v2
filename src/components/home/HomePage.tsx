@@ -134,11 +134,11 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               <div className="flex justify-between items-end mb-6 md:mb-8">
                 <div>
                   <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Fresh Drops</span>
-                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2">Novidades</h2>
+                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2 text-gray-900">Novidades</h2>
                 </div>
                 <Link
                   href="/products"
-                  className="hidden md:flex items-center gap-2 text-sm font-medium group"
+                  className="hidden md:flex items-center gap-2 text-sm font-medium group text-gray-900 hover:text-gold"
                 >
                   Ver Tudo
                   <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -210,11 +210,11 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               <div className="flex justify-between items-end mb-6 md:mb-8">
                 <div>
                   <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Rare Finds</span>
-                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2">Mais Exclusivos</h2>
+                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2 text-gray-900">Mais Exclusivos</h2>
                 </div>
                 <Link
                   href="/products"
-                  className="hidden md:flex items-center gap-2 text-sm font-medium group"
+                  className="hidden md:flex items-center gap-2 text-sm font-medium group text-gray-900 hover:text-gold"
                 >
                   Ver Tudo
                   <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />

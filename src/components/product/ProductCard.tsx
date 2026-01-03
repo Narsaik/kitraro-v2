@@ -173,7 +173,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
 
         {/* Product Info */}
         <div className="space-y-2">
-          <h3 className="font-bold text-sm line-clamp-2 group-hover:text-brand-green transition-colors">
+          <h3 className="font-bold text-sm line-clamp-2 text-gray-900 group-hover:text-brand-green transition-colors">
             {product.title}
           </h3>
 
@@ -181,7 +181,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           <div className="flex items-center gap-2">
             <span className={cn(
               "font-bold text-lg",
-              product.compareAtPrice && "text-brand-green"
+              product.compareAtPrice ? "text-brand-green" : "text-gray-900"
             )}>
               {formatPrice(product.price)}
             </span>
