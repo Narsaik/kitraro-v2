@@ -1792,7 +1792,7 @@ export const products: Product[] = [
       "streetwear"
     ],
     "available": true,
-    "category": "Tenis"
+    "category": "Calcas"
   },
   {
     "id": "9982163288354",
@@ -1823,7 +1823,7 @@ export const products: Product[] = [
       "asics"
     ],
     "available": true,
-    "category": "Tenis"
+    "category": "Jaquetas"
   },
   {
     "id": "9969439670562",
@@ -1856,7 +1856,7 @@ export const products: Product[] = [
       "nike"
     ],
     "available": true,
-    "category": "Tenis"
+    "category": "Moletons"
   },
   {
     "id": "9949524984098",
