@@ -269,17 +269,17 @@ export function Header() {
               className="lg:hidden fixed top-0 left-0 bottom-0 w-[85%] max-w-[320px] bg-white z-50 shadow-2xl overflow-y-auto"
             >
               {/* Menu header */}
-              <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-brand-green">
+              <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-white">
                 <Image
                   src="/logo.png"
                   alt="Kit Raro"
                   width={140}
                   height={45}
-                  className="h-10 w-auto object-contain brightness-0 invert"
+                  className="h-10 w-auto object-contain"
                 />
                 <button
                   onClick={() => setIsMenuOpen(false)}
-                  className="p-2 text-white hover:bg-white/10 rounded-full transition-colors"
+                  className="p-2 text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
                   aria-label="Fechar menu"
                 >
                   <X size={24} />
