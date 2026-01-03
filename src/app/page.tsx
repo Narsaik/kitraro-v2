@@ -20,7 +20,7 @@ export default async function Home() {
       getProducts(100),
     ]);
 
-    // Filter for premium products: no hats, only items R$180+
+    // Helper to detect hats
     const isHat = (p: Product) =>
       p.category?.toLowerCase().includes('bone') ||
       p.title?.toLowerCase().includes('new era') ||
@@ -28,28 +28,28 @@ export default async function Home() {
       p.title?.toLowerCase().includes('fitted') ||
       p.title?.toLowerCase().includes('snapback');
 
+    // Mais Exclusivos: Top 4 most expensive non-hat products
     const premiumProducts = allProducts
-      .filter(p =>
-        p.available &&
-        p.price >= 180 &&
-        !isHat(p)
-      )
+      .filter(p => p.available && !isHat(p))
       .sort((a, b) => b.price - a.price); // Sort by price, highest first
 
-    // Mais Exclusivos: Top 4 most expensive products
     featuredProducts = premiumProducts.slice(0, 4);
 
-    // Novidades: 8 products - take the next premium products + other available products
+    // Novidades: 16 products with max 1 hat
     const featuredIds = new Set(featuredProducts.map(p => p.id));
-    const remainingPremium = premiumProducts.slice(4, 8); // Next 4 premium products
 
-    // Fill the rest with other available products (not in featured, not already selected)
-    const usedIds = new Set([...featuredIds, ...remainingPremium.map(p => p.id)]);
-    const otherProducts = allProducts
-      .filter(p => p.available && !usedIds.has(p.id))
-      .slice(0, 8 - remainingPremium.length);
+    // Get non-hat products for novidades (excluding featured)
+    const nonHatProducts = allProducts
+      .filter(p => p.available && !featuredIds.has(p.id) && !isHat(p))
+      .slice(0, 15);
 
-    newArrivals = [...remainingPremium, ...otherProducts].slice(0, 8);
+    // Get 1 hat for variety
+    const oneHat = allProducts
+      .filter(p => p.available && isHat(p))
+      .slice(0, 1);
+
+    // Combine: 15 non-hats + 1 hat = 16 products
+    newArrivals = [...nonHatProducts, ...oneHat].slice(0, 16);
 
     // Get New Era hats for hero slideshow (filter by brand or category)
     heroProducts = allProducts
