@@ -35,21 +35,25 @@ export default async function Home() {
 
     featuredProducts = premiumProducts.slice(0, 4);
 
-    // Novidades: 16 products with max 1 hat
+    // Novidades: 16 products with max 1 hat, sorted by price (most expensive first)
     const featuredIds = new Set(featuredProducts.map(p => p.id));
 
-    // Get non-hat products for novidades (excluding featured)
+    // Get non-hat products for novidades (excluding featured), sorted by price
     const nonHatProducts = allProducts
       .filter(p => p.available && !featuredIds.has(p.id) && !isHat(p))
+      .sort((a, b) => b.price - a.price)
       .slice(0, 15);
 
-    // Get 1 hat for variety
+    // Get 1 hat (most expensive one)
     const oneHat = allProducts
       .filter(p => p.available && isHat(p))
+      .sort((a, b) => b.price - a.price)
       .slice(0, 1);
 
-    // Combine: 15 non-hats + 1 hat = 16 products
-    newArrivals = [...nonHatProducts, ...oneHat].slice(0, 16);
+    // Combine and sort by price: 15 non-hats + 1 hat = 16 products
+    newArrivals = [...nonHatProducts, ...oneHat]
+      .sort((a, b) => b.price - a.price)
+      .slice(0, 16);
 
     // Get New Era hats for hero slideshow (filter by brand or category)
     heroProducts = allProducts
