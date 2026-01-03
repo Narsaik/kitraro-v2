@@ -161,7 +161,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               <div className="mt-8 md:mt-10 text-center md:hidden">
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-gray-900 text-white font-medium rounded-full touch-manipulation active:scale-95"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-brand-green text-white font-medium rounded-full hover:bg-brand-green-light touch-manipulation active:scale-95"
                 >
                   Ver Todos os Produtos
                   <ArrowRight size={18} />
