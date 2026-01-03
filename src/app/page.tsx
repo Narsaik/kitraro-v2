@@ -33,9 +33,10 @@ export default async function Home() {
         p.available &&
         p.price >= 180 &&
         !isHat(p)
-      );
+      )
+      .sort((a, b) => b.price - a.price); // Sort by price, highest first
 
-    // Mais Exclusivos: Only 4 premium products
+    // Mais Exclusivos: Top 4 most expensive products
     featuredProducts = premiumProducts.slice(0, 4);
 
     // Novidades: 8 products - take the next premium products + other available products
