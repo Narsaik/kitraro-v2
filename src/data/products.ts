@@ -19,10 +19,10 @@ export const products: Product[] = [
     "variants": [
       {
         "id": "9949508305186-50611976143138",
-        "title": "Unico",
+        "title": "7 5/8",
         "price": 99.9,
         "available": true,
-        "size": "Unico"
+        "size": "7 5/8"
       }
     ],
     "tags": [
@@ -798,10 +798,10 @@ export const products: Product[] = [
     "variants": [
       {
         "id": "9949509910818-50611985449250",
-        "title": "Unico",
+        "title": "7 3/4",
         "price": 99.9,
         "available": true,
-        "size": "Unico"
+        "size": "7 3/4"
       }
     ],
     "tags": [
@@ -1121,10 +1121,10 @@ export const products: Product[] = [
     "variants": [
       {
         "id": "9982217978146-50733311295778",
-        "title": "Unico",
+        "title": "GG",
         "price": 299.9,
         "available": true,
-        "size": "Unico"
+        "size": "GG"
       }
     ],
     "tags": [],
@@ -1525,10 +1525,10 @@ export const products: Product[] = [
     "variants": [
       {
         "id": "9969451139362-50696527216930",
-        "title": "Unico",
+        "title": "P",
         "price": 149.9,
         "available": true,
-        "size": "Unico"
+        "size": "P"
       }
     ],
     "tags": [
@@ -1710,10 +1710,10 @@ export const products: Product[] = [
     "variants": [
       {
         "id": "9969440915746-50696496677154",
-        "title": "Unico",
+        "title": "M",
         "price": 164.9,
         "available": true,
-        "size": "Unico"
+        "size": "M"
       }
     ],
     "tags": [
@@ -1843,10 +1843,10 @@ export const products: Product[] = [
     "variants": [
       {
         "id": "9969439670562-50696492187938",
-        "title": "Unico",
+        "title": "P",
         "price": 164.9,
         "available": true,
-        "size": "Unico"
+        "size": "P"
       }
     ],
     "tags": [
