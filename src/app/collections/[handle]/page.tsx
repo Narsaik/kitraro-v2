@@ -17,6 +17,44 @@ const categoryMapping: Record<string, string[]> = {
   "tenis": ["Tenis"], // Sneakers
 };
 
+// Helper to check if a product is a sneaker
+const isSneaker = (product: any): boolean => {
+  const title = product.title?.toLowerCase() || '';
+  const category = product.category?.toLowerCase() || '';
+  const brand = product.brand?.toLowerCase() || '';
+
+  // Check category first
+  if (category === 'tenis' || category === 'sneakers' || category === 'shoes') return true;
+
+  // Check for sneaker keywords in title
+  const sneakerKeywords = ['jordan', 'air jordan', 'dunk', 'air force', 'yeezy', 'nike sb', 'air max', 'tenis', 'sneaker'];
+  if (sneakerKeywords.some(kw => title.includes(kw))) return true;
+
+  // Check brand + common sneaker patterns
+  if ((brand === 'air jordan' || brand === 'nike' || brand === 'adidas') &&
+      (title.includes('retro') || title.includes('low') || title.includes('high') || title.includes('mid'))) {
+    return true;
+  }
+
+  return false;
+};
+
+// Helper to check if a product is clothing (not sneaker, not accessory)
+const isClothing = (product: any): boolean => {
+  const category = product.category?.toLowerCase() || '';
+  const clothingCategories = ['jaquetas', 'moletons', 'calcas', 'camisetas', 'jacket', 'hoodie', 'pants', 'shirt'];
+
+  // If it's a sneaker, it's not clothing
+  if (isSneaker(product)) return false;
+
+  // If it's a hat/accessory, it's not clothing
+  if (category === 'bones' || category === 'hats' || category === 'accessories') return false;
+
+  // Check if category matches clothing
+  return clothingCategories.some(c => category.includes(c)) ||
+         ['jaquetas', 'moletons', 'calcas', 'camisetas'].includes(product.category);
+};
+
 const sortOptions = [
   { label: "Mais Recentes", value: "newest" },
   { label: "Menor Preço", value: "price-asc" },
@@ -116,7 +154,13 @@ export default function CollectionPage() {
       const mappedCategories = categoryMapping[handle];
       const brand = brands.find((b) => b.slug === handle);
 
-      if (mappedCategories) {
+      if (handle === 'tenis') {
+        // Use smart sneaker detection
+        result = result.filter((p) => isSneaker(p));
+      } else if (handle === 'roupas') {
+        // Use smart clothing detection (excludes sneakers)
+        result = result.filter((p) => isClothing(p));
+      } else if (mappedCategories) {
         // Filter products that belong to any of the mapped categories
         result = result.filter((p) => mappedCategories.includes(p.category));
       } else if (brand) {

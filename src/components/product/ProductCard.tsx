@@ -172,13 +172,13 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         </div>
 
         {/* Product Info */}
-        <div className="space-y-2">
-          <h3 className="font-bold text-sm line-clamp-2 text-gray-900 group-hover:text-brand-green transition-colors">
+        <div className="space-y-2 flex flex-col">
+          <h3 className="font-bold text-sm line-clamp-2 min-h-[2.5rem] text-gray-900 group-hover:text-brand-green transition-colors">
             {product.title}
           </h3>
 
           {/* Price */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 h-7">
             <span className={cn(
               "font-bold text-lg",
               product.compareAtPrice ? "text-brand-green" : "text-gray-900"
@@ -198,7 +198,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </p>
 
           {/* Size badge - unique item with single size */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 h-6">
             <span className="text-xs px-2.5 py-1 rounded-md bg-brand-green/10 text-brand-green border border-brand-green/20 font-medium">
               Tam: {getProductSize(product)}
             </span>
