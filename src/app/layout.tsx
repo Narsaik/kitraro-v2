@@ -38,11 +38,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/icon.svg", sizes: "512x512", type: "image/svg+xml" },
-    ],
-    apple: "/apple-icon.svg",
+    icon: "/logo.png",
+    apple: "/logo.png",
   },
   openGraph: {
     title: "Kit Raro | Streetwear de Luxo no Brasil",
