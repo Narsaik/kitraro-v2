@@ -2297,22 +2297,22 @@ export const products: Product[] = [
 
 export const brands = [
   // Luxury brands first
-  { name: "Versace", slug: "versace", logo: "/brands/versace.svg" },
-  { name: "Hugo Boss", slug: "hugo-boss", logo: "/brands/hugo-boss.svg" },
-  { name: "BAPE", slug: "bape", logo: "/brands/bape.svg" },
-  { name: "Lacoste", slug: "lacoste", logo: "/brands/lacoste.svg" },
+  { name: "Versace", slug: "versace", logo: "/brands/versace.png" },
+  { name: "Hugo Boss", slug: "hugo-boss", logo: "/brands/hugo-boss.png" },
+  { name: "BAPE", slug: "bape", logo: "/brands/bape.png" },
+  { name: "Lacoste", slug: "lacoste", logo: "/brands/lacoste.png" },
   // Premium streetwear & athletic
-  { name: "Nike", slug: "nike", logo: "/brands/nike.svg" },
-  { name: "Air Jordan", slug: "air-jordan", logo: "/brands/jordan.svg" },
-  { name: "The North Face", slug: "the-north-face", logo: "/brands/tnf.svg" },
-  { name: "Adidas", slug: "adidas", logo: "/brands/adidas.svg" },
-  { name: "Asics", slug: "asics", logo: "/brands/asics.svg" },
-  { name: "New Era", slug: "new-era", logo: "/brands/new-era.svg" },
+  { name: "Nike", slug: "nike", logo: "/brands/nike.png" },
+  { name: "Air Jordan", slug: "air-jordan", logo: "/brands/jordan.png" },
+  { name: "The North Face", slug: "the-north-face", logo: "/brands/tnf.png" },
+  { name: "Adidas", slug: "adidas", logo: "/brands/adidas.png" },
+  { name: "Asics", slug: "asics", logo: "/brands/asics.png" },
+  { name: "New Era", slug: "new-era", logo: "/brands/new-era.png" },
   // Other brands
-  { name: "Kappa", slug: "kappa", logo: "/brands/kappa.svg" },
-  { name: "Champions", slug: "champions", logo: "/brands/champions.svg" },
-  { name: "Revenge", slug: "revenge", logo: "/brands/revenge.svg" },
-  { name: "Vale", slug: "vale", logo: "/brands/vale.svg" },
+  { name: "Kappa", slug: "kappa", logo: "/brands/kappa.png" },
+  { name: "Champions", slug: "champions", logo: "/brands/champions.png" },
+  { name: "Revenge", slug: "revenge", logo: "/brands/revenge.png" },
+  { name: "Vale", slug: "vale", logo: "/brands/vale.png" },
   { name: "Chase Authentics", slug: "chase-authentics", logo: "/brands/chase-authentics.svg" },
 ];
 
