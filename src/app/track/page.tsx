@@ -15,9 +15,9 @@ export default function TrackPage() {
 
     setIsLoading(true);
 
-    // Open Jadlog tracking in new tab
-    const jadlogUrl = `https://www.jadlog.com.br/jadlog/tracking.jad?cte=${trackingNumber.trim()}`;
-    window.open(jadlogUrl, "_blank");
+    // Open 17TRACK which supports Jadlog and auto-detects carrier
+    const trackingUrl = `https://www.17track.net/en/track?nums=${encodeURIComponent(trackingNumber.trim())}`;
+    window.open(trackingUrl, "_blank");
 
     setIsLoading(false);
   };
@@ -36,7 +36,7 @@ export default function TrackPage() {
             </div>
             <h1 className="text-4xl font-bold mb-4">Rastrear Pedido</h1>
             <p className="text-white/80">
-              Acompanhe sua encomenda em tempo real via Jadlog
+              Acompanhe sua encomenda em tempo real
             </p>
           </motion.div>
         </div>
@@ -51,7 +51,7 @@ export default function TrackPage() {
           className="mb-12"
         >
           <label htmlFor="trackingNumber" className="block text-sm font-medium mb-2 text-gray-900">
-            Codigo de Rastreio Jadlog
+            Codigo de Rastreio
           </label>
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1 relative">
@@ -99,10 +99,10 @@ export default function TrackPage() {
               <Truck size={24} className="text-brand-green" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900 mb-2">Rastreamento via Jadlog</h3>
+              <h3 className="font-bold text-gray-900 mb-2">Rastreamento Global</h3>
               <p className="text-gray-600 text-sm">
-                Ao clicar em &quot;Rastrear&quot;, voce sera redirecionado para o site oficial da Jadlog
-                para acompanhar sua encomenda em tempo real.
+                Ao clicar em &quot;Rastrear&quot;, voce sera redirecionado para o 17TRACK,
+                que detecta automaticamente a transportadora e mostra o status em tempo real.
               </p>
             </div>
           </div>
@@ -117,12 +117,12 @@ export default function TrackPage() {
         >
           <p className="text-gray-500 text-sm mb-3">Ou acesse diretamente:</p>
           <a
-            href="https://www.jadlog.com.br/jadlog/home"
+            href="https://www.17track.net/en"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-brand-green hover:underline font-medium"
           >
-            www.jadlog.com.br
+            www.17track.net
             <ExternalLink size={16} />
           </a>
         </motion.div>
