@@ -7,13 +7,12 @@ import { motion, useInView } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { ProductCard } from "@/components/product/ProductCard";
 import { InstagramFeed } from "@/components/home/InstagramFeed";
-import { HeroPromo } from "@/components/home/HeroPromo";
 import type { Product } from "@/lib/shopify/types";
 
 interface HomePageProps {
   featuredProducts: Product[];
   newArrivals: Product[];
-  heroProducts: Product[];
+  heroProducts?: Product[]; // Optional, no longer used
   brands: { name: string; slug: string; logo: string }[];
   categories: { name: string; slug: string; image: string; description: string }[];
 }
@@ -36,14 +35,47 @@ function AnimatedSection({ children, className = "", delay = 0 }: { children: Re
   );
 }
 
-export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, categories }: HomePageProps) {
+export function HomePage({ featuredProducts, newArrivals, brands, categories }: HomePageProps) {
 
   return (
     <div className="overflow-hidden">
-      {/* New Era Promo Banner */}
-      <HeroPromo products={heroProducts} />
+      {/* Categories Section - First on homepage */}
+      {categories.length > 0 && (
+        <section className="py-12 md:py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatedSection>
+              <div className="text-center mb-10 md:mb-16">
+                <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Explore</span>
+                <h2 className="text-3xl md:text-5xl font-heading font-bold mt-2 md:mt-3 text-gray-900">Categorias</h2>
+              </div>
+            </AnimatedSection>
 
-      {/* Brands Section - Moved to top */}
+            {/* 3 Column Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {categories.map((category, index) => (
+                <AnimatedSection key={category.slug} delay={index * 0.15}>
+                  <Link
+                    href={`/collections/${category.slug}`}
+                    className="group block text-center"
+                  >
+                    {/* Image Container */}
+                    <div className="relative aspect-square bg-gray-50 rounded-2xl overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:shadow-gray-200">
+                      <Image
+                        src={category.image}
+                        alt={category.name}
+                        fill
+                        className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  </Link>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Brands Section */}
       {brands.length > 0 && (
         <section className="py-12 md:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -133,42 +165,6 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
                 </Link>
               </div>
             </AnimatedSection>
-          </div>
-        </section>
-      )}
-
-      {/* Categories - Clean White Background */}
-      {categories.length > 0 && (
-        <section className="py-12 md:py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <AnimatedSection>
-              <div className="text-center mb-10 md:mb-16">
-                <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Explore</span>
-                <h2 className="text-3xl md:text-5xl font-heading font-bold mt-2 md:mt-3 text-gray-900">Categorias</h2>
-              </div>
-            </AnimatedSection>
-
-            {/* 3 Column Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {categories.map((category, index) => (
-                <AnimatedSection key={category.slug} delay={index * 0.15}>
-                  <Link
-                    href={`/collections/${category.slug}`}
-                    className="group block text-center"
-                  >
-                    {/* Image Container */}
-                    <div className="relative aspect-square bg-gray-50 rounded-2xl overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:shadow-gray-200">
-                      <Image
-                        src={category.image}
-                        alt={category.name}
-                        fill
-                        className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                  </Link>
-                </AnimatedSection>
-              ))}
-            </div>
           </div>
         </section>
       )}

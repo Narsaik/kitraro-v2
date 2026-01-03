@@ -154,7 +154,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${cinzel.variable} font-sans antialiased bg-background text-foreground transition-colors duration-300`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${cinzel.variable} font-sans antialiased bg-white text-gray-900`} suppressHydrationWarning>
         <ThemeProvider>
           {/* Scroll to top on navigation */}
           <ScrollToTop />
