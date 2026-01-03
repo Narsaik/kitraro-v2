@@ -1,4 +1,4 @@
-// Server-side data fetching from Shopify
+// Server-side data fetching - uses static data with Shopify fallback
 import {
   getAllProducts,
   getProductByHandle,
@@ -9,6 +9,7 @@ import {
   getProductsByType,
 } from './index';
 import type { Product, Collection } from './types';
+import { products as staticProducts } from '@/data/products';
 
 // Cache for server-side rendering
 let productsCache: Product[] | null = null;
@@ -37,6 +38,44 @@ export async function getProducts(limit: number = 100): Promise<Product[]> {
 }
 
 export async function getProduct(handle: string): Promise<Product | null> {
+  // First check static data (this is the source of truth for descriptions)
+  const staticProduct = staticProducts.find(p => p.handle === handle);
+
+  if (staticProduct) {
+    // Return static product data (includes updated descriptions)
+    return {
+      id: staticProduct.id,
+      handle: staticProduct.handle,
+      title: staticProduct.title,
+      description: staticProduct.description,
+      descriptionHtml: staticProduct.description,
+      brand: staticProduct.brand,
+      category: staticProduct.category,
+      price: staticProduct.price,
+      compareAtPrice: staticProduct.compareAtPrice || null,
+      currency: staticProduct.currency,
+      images: staticProduct.images,
+      variants: staticProduct.variants.map(v => ({
+        id: v.id,
+        title: v.title,
+        available: v.available,
+        quantity: 1,
+        price: v.price,
+        compareAtPrice: null,
+        options: { Size: v.size || v.title },
+        image: null,
+      })),
+      options: [{
+        id: 'size',
+        name: 'Tamanho',
+        values: staticProduct.variants.map(v => v.size || v.title),
+      }],
+      tags: staticProduct.tags,
+      available: staticProduct.available,
+    };
+  }
+
+  // Fallback to Shopify API if not in static data
   try {
     return await getProductByHandle(handle);
   } catch (error) {

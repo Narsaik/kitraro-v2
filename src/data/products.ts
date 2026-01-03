@@ -1225,7 +1225,7 @@ export const products: Product[] = [
     "id": "9969442292002",
     "handle": "camiseta-vales-lives-forever-speed-bling",
     "title": "Camiseta Valley Dreams Speed Bling G",
-    "description": "Camiseta Vales Lives Forever \"Speed Bling\" - Colaboração exclusiva Valley Dreams. Homenagem ao legado do streetwear brasileiro. Design único com detalhes em bling que brilham. Peça de colecionador, tiragem ultra limitada. • Marca: Valley Dreams x Vales • Modelo: Speed Bling Edition • Tamanho: XG • Material: Algodão 100% Premium • Condição: Nova com tags • Edição limitadíssima - Peça rara",
+    "description": "Direto de Los Angeles, a Valley Dreams une Streetwear de luxo e exclusividade em cada peça.",
     "brand": "Vale",
     "price": 1699.9,
     "compareAtPrice": 2499.9,
