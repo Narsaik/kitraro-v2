@@ -95,12 +95,12 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
                     href={`/brands/${brand.slug}`}
                     className="group flex flex-col items-center touch-manipulation active:scale-95 transition-transform"
                   >
-                    <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:border-gold group-hover:scale-110 group-hover:shadow-lg">
+                    <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-200 flex items-center justify-center p-4 transition-all duration-500 group-hover:bg-white group-hover:border-gold group-hover:scale-110 group-hover:shadow-lg">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={brand.logo}
                         alt={brand.name}
-                        className="w-16 h-16 md:w-20 md:h-20 object-contain relative z-10 opacity-90 group-hover:opacity-100 transition-all duration-300"
+                        className="w-full h-full max-w-[56px] max-h-[56px] md:max-w-[64px] md:max-h-[64px] object-contain relative z-10 opacity-90 group-hover:opacity-100 transition-all duration-300"
                       />
                     </div>
                     <span className="mt-2 md:mt-4 text-gray-700 text-xs md:text-sm font-medium group-hover:text-gold transition-colors text-center">
