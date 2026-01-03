@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import { brands } from "@/data/products";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
-const navigation = [
+const navigation: { name: string; href: string; image?: string; megaMenu?: boolean }[] = [
   { name: "Vestuario", href: "/collections/roupas", image: "/categories/clothing.png" },
   { name: "Acessorios", href: "/collections/acessorios", image: "/categories/accessories.png" },
   { name: "Sneakers", href: "/collections/tenis", image: "/categories/sneakers.png" },
@@ -104,13 +104,13 @@ export function Header() {
                     className="flex flex-col items-center gap-1 group"
                   >
                     {item.image ? (
-                      <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-50 group-hover:ring-2 group-hover:ring-brand-green transition-all">
+                      <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-50 group-hover:ring-2 group-hover:ring-brand-green transition-all">
                         <Image
                           src={item.image}
                           alt={item.name}
-                          width={48}
-                          height={48}
-                          className="w-full h-full object-contain p-1"
+                          width={64}
+                          height={64}
+                          className="w-full h-full object-contain"
                         />
                       </div>
                     ) : (
