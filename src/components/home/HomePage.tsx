@@ -95,14 +95,16 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
                     href={`/brands/${brand.slug}`}
                     className="group flex flex-col items-center touch-manipulation active:scale-95 transition-transform"
                   >
-                    <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:border-gold group-hover:scale-110 group-hover:shadow-lg overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={brand.logo}
-                        alt={brand.name}
-                        style={{ width: '52px', height: '52px', objectFit: 'contain' }}
-                        className="relative z-10 opacity-90 group-hover:opacity-100 transition-all duration-300"
-                      />
+                    <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:border-gold group-hover:scale-110 group-hover:shadow-lg">
+                      <div className="relative w-12 h-12 md:w-14 md:h-14">
+                        <Image
+                          src={brand.logo}
+                          alt={brand.name}
+                          fill
+                          sizes="56px"
+                          className="object-contain opacity-90 group-hover:opacity-100 transition-all duration-300"
+                        />
+                      </div>
                     </div>
                     <span className="mt-2 md:mt-4 text-gray-700 text-xs md:text-sm font-medium group-hover:text-gold transition-colors text-center">
                       {brand.name}

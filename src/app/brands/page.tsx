@@ -38,13 +38,15 @@ export default function BrandsPage() {
                 className="group block bg-gray-50 rounded-2xl p-8 hover:bg-gray-100 transition-colors"
               >
                 <div className="aspect-square relative flex items-center justify-center mb-4">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={brand.logo}
-                    alt={brand.name}
-                    style={{ width: '72px', height: '72px', objectFit: 'contain' }}
-                    className="group-hover:scale-110 transition-transform"
-                  />
+                  <div className="relative w-16 h-16 group-hover:scale-110 transition-transform">
+                    <Image
+                      src={brand.logo}
+                      alt={brand.name}
+                      fill
+                      sizes="64px"
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
                 <div className="text-center">
                   <h3 className="font-bold text-lg">{brand.name}</h3>
