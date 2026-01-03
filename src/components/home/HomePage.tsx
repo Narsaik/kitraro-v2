@@ -147,7 +147,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
             </AnimatedSection>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
-              {newArrivals.slice(0, 8).map((product, index) => (
+              {newArrivals.slice(0, 16).map((product, index) => (
                 <AnimatedSection key={product.id} delay={index * 0.1}>
                   <ProductCard product={product} index={index} />
                 </AnimatedSection>

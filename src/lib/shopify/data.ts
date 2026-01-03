@@ -52,9 +52,9 @@ export async function getFeaturedProducts(): Promise<Product[]> {
 }
 
 export async function getNewArrivals(): Promise<Product[]> {
-  const products = await getProducts(50);
-  // New arrivals = first 8 available products
-  return products.filter(p => p.available).slice(0, 8);
+  const products = await getProducts(100);
+  // New arrivals = first 16 available products
+  return products.filter(p => p.available).slice(0, 16);
 }
 
 export async function getSaleProducts(): Promise<Product[]> {
