@@ -161,10 +161,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             )}
           </div>
 
-          {/* SOLD OUT overlay - Prominent display */}
+          {/* SOLD OUT badge - Top right corner */}
           {!product.available && (
-            <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
-              <span className="px-6 py-3 bg-red-600 text-white text-sm font-bold uppercase tracking-wider rounded-lg shadow-lg">
+            <div className="absolute top-3 right-3 z-10">
+              <span className="px-2.5 py-1 bg-red-600 text-white text-xs font-bold uppercase tracking-wide rounded-md shadow-md">
                 ESGOTADO
               </span>
             </div>
