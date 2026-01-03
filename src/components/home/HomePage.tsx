@@ -82,27 +82,27 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
         </section>
       )}
 
-      {/* Categories Section */}
+      {/* Categories Section - Compact */}
       {categories.length > 0 && (
-        <section className="py-12 md:py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-6 md:py-10 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
-              <div className="text-center mb-10 md:mb-16">
-                <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Explore</span>
-                <h2 className="text-3xl md:text-5xl font-heading font-bold mt-2 md:mt-3 text-gray-900">Categorias</h2>
+              <div className="text-center mb-4 md:mb-8">
+                <span className="text-gold font-medium text-xs tracking-wider uppercase">Explore</span>
+                <h2 className="text-2xl md:text-3xl font-heading font-bold mt-1 md:mt-2 text-gray-900">Categorias</h2>
               </div>
             </AnimatedSection>
 
-            {/* 3 Column Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {/* 3 Column Grid - Smaller */}
+            <div className="grid grid-cols-3 gap-3 md:gap-6">
               {categories.map((category, index) => (
-                <AnimatedSection key={category.slug} delay={index * 0.15}>
+                <AnimatedSection key={category.slug} delay={index * 0.1}>
                   <Link
                     href={`/collections/${category.slug}`}
                     className="group block text-center"
                   >
-                    {/* Image Container */}
-                    <div className="relative aspect-square overflow-hidden transition-all duration-300">
+                    {/* Image Container - Smaller */}
+                    <div className="relative aspect-square overflow-hidden transition-all duration-300 max-w-[200px] mx-auto">
                       <Image
                         src={category.image}
                         alt={category.name}
