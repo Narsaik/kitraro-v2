@@ -101,10 +101,7 @@ export function Header() {
                 >
                   <Link
                     href={item.href}
-                    className={cn(
-                      "text-sm font-medium text-gray-900 hover:text-brand-green transition-colors",
-                      item.highlight && "text-gold font-bold hover:text-gold-dark"
-                    )}
+                    className="text-sm font-medium text-gray-900 hover:text-brand-green transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -353,10 +350,7 @@ export function Header() {
                     ) : (
                       <Link
                         href={item.href}
-                        className={cn(
-                          "flex items-center justify-between py-3 px-4 rounded-xl hover:bg-gray-50 transition-colors text-gray-900 font-medium",
-                          item.highlight && "text-gold bg-gold/10"
-                        )}
+                        className="flex items-center justify-between py-3 px-4 rounded-xl hover:bg-gray-50 transition-colors text-gray-900 font-medium"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <span>{item.name}</span>
