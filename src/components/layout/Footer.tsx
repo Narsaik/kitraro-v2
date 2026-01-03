@@ -37,7 +37,7 @@ export function Footer() {
   const isHomepage = pathname === "/";
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-[#0a2e0a] text-white">
       {/* Newsletter - Hidden on homepage */}
       {!isHomepage && (
         <div className="border-b border-white/10">
@@ -153,7 +153,7 @@ export function Footer() {
       </div>
 
       {/* Bottom */}
-      <div className="border-t border-white/10 bg-gray-950">
+      <div className="border-t border-white/10 bg-[#0a2e0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-6">
