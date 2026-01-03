@@ -46,9 +46,12 @@ export async function getProduct(handle: string): Promise<Product | null> {
 }
 
 export async function getFeaturedProducts(): Promise<Product[]> {
-  const products = await getProducts(50);
-  // Featured = products with compare at price (on sale)
-  return products.filter(p => p.compareAtPrice && p.compareAtPrice > p.price).slice(0, 8);
+  const products = await getProducts(100);
+  // Featured = most expensive products, sorted from highest to lowest price
+  return products
+    .filter(p => p.available)
+    .sort((a, b) => b.price - a.price)
+    .slice(0, 8);
 }
 
 export async function getNewArrivals(): Promise<Product[]> {
