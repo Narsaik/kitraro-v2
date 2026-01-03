@@ -260,11 +260,11 @@ export default function CollectionPage() {
         const currentCategory = categories.find((c) => c.slug === handle);
         if (currentCategory) {
           return (
-            <div className="bg-white py-12 md:py-16">
+            <div className="bg-white py-8 md:py-12">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                  {/* Category Image */}
-                  <div className="relative w-48 h-48 md:w-64 md:h-64 flex-shrink-0">
+                <div className="flex flex-col items-center">
+                  {/* Category Image - Title is in the image */}
+                  <div className="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0">
                     <Image
                       src={currentCategory.image}
                       alt={currentCategory.name}
@@ -273,14 +273,10 @@ export default function CollectionPage() {
                       priority
                     />
                   </div>
-                  {/* Category Info */}
-                  <div className="text-center md:text-left">
-                    <h1 className="text-4xl md:text-5xl font-heading font-bold text-gray-900">{collectionTitle}</h1>
-                    <p className="text-gray-500 mt-2 text-lg">{currentCategory.description}</p>
-                    <p className="text-brand-green font-medium mt-4">
-                      {filteredProducts.length} produto{filteredProducts.length !== 1 ? "s" : ""}
-                    </p>
-                  </div>
+                  {/* Product count only */}
+                  <p className="text-brand-green font-medium mt-4">
+                    {filteredProducts.length} produto{filteredProducts.length !== 1 ? "s" : ""}
+                  </p>
                 </div>
               </div>
             </div>
