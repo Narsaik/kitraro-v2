@@ -9,8 +9,8 @@ const contactMethods = [
   {
     icon: MessageCircle,
     title: "WhatsApp",
-    value: "+55 (11) 99999-9999",
-    href: "https://wa.me/5511999999999",
+    value: "+55 (17) 98111-4221",
+    href: "https://wa.me/5517981114221",
     description: "Atendimento rapido",
     color: "bg-green-500",
   },

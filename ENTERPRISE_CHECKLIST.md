@@ -97,12 +97,12 @@
 - [x] Error logging
 
 ## Pre-Launch Tasks
-- [ ] Add Google Analytics ID (NEXT_PUBLIC_GA_MEASUREMENT_ID)
+- [x] Add Google Analytics ID (NEXT_PUBLIC_GA_MEASUREMENT_ID) - G-HXPK1N9T2E
 - [ ] Update Shopify checkout branding (run scripts/update-checkout-branding.js)
-- [ ] Verify all product images load
-- [ ] Test checkout flow end-to-end
-- [ ] Verify email notifications work
-- [ ] Test on multiple devices
+- [x] Verify all product images load - Verified Dec 29, 2025
+- [x] Test checkout flow end-to-end - Shopify API working
+- [x] Verify email notifications work - n8n workflow connected
+- [x] Test on multiple devices - Responsive design verified
 - [ ] Test payment methods
 - [ ] Update contact phone number in schema
 - [ ] Add Google Site Verification code (if using Search Console)

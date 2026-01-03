@@ -109,7 +109,7 @@ export default function PrivacyPolicyPage() {
           </p>
           <ul>
             <li>E-mail: privacidade@kitraro.com</li>
-            <li>WhatsApp: +55 (11) 99999-9999</li>
+            <li>WhatsApp: +55 (17) 98111-4221</li>
           </ul>
         </div>
       </div>

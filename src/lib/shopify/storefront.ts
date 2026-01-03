@@ -1,8 +1,16 @@
 // Shopify Storefront API Client for Checkout
 const SHOPIFY_STORE_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || 'wzapw1-ic.myshopify.com';
+const SHOPIFY_MYSHOPIFY_DOMAIN = 'wzapw1-ic.myshopify.com'; // Always use myshopify.com for checkout
 const STOREFRONT_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN;
 
 const storefrontEndpoint = `https://${SHOPIFY_STORE_DOMAIN}/api/2024-10/graphql.json`;
+
+// Fix checkout URL to use myshopify.com domain (custom domains don't work for checkout)
+function fixCheckoutUrl(url: string): string {
+  if (!url) return url;
+  // Replace any custom domain with the myshopify.com domain
+  return url.replace(/https?:\/\/[^\/]+/, `https://${SHOPIFY_MYSHOPIFY_DOMAIN}`);
+}
 
 async function storefrontFetch<T>(query: string, variables?: Record<string, any>): Promise<T> {
   const response = await fetch(storefrontEndpoint, {
@@ -49,7 +57,7 @@ export async function createCart(): Promise<{ cartId: string; checkoutUrl: strin
 
   return {
     cartId: data.cartCreate.cart.id,
-    checkoutUrl: data.cartCreate.cart.checkoutUrl,
+    checkoutUrl: fixCheckoutUrl(data.cartCreate.cart.checkoutUrl),
   };
 }
 
@@ -92,7 +100,7 @@ export async function addToCart(
 
   return {
     cartId: data.cartLinesAdd.cart.id,
-    checkoutUrl: data.cartLinesAdd.cart.checkoutUrl,
+    checkoutUrl: fixCheckoutUrl(data.cartLinesAdd.cart.checkoutUrl),
   };
 }
 
@@ -246,7 +254,7 @@ export async function createCheckout(
 
   return {
     checkoutId: data.checkoutCreate.checkout.id,
-    checkoutUrl: data.checkoutCreate.checkout.webUrl,
+    checkoutUrl: fixCheckoutUrl(data.checkoutCreate.checkout.webUrl),
     totalPrice: data.checkoutCreate.checkout.totalPrice,
   };
 }

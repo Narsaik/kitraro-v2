@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Cinzel } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -17,13 +17,6 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-});
-
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  variable: "--font-cinzel",
-  weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -151,7 +144,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${cinzel.variable} font-sans antialiased bg-white text-gray-900`} suppressHydrationWarning>
+      <body className={`${inter.variable} font-sans antialiased bg-white text-gray-900`} suppressHydrationWarning>
         <ThemeProvider>
           {/* Scroll to top on navigation */}
           <ScrollToTop />

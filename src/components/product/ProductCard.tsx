@@ -60,17 +60,24 @@ function getProductSize(product: Product): string {
 
   // Check variant title if not default
   const variant = product.variants.find(v => v.available) || product.variants[0];
-  if (variant?.title && variant.title !== "Default Title") {
+
+  // Check variant size property directly (from static data)
+  if (variant?.size && variant.size !== "Unico" && variant.size !== "Default Title") {
+    return variant.size;
+  }
+
+  if (variant?.title && variant.title !== "Default Title" && variant.title !== "Unico") {
     return variant.title.split("/")[0].trim();
   }
 
   // Check variant options
   if (variant?.options) {
     const sizeOption = variant.options["Tamanho"] || variant.options["Size"] || variant.options["size"];
-    if (sizeOption && sizeOption !== "Default Title") return sizeOption;
+    if (sizeOption && sizeOption !== "Default Title" && sizeOption !== "Unico") return sizeOption;
   }
 
-  return "Unico";
+  // Return empty if no valid size found
+  return "";
 }
 
 export function ProductCard({ product, index = 0 }: ProductCardProps) {

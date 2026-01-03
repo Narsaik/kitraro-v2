@@ -129,7 +129,7 @@ export default function TermsPage() {
           </p>
           <ul>
             <li>E-mail: contato@kitraro.com</li>
-            <li>WhatsApp: +55 (11) 99999-9999</li>
+            <li>WhatsApp: +55 (17) 98111-4221</li>
           </ul>
         </div>
       </div>

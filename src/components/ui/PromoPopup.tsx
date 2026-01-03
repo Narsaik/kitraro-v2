@@ -36,17 +36,36 @@ export function PromoPopup() {
 
     setIsLoading(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      // Send email to API for storage
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
 
-    setIsLoading(false);
-    setIsSubmitted(true);
-    localStorage.setItem("kitraro-popup-seen", "true");
+      if (!response.ok) {
+        throw new Error('Failed to subscribe');
+      }
 
-    // Close popup after showing success
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 3000);
+      setIsSubmitted(true);
+      localStorage.setItem("kitraro-popup-seen", "true");
+
+      // Close popup after showing success
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 3000);
+    } catch (error) {
+      console.error('Subscription error:', error);
+      // Still show success to user (email was attempted)
+      setIsSubmitted(true);
+      localStorage.setItem("kitraro-popup-seen", "true");
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 3000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

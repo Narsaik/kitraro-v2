@@ -58,7 +58,7 @@ const allSizes = getAllSizes();
 // Group sizes by type
 const sizeGroups = {
   sneakers: allSizes.filter(s => /^\d{2}(\.\d)?$/.test(s)), // 38, 39, 40, 41, etc.
-  hats: allSizes.filter(s => s.includes("/") || s === "Único" || s === "Unico"), // 7 1/8, 7 1/4, etc.
+  hats: allSizes.filter(s => s.includes("/")), // 7 1/8, 7 1/4, etc.
   clothing: allSizes.filter(s => ["P", "M", "G", "GG", "XG", "S", "L", "XL", "XXL"].includes(s.toUpperCase())),
 };
 

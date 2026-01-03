@@ -96,18 +96,24 @@ export function ProductPageClient({ product, relatedProducts }: ProductPageClien
       return tamanhoMatch[1].trim().toUpperCase();
     }
 
+    // Check variant size property directly (from static data)
+    if (variant?.size && variant.size !== "Unico" && variant.size !== "Default Title") {
+      return variant.size;
+    }
+
     // Check variant title if not default
-    if (variant?.title && variant.title !== "Default Title") {
+    if (variant?.title && variant.title !== "Default Title" && variant.title !== "Unico") {
       return variant.title.split("/")[0].trim();
     }
 
     // Check variant options
     if (variant?.options) {
       const sizeOption = variant.options["Tamanho"] || variant.options["Size"] || variant.options["size"];
-      if (sizeOption && sizeOption !== "Default Title") return sizeOption;
+      if (sizeOption && sizeOption !== "Default Title" && sizeOption !== "Unico") return sizeOption;
     }
 
-    return "Unico";
+    // Return empty if no valid size found
+    return "";
   };
 
   return (
