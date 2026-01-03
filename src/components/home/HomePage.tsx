@@ -96,7 +96,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
                     className="group flex flex-col items-center touch-manipulation active:scale-95 transition-transform"
                   >
                     <div className="w-full aspect-square md:w-28 md:h-28 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:border-gold group-hover:scale-110 group-hover:shadow-lg overflow-hidden">
-                      <div className="w-[80%] h-[80%] relative">
+                      <div className="w-[70%] h-[70%] relative">
                         <Image
                           src={brand.logo}
                           alt={brand.name}
