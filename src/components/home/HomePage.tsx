@@ -55,9 +55,9 @@ export function HomePage({ featuredProducts, newArrivals, heroProducts, brands, 
               </div>
             </AnimatedSection>
 
-            {/* Horizontal scroll on mobile, grid on desktop */}
+            {/* Horizontal scroll on mobile, grid on desktop - Show 2 rows max (12 on desktop, 6 on tablet) */}
             <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-8 overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 hide-scrollbar">
-              {brands.map((brand, index) => (
+              {brands.slice(0, 12).map((brand, index) => (
                 <AnimatedSection key={brand.slug} delay={index * 0.1} className="flex-shrink-0">
                   <Link
                     href={`/brands/${brand.slug}`}
