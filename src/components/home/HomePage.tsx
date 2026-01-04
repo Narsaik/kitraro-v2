@@ -41,12 +41,12 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
     <div className="overflow-hidden">
       {/* 1. Categories Section - FIRST */}
       {categories.length > 0 && (
-        <section className="py-6 md:py-10 bg-white">
+        <section className="py-6 md:py-10 bg-background">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <div className="text-center mb-4 md:mb-8">
                 <span className="text-gold font-medium text-xs tracking-wider uppercase">Explore</span>
-                <h2 className="text-2xl md:text-3xl font-heading font-bold mt-1 md:mt-2 text-gray-900">Categorias</h2>
+                <h2 className="text-2xl md:text-3xl font-heading font-bold mt-1 md:mt-2 text-foreground">Categorias</h2>
               </div>
             </AnimatedSection>
 
@@ -75,17 +75,17 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
 
       {/* 2. Novidades (New Arrivals) */}
       {newArrivals.length > 0 && (
-        <section className="py-10 md:py-16 bg-white">
+        <section className="py-10 md:py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <div className="flex justify-between items-end mb-6 md:mb-8">
                 <div>
                   <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Fresh Drops</span>
-                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2 text-gray-900">Novidades</h2>
+                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2 text-foreground">Novidades</h2>
                 </div>
                 <Link
                   href="/products"
-                  className="hidden md:flex items-center gap-2 text-sm font-medium group text-gray-900 hover:text-gold"
+                  className="hidden md:flex items-center gap-2 text-sm font-medium group text-foreground hover:text-gold"
                 >
                   Ver Tudo
                   <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -117,7 +117,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
       )}
 
       {/* 3. Valley Dreams Banner */}
-      <section className="py-3 md:py-4 bg-white">
+      <section className="py-3 md:py-4 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <Link href="/products/camiseta-vales-lives-forever-speed-bling" className="group block relative h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden touch-manipulation active:scale-[0.99]">
@@ -148,17 +148,17 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
 
       {/* 4. Mais Exclusivos (Featured Products) */}
       {featuredProducts.length > 0 && (
-        <section className="py-10 md:py-12 bg-gray-50">
+        <section className="py-10 md:py-12 bg-background-secondary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <div className="flex justify-between items-end mb-6 md:mb-8">
                 <div>
                   <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Rare Finds</span>
-                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2 text-gray-900">Mais Exclusivos</h2>
+                  <h2 className="text-2xl md:text-4xl font-bold mt-1 md:mt-2 text-foreground">Mais Exclusivos</h2>
                 </div>
                 <Link
                   href="/products"
-                  className="hidden md:flex items-center gap-2 text-sm font-medium group text-gray-900 hover:text-gold"
+                  className="hidden md:flex items-center gap-2 text-sm font-medium group text-foreground hover:text-gold"
                 >
                   Ver Tudo
                   <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -212,13 +212,13 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
 
       {/* 6. Marcas (Brands Section) */}
       {brands.length > 0 && (
-        <section className="py-12 md:py-20 bg-white">
+        <section className="py-12 md:py-20 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <div className="text-center mb-8 md:mb-16">
                 <span className="text-gold font-medium text-xs md:text-sm tracking-wider uppercase">Curadoria Premium</span>
-                <h2 className="text-3xl md:text-6xl font-heading font-bold mt-2 md:mt-4 text-gray-900">Nossas Marcas</h2>
-                <p className="text-gray-500 mt-2 md:mt-4 max-w-2xl mx-auto text-sm md:text-base">Trabalhamos apenas com produtos originais, Streetwear de luxo importado diretamente do Canada para o Brasil.</p>
+                <h2 className="text-3xl md:text-6xl font-heading font-bold mt-2 md:mt-4 text-foreground">Nossas Marcas</h2>
+                <p className="text-foreground-secondary mt-2 md:mt-4 max-w-2xl mx-auto text-sm md:text-base">Trabalhamos apenas com produtos originais, Streetwear de luxo importado diretamente do Canada para o Brasil.</p>
               </div>
             </AnimatedSection>
 
@@ -229,7 +229,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
                     href={`/brands/${brand.slug}`}
                     className="group flex flex-col items-center touch-manipulation active:scale-95 transition-transform"
                   >
-                    <div className="w-full aspect-square md:w-28 md:h-28 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:border-gold group-hover:scale-110 group-hover:shadow-lg overflow-hidden">
+                    <div className="w-full aspect-square md:w-28 md:h-28 rounded-xl md:rounded-2xl bg-background-secondary border border-card-border flex items-center justify-center transition-all duration-500 group-hover:bg-background group-hover:border-gold group-hover:scale-110 group-hover:shadow-lg overflow-hidden">
                       <div className="w-[70%] h-[70%] relative">
                         <Image
                           src={brand.logo}
@@ -240,7 +240,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
                         />
                       </div>
                     </div>
-                    <span className="mt-2 md:mt-4 text-gray-700 text-xs md:text-sm font-medium group-hover:text-gold transition-colors text-center">
+                    <span className="mt-2 md:mt-4 text-foreground-secondary text-xs md:text-sm font-medium group-hover:text-gold transition-colors text-center">
                       {brand.name}
                     </span>
                   </Link>
@@ -252,7 +252,7 @@ export function HomePage({ featuredProducts, newArrivals, brands, categories }: 
               <div className="text-center mt-8 md:mt-16">
                 <Link
                   href="/brands"
-                  className="inline-flex items-center gap-2 px-6 md:px-8 py-3.5 md:py-4 border-2 border-gray-300 text-gray-900 font-bold rounded-full hover:border-gold hover:text-gold transition-colors touch-manipulation active:scale-95"
+                  className="inline-flex items-center gap-2 px-6 md:px-8 py-3.5 md:py-4 border-2 border-card-border text-foreground font-bold rounded-full hover:border-gold hover:text-gold transition-colors touch-manipulation active:scale-95"
                 >
                   Ver Todas as Marcas
                   <ArrowRight size={18} />

@@ -39,24 +39,22 @@ export default function BrandPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="bg-black text-white py-16">
+      <div className="py-12 border-b border-card-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-6">
-            <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center p-3">
+          <div className="flex flex-col items-center text-center">
+            <div className="w-24 h-24 flex items-center justify-center">
               <Image
                 src={brand.logo}
                 alt={brand.name}
-                width={60}
-                height={60}
+                width={80}
+                height={80}
                 className="object-contain"
               />
             </div>
-            <div>
-              <h1 className="text-4xl font-bold">{brand.name}</h1>
-              <p className="text-gray-400 mt-2">
-                {brandProducts.length} produto{brandProducts.length !== 1 ? "s" : ""}
-              </p>
-            </div>
+            <h1 className="text-3xl font-bold mt-4 text-foreground">{brand.name}</h1>
+            <p className="text-foreground-secondary mt-2">
+              {brandProducts.length} produto{brandProducts.length !== 1 ? "s" : ""}
+            </p>
           </div>
         </div>
       </div>
@@ -65,12 +63,12 @@ export default function BrandPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {brandProducts.length === 0 ? (
           <div className="text-center py-16">
-            <p className="text-gray-500 mb-4">
+            <p className="text-foreground-secondary mb-4">
               Nenhum produto encontrado para esta marca.
             </p>
             <Link
               href="/"
-              className="px-6 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+              className="px-6 py-2 bg-brand-green text-white rounded-full hover:bg-brand-green-light transition-colors"
             >
               Ver todos os produtos
             </Link>

@@ -35,13 +35,14 @@ function getProductSize(product: Product): string {
   }
 
   // Check for clothing sizes at end of title or after hyphen/space
-  const clothingSizeMatch = title.match(/[\s\-\–](XXS|XS|XXXL|XXL|XL|[SML])\s*$/i);
+  // Includes Brazilian sizes: P (Pequeno), G (Grande), GG (Extra Grande)
+  const clothingSizeMatch = title.match(/[\s\-\–](XXS|XS|XXXL|XXL|XL|GG|[SMLPG])\s*$/i);
   if (clothingSizeMatch) {
     return clothingSizeMatch[1].toUpperCase();
   }
 
   // Check for sizes with numbers (2XL, 3XL, etc.)
-  const numberedSizeMatch = title.match(/[\s\-\–]([2-5]?XL|[2-5]?XS)\s*$/i);
+  const numberedSizeMatch = title.match(/[\s\-\–]([2-5]?XL|[2-5]?XS|[2-5]?G)\s*$/i);
   if (numberedSizeMatch) {
     return numberedSizeMatch[1].toUpperCase();
   }
@@ -117,7 +118,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       className="group product-card"
     >
       <Link href={`/products/${product.handle}`}>
-        <div className="relative aspect-square bg-gray-100 rounded-2xl overflow-hidden mb-4 ring-2 ring-transparent group-hover:ring-brand-green/30 transition-all">
+        <div className="relative aspect-square bg-background-secondary rounded-2xl overflow-hidden mb-4 ring-2 ring-transparent group-hover:ring-brand-green/30 transition-all">
           {/* Primary Image */}
           <motion.div
             animate={{ opacity: imageIndex === 0 ? 1 : 0 }}
@@ -180,7 +181,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
 
         {/* Product Info */}
         <div className="space-y-2 flex flex-col">
-          <h3 className="font-bold text-sm line-clamp-2 min-h-[2.5rem] text-gray-900 group-hover:text-brand-green transition-colors">
+          <h3 className="font-bold text-sm line-clamp-2 min-h-[2.5rem] text-foreground group-hover:text-brand-green transition-colors">
             {product.title}
           </h3>
 
@@ -188,19 +189,19 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           <div className="flex items-center gap-2 h-7">
             <span className={cn(
               "font-bold text-lg",
-              product.compareAtPrice ? "text-brand-green" : "text-gray-900"
+              product.compareAtPrice ? "text-brand-green" : "text-foreground"
             )}>
               {formatPrice(product.price)}
             </span>
             {product.compareAtPrice && (
-              <span className="text-sm text-gray-400 line-through">
+              <span className="text-sm text-foreground-secondary line-through">
                 {formatPrice(product.compareAtPrice)}
               </span>
             )}
           </div>
 
           {/* Installments */}
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-foreground-secondary">
             ou 12x de {formatPrice(product.price / 12)}
           </p>
 
@@ -222,7 +223,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 ? "bg-green-500 text-white"
                 : product.available
                   ? "bg-brand-green text-white hover:bg-brand-green-light"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  : "bg-background-secondary text-foreground-secondary cursor-not-allowed"
             )}
           >
             <AnimatePresence mode="wait">

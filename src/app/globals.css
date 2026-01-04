@@ -1,14 +1,9 @@
 @import "tailwindcss";
 
+/* Enable dark mode via class selector */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --background-secondary: #f9fafb;
-  --foreground-secondary: #6b7280;
-  --card-bg: #ffffff;
-  --card-border: #e5e7eb;
-  --primary: #000000;
-  --primary-hover: #1a1a1a;
   /* Gold and Green Brand Palette - Luxury Dark Green */
   --gold: #d4af37;
   --gold-light: #f0d77c;
@@ -21,45 +16,36 @@
   --accent-gradient: linear-gradient(135deg, #d4af37 0%, #1a5d1a 100%);
   --success: #1a5d1a;
   --warning: #d4af37;
-  --header-bg: #ffffff;
-  --header-text: #000000;
-  --input-bg: #ffffff;
-  --input-border: #e5e7eb;
+
+  /* Light Mode Theme Colors */
+  --background: #ffffff;
+  --background-secondary: #f9fafb;
+  --foreground: #111827;
+  --foreground-secondary: #6b7280;
+  --card-border: #e5e7eb;
 }
 
-/* Dark mode */
+/* Dark Mode Theme Colors */
 .dark {
-  --background: #0a0a0a;
-  --foreground: #fafafa;
-  --background-secondary: #171717;
-  --foreground-secondary: #a1a1aa;
-  --card-bg: #1a1a1a;
-  --card-border: #2a2a2a;
-  --primary: #ffffff;
-  --primary-hover: #e5e5e5;
-  --header-bg: #0a0a0a;
-  --header-text: #ffffff;
-  --input-bg: #1a1a1a;
-  --input-border: #2a2a2a;
+  --background: #030712;
+  --background-secondary: #111827;
+  --foreground: #f9fafb;
+  --foreground-secondary: #9ca3af;
+  --card-border: #374151;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-background-secondary: var(--background-secondary);
-  --color-foreground-secondary: var(--foreground-secondary);
-  --color-card-bg: var(--card-bg);
-  --color-card-border: var(--card-border);
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
   --color-gold-dark: var(--gold-dark);
   --color-brand-green: var(--green);
   --color-brand-green-light: var(--green-light);
   --color-brand-green-dark: var(--green-dark);
-  --color-header-bg: var(--header-bg);
-  --color-header-text: var(--header-text);
-  --color-input-bg: var(--input-bg);
-  --color-input-border: var(--input-border);
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-card-border: var(--card-border);
   --font-sans: var(--font-inter);
   --font-serif: "Copperplate", "Copperplate Gothic Bold", "Copperplate Gothic", Georgia, serif;
 }
@@ -70,10 +56,11 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ===== LUXURY TYPOGRAPHY - COPPERPLATE ===== */
@@ -499,7 +486,7 @@ h1, h2, h3 {
 
 .gradient-border {
   position: relative;
-  background: white;
+  background: var(--background);
 }
 
 .gradient-border::before {
@@ -520,9 +507,9 @@ h1, h2, h3 {
 .skeleton {
   background: linear-gradient(
     90deg,
-    #f0f0f0 25%,
-    #e0e0e0 50%,
-    #f0f0f0 75%
+    var(--background-secondary) 25%,
+    var(--card-border) 50%,
+    var(--background-secondary) 75%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
@@ -600,16 +587,16 @@ a, button, input, select, textarea {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--background-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0a2e0a;
+  background: var(--green);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #143d14;
+  background: var(--green-light);
 }
 
 /* Hide scrollbar on mobile menu */

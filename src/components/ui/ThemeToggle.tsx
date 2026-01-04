@@ -10,7 +10,7 @@ export function ThemeToggle() {
   return (
     <motion.button
       onClick={toggleTheme}
-      className="p-2 rounded-full transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+      className="p-2 rounded-full transition-colors hover:bg-background-secondary text-foreground"
       aria-label={theme === "light" ? "Ativar modo escuro" : "Ativar modo claro"}
       whileTap={{ scale: 0.9 }}
     >
@@ -20,9 +20,9 @@ export function ThemeToggle() {
         transition={{ duration: 0.3 }}
       >
         {theme === "light" ? (
-          <Moon size={20} className="text-gray-700" />
+          <Moon size={20} className="text-foreground" />
         ) : (
-          <Sun size={20} className="text-yellow-400" />
+          <Sun size={20} className="text-gold" />
         )}
       </motion.div>
     </motion.button>
